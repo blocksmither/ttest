@@ -38,7 +38,7 @@ class Sushiswap(BaseConnector):
     abi = info_json["abi"]
 
     def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['sushiswap'][pair]
+        address = config['networks'][self.network]['pairs']['Sushiswap'][pair]
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -62,7 +62,7 @@ class Sushiswap(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['sushiswap'][pair])
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['Sushiswap'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
@@ -78,7 +78,7 @@ class UniswapV2(BaseConnector):
     abi = info_json["abi"]
 
     def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['uniswapv2'][pair]
+        address = config['networks'][self.network]['pairs']['UniswapV2'][pair]
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -102,7 +102,7 @@ class UniswapV2(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['uniswapv2'][pair])
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV2'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
@@ -118,7 +118,7 @@ class UniswapV3(BaseConnector):
     abi = info_json["abi"]
 
     def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['uniswapv3'][pair]
+        address = config['networks'][self.network]['pairs']['UniswapV3'][pair]
         query = f"""query {{
           pool(id:"{address}") {{
             tick
@@ -145,7 +145,7 @@ class UniswapV3(BaseConnector):
         return response_json['data']['pool']['token0Price'], response_json['data']['pool']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['uniswapv3'][pair])
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         sqrtPriceX96 = Decimal(contract.functions.slot0().call()[0])
 

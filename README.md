@@ -35,3 +35,15 @@ WATCHER
 This script keeps track of a price and prints everytime there is a change in price (It shows that changes in the SDK show faster and are more consistent)
 
     $ python watcher.py
+
+
+MEMPOOL READER
+========
+This script keeps track of the mempool and prints eveytime it reads a new transaction
+
+    $ python mempool.py
+
+
+TODO:
+
+    * Implement price prediction after transaction
