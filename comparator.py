@@ -47,7 +47,7 @@ def compare(connection_type='api', network='mainnet'):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
-    This script is to compare prices.
+    This script compares prices.
     """)
     parser.add_argument("-c", '--connection', default='api', choices=["api", "sdk"], help="Connection type")
     parser.add_argument("-r", "--rates", default=False, choices=[True, False], type=strtobool, help="Show all rates at the end")
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     RATES = args.rates
     NETWORK = args.network.strip()
 
-    if NETWORK == 'mainnet' or NETWORK == 'mainnet-fork':
+    if NETWORK in ['mainnet', 'mainnet-fork']:
         print(datetime.datetime.now())
         compare(connection_type=TYPE, network=NETWORK)
         if RATES:

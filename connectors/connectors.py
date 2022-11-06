@@ -150,5 +150,5 @@ class UniswapV3(BaseConnector):
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         sqrtPriceX96 = Decimal(contract.functions.slot0().call()[0])
 
-        price = math.pow(2, 192) / math.pow(sqrtPriceX96, 2) * math.pow(10, 12)
+        price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** 12
         return price, 1 / price
