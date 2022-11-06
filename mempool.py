@@ -34,15 +34,15 @@ class MempoolReader():
             print(f"hash: {event['event']['transaction']['hash']}")
             print(f"block: {event['event']['transaction']['blockNumber']}")
 
-            op_type = 0
+            op_type = 1
 
             for nbc in event['event']['transaction']['netBalanceChanges']:
                 if nbc['address'].lower() == self.address.lower():
                     for bc in nbc['balanceChanges']:
                         print(f"delta: {Decimal(bc['delta']) / 10 ** symbol_dec(bc['asset']['symbol'])}, asset: {bc['asset']['symbol']}")
-                        op_type *= int(bc['delta'])
+                        op_type *= float(bc['delta'])
             if op_type > 0:
-                print("ADDING LIQUIDITY")
+                print("ADDING/RETRIEVING LIQUIDITY")
             else:
                 print("SWAPING")
         except:
