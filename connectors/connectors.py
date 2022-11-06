@@ -1,4 +1,5 @@
 from web3 import Web3
+from decimal import Decimal
 import requests
 import json
 import os
@@ -66,7 +67,7 @@ class Sushiswap(BaseConnector):
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
-        price = _reserve0 / _reserve1 * math.pow(10, 12)
+        price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
         return price, 1 / price
 
 
@@ -106,7 +107,7 @@ class UniswapV2(BaseConnector):
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
-        price = _reserve0 / _reserve1 * math.pow(10, 12)
+        price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
         return price, 1 / price
 
 
@@ -147,7 +148,7 @@ class UniswapV3(BaseConnector):
     def get_prices_sdk(self, pair):
         address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['uniswapv3'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
-        sqrtPriceX96 = contract.functions.slot0().call()[0]
+        sqrtPriceX96 = Decimal(contract.functions.slot0().call()[0])
 
         price = math.pow(2, 192) / math.pow(sqrtPriceX96, 2) * math.pow(10, 12)
         return price, 1 / price
