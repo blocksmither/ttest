@@ -6,7 +6,7 @@ Python package::
 
     pip install -r requirements.txt
 
-Examples
+COMPARATOR
 ========
 Help:
 
@@ -29,3 +29,9 @@ To run a test on a fork mainnet chain, fork mainnet using brownie or ganache, an
     $ ganache-cli --fork https://mainnet.infura.io/v3/9165d99361774eb39d895e8623049a66 2>&1 1>ganache.log &&
     $ python comparator.py -c sdk -n mainnet-fork
 
+
+WATCHER
+========
+This script keeps track of a price and prints everytime there is a change in price (It shows that changes in the SDK show faster and are more consistent)
+
+    $ python watcher.py -h
