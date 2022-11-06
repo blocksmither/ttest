@@ -12,6 +12,7 @@ with open('config.yaml') as file:
 class BaseConnector():
     web3 = 'unset'
     network = 'unset'
+
     def get_prices(self, pair, network, connection='api'):
         self.web3 = Web3(Web3.HTTPProvider(config['networks'][network]['web3Provider']))
         self.network = network
@@ -75,6 +76,7 @@ class UniswapV2(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
         info_json = json.load(f)
     abi = info_json["abi"]
+
     def get_prices_api(self, pair):
         address = config['networks'][self.network]['pairs']['uniswapv2'][pair]
         query = f"""query {{
@@ -149,4 +151,3 @@ class UniswapV3(BaseConnector):
 
         price = math.pow(2, 192) / math.pow(sqrtPriceX96, 2) * math.pow(10, 12)
         return price, 1 / price
-

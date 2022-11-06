@@ -1,14 +1,15 @@
 from connectors import connectors
 
 import datetime
-import sys
 import argparse
 from distutils.util import strtobool
+
 
 def reverse_pair(pair):
     tokens = 'USDC-WETH'.split("-")
     tokens.reverse()
     return "-".join(tokens)
+
 
 swaps = [
     connectors.UniswapV2(),
@@ -22,6 +23,7 @@ pairs = [
 
 rates = {}
 
+
 def compare(connection_type='api', network='mainnet'):
     for pair in pairs:
         rates[pair] = {'prices': []}
@@ -32,10 +34,9 @@ def compare(connection_type='api', network='mainnet'):
             rates[pair]['prices'].append({'swap': swap.name, 'price': float(prices[0])})
             rates[reverse_pair(pair)]['prices'].append({'swap': swap.name, 'price': float(prices[1])})
 
-
     for pair, data in rates.items():
-        data['max'] = max(data['prices'], key=lambda x:x['price'])
-        data['min'] = min(data['prices'], key=lambda x:x['price'])
+        data['max'] = max(data['prices'], key=lambda x: x['price'])
+        data['min'] = min(data['prices'], key=lambda x: x['price'])
 
         print(pair)
         print(f"MAX: {data['max']['swap']}")
@@ -59,8 +60,8 @@ if __name__ == "__main__":
 
     if NETWORK == 'mainnet' or NETWORK == 'mainnet-fork':
         print(datetime.datetime.now())
-        compare(connection_type=TYPE, network=args.network)
+        compare(connection_type=TYPE, network=NETWORK)
         if RATES:
             print(rates)
     else:
-        raise Exception("Unsupported network provided! network=",NETWORK)
+        raise Exception("Unsupported network provided! network=", NETWORK)
