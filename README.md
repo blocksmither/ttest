@@ -34,4 +34,4 @@ WATCHER
 ========
 This script keeps track of a price and prints everytime there is a change in price (It shows that changes in the SDK show faster and are more consistent)
 
-    $ python watcher.py -h
+    $ python watcher.py
