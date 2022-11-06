@@ -50,14 +50,14 @@ if __name__ == "__main__":
     """)
     parser.add_argument("-c", '--connection', default='api', choices=["api", "sdk"], help="Connection type")
     parser.add_argument("-r", "--rates", default=False, choices=[True, False], type=strtobool, help="Show all rates at the end")
-    parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
+    parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'mainnet-fork', 'goerli'], help="Select mainnet or testnet network")
 
     args = parser.parse_args()
     TYPE = args.connection
     RATES = args.rates
     NETWORK = args.network.strip()
 
-    if NETWORK == 'mainnet':
+    if NETWORK == 'mainnet' or NETWORK == 'mainnet-fork':
         print(datetime.datetime.now())
         compare(connection_type=TYPE, network=args.network)
         if RATES:

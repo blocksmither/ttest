@@ -15,6 +15,22 @@ networks:
       tokens:
           USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
           WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+    'mainnet-fork':
+      web3Provider: http://127.0.0.1:8545
+      exchangeFactories:
+          uniswapv2: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+          uniswapv3: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
+          sushiswap: '0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac'
+      pairs:
+          sushiswap:
+              'USDC-WETH': '0x397ff1542f962076d0bfe58ea045ffa2d347aca0'
+          uniswapv2:
+              'USDC-WETH': '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
+          uniswapv3:
+              'USDC-WETH': '0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8'
+      tokens:
+          USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+          WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
     goerli:
       web3Provider: https://goerli.infura.io/v3/9165d99361774eb39d895e8623049a66
       exchangeFactories:
