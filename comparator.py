@@ -22,12 +22,12 @@ pairs = [
 
 rates = {}
 
-def compare(connection_type='api'):
+def compare(connection_type='api', network='mainnet'):
     for pair in pairs:
         rates[pair] = {'prices': []}
         rates[reverse_pair(pair)] = {'prices': []}
         for swap in swaps:
-            prices = swap.get_prices(pair, connection=connection_type)
+            prices = swap.get_prices(pair, network, connection=connection_type)
 
             rates[pair]['prices'].append({'swap': swap.name, 'price': float(prices[0])})
             rates[reverse_pair(pair)]['prices'].append({'swap': swap.name, 'price': float(prices[1])})
@@ -50,14 +50,17 @@ if __name__ == "__main__":
     """)
     parser.add_argument("-c", '--connection', default='api', choices=["api", "sdk"], help="Connection type")
     parser.add_argument("-r", "--rates", default=False, choices=[True, False], type=strtobool, help="Show all rates at the end")
+    parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'mainnet-fork', 'goerli'], help="Select mainnet or testnet network")
 
     args = parser.parse_args()
     TYPE = args.connection
     RATES = args.rates
+    NETWORK = args.network.strip()
 
-    print(datetime.datetime.now())
-    compare(connection_type=TYPE)
-    if RATES:
-        print(rates)
-
-
+    if NETWORK == 'mainnet' or NETWORK == 'mainnet-fork':
+        print(datetime.datetime.now())
+        compare(connection_type=TYPE, network=args.network)
+        if RATES:
+            print(rates)
+    else:
+        raise Exception("Unsupported network provided! network=",NETWORK)

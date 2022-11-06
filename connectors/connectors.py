@@ -3,12 +3,18 @@ import requests
 import json
 import os
 import math
+import yaml
 
-web3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/9165d99361774eb39d895e8623049a66'))
+with open('config.yaml') as file:
+    config = yaml.safe_load(file)
 
 
 class BaseConnector():
-    def get_prices(self, pair, connection='api'):
+    web3 = 'unset'
+    network = 'unset'
+    def get_prices(self, pair, network, connection='api'):
+        self.web3 = Web3(Web3.HTTPProvider(config['networks'][network]['web3Provider']))
+        self.network = network
         if connection == "api":
             return self.get_prices_api(pair)
         elif connection == "sdk":
@@ -30,13 +36,8 @@ class Sushiswap(BaseConnector):
         info_json = json.load(f)
     abi = info_json["abi"]
 
-
-    PAIRMAP = {
-        "USDC-WETH": "0x397ff1542f962076d0bfe58ea045ffa2d347aca0"
-    }
-
     def get_prices_api(self, pair):
-        address = self.PAIRMAP[f"{pair}"]
+        address = config['networks'][self.network]['pairs']['sushiswap'][pair]
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -60,8 +61,8 @@ class Sushiswap(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(self.PAIRMAP[f"{pair}"])
-        contract = web3.eth.contract(address=address, abi=self.abi)
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['sushiswap'][pair])
+        contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
         price = _reserve0 / _reserve1 * math.pow(10, 12)
@@ -74,13 +75,8 @@ class UniswapV2(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
         info_json = json.load(f)
     abi = info_json["abi"]
-
-    PAIRMAP = {
-        "USDC-WETH": "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc"
-    }
-
     def get_prices_api(self, pair):
-        address = self.PAIRMAP[f"{pair}"]
+        address = config['networks'][self.network]['pairs']['uniswapv2'][pair]
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -104,8 +100,8 @@ class UniswapV2(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(self.PAIRMAP[f"{pair}"])
-        contract = web3.eth.contract(address=address, abi=self.abi)
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['uniswapv2'][pair])
+        contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
 
         price = _reserve0 / _reserve1 * math.pow(10, 12)
@@ -119,12 +115,8 @@ class UniswapV3(BaseConnector):
         info_json = json.load(f)
     abi = info_json["abi"]
 
-    PAIRMAP = {
-        "USDC-WETH": "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8"
-    }
-
     def get_prices_api(self, pair):
-        address = self.PAIRMAP[f"{pair}"]
+        address = config['networks'][self.network]['pairs']['uniswapv3'][pair]
         query = f"""query {{
           pool(id:"{address}") {{
             tick
@@ -145,15 +137,14 @@ class UniswapV3(BaseConnector):
             liquidity
           }}
         }}"""
-
         response = requests.post(self.endpoint, json={'query': query})
         response_json = response.json()
 
         return response_json['data']['pool']['token0Price'], response_json['data']['pool']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(self.PAIRMAP[f"{pair}"])
-        contract = web3.eth.contract(address=address, abi=self.abi)
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['uniswapv3'][pair])
+        contract = self.web3.eth.contract(address=address, abi=self.abi)
         sqrtPriceX96 = contract.functions.slot0().call()[0]
 
         price = math.pow(2, 192) / math.pow(sqrtPriceX96, 2) * math.pow(10, 12)
