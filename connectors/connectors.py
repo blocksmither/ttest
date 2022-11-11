@@ -1,3 +1,5 @@
+from db.db import Database
+
 from web3 import Web3
 from decimal import Decimal
 import requests
@@ -7,6 +9,9 @@ import yaml
 
 with open(os.path.join(os.path.dirname(__file__), '..', 'config.yaml')) as file:
     config = yaml.safe_load(file)
+
+
+db = Database()
 
 
 class BaseConnector():
@@ -65,7 +70,7 @@ class Sushiswap(BaseConnector):
         address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['Sushiswap'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
-
+        db.update(address, reserves0=_reserve0, reserves1=_reserve1)
         price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
         return price, 1 / price
 
@@ -105,7 +110,7 @@ class UniswapV2(BaseConnector):
         address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV2'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
-
+        db.update(address, reserves0=_reserve0, reserves1=_reserve1)
         price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
         return price, 1 / price
 
@@ -148,6 +153,6 @@ class UniswapV3(BaseConnector):
         address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         sqrtPriceX96 = Decimal(contract.functions.slot0().call()[0])
-
+        db.update(address, sqrtprice=sqrtPriceX96)
         price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** 12
         return price, 1 / price
