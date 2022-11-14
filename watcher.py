@@ -5,34 +5,26 @@ import argparse
 
 
 def watcher(swap, network):
-    swap = eval(f"connectors.{swap}()")
-    price_api = swap.get_prices('USDC-WETH', network, connection='api')
-    price_sdk = swap.get_prices('USDC-WETH', network, connection='sdk')
+    swap = eval(f"connectors.{swap}('{network}')")
+    price_sdk = swap.get_prices('USDC-WETH', connection='sdk')
 
     current = {
-        'api': price_api[0],
-        'sdk': price_sdk[0]
+        'sdk': price_sdk[0],
     }
 
     print(datetime.datetime.now())
     print(swap.name)
-    print(f"Current API: {current['api']}")
-    print(f"Current SDK: {current['sdk']}")
+    print(f"Current Price: {current['sdk']}")
     while True:
         shout = False
-        price_api = swap.get_prices('USDC-WETH', network, connection='api')
-        if current['api'] != price_api[0]:
-            current['api'] = price_api[0]
-            shout = True
-        price_sdk = swap.get_prices('USDC-WETH', network, connection='sdk')
+        price_sdk = swap.get_prices('USDC-WETH', connection='sdk')
         if current['sdk'] != price_sdk[0]:
             current['sdk'] = price_sdk[0]
             shout = True
         if shout:
             print(datetime.datetime.now())
             print(swap.name)
-            print(f"Current API: {current['api']}")
-            print(f"Current SDK: {current['sdk']}")
+            print(f"Current Price: {current['sdk']}")
 
 
 if __name__ == "__main__":

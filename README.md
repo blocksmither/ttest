@@ -32,7 +32,7 @@ To run a test on a fork mainnet chain, fork mainnet using brownie or ganache, an
 
 WATCHER
 ========
-This script keeps track of a price and prints everytime there is a change in price (It shows that changes in the SDK show faster and are more consistent)
+This script keeps track of a price and prints everytime there is a change in price
 
     $ python watcher.py
 
@@ -44,6 +44,12 @@ This script keeps track of the mempool and prints eveytime it reads a new transa
     $ python mempool.py
 
 
+To predict price changes we have to run separetly the watcher and the mempool with the same variables (Currently only available for UniswapV2 and Sushiswap)
+
+    $ python watcher.py -s UniswapV2
+    $ python mempool.py -s UniswapV2
+
+
 TODO:
 
-    * Implement price prediction after transaction
+    * Implement price prediction for UniswapV3

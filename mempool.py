@@ -1,3 +1,5 @@
+from connectors import connectors
+
 from decimal import Decimal
 import websocket
 import json
@@ -23,6 +25,7 @@ class MempoolReader():
         self.pair = pair
         self.swap = swap
         self.network = network
+        self.connector = eval(f"connectors.{swap}('{network}')")
         self.address = self.config['networks'][self.network]['pairs'][self.swap][self.pair]
         self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
 
@@ -45,6 +48,10 @@ class MempoolReader():
                 print("ADDING/RETRIEVING LIQUIDITY")
             else:
                 print("SWAPING")
+                if event['event']['transaction']['hash'] is None:
+                    self.connector.predict_price(self.pair, event['event']['transaction']['netBalanceChanges'])
+                else:
+                    print("Too slow. Can't predict price. Tx is already in the blockchain and price changed.")
         except:
             pass
 
