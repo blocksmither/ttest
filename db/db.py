@@ -9,6 +9,7 @@ class Database():
     def __init__(self):
         self.con = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'arb.db'), detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
         self.cur = self.con.cursor()
+        self.create_database()
 
     def drop_database(self):
         sql = f"""DROP TABLE {self.table_name};"""
