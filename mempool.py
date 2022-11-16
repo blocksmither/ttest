@@ -32,7 +32,7 @@ class MempoolReader():
     @property
     def mempool_network(self):
         networks = {
-            'mainet': 'main',
+            'mainnet': 'main',
             'goerli': 'goerli'
         }
         return networks[self.network]
@@ -88,7 +88,7 @@ class MempoolReader():
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
-                "network": "main"
+                "network": self.mempool_network
             }
         }
         wsapp.send(json.dumps(data))
