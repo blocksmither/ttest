@@ -83,7 +83,6 @@ class Sushiswap(BaseConnector):
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
         else:
-            print(current_price)
             now = datetime.datetime.now()
             tdelta = now - current_price[1]
             if tdelta.total_seconds() > 1:
@@ -153,7 +152,6 @@ class UniswapV2(BaseConnector):
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
         else:
-            print(current_price)
             now = datetime.datetime.now()
             tdelta = now - current_price[1]
             if tdelta.total_seconds() > 1:
