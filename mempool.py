@@ -29,6 +29,14 @@ class MempoolReader():
         self.address = self.config['networks'][self.network]['pairs'][self.swap][self.pair]
         self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
 
+    @property
+    def mempool_network(self):
+        networks = {
+            'mainet': 'main',
+            'goerli': 'goerli'
+        }
+        return networks[self.network]
+
     def on_message(self, wsapp, message):
         event = json.loads(message)
         try:
@@ -64,7 +72,7 @@ class MempoolReader():
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
-                "network": self.network
+                "network": self.mempool_network
             }
         }
         wsapp.send(json.dumps(data))
@@ -99,7 +107,7 @@ if __name__ == "__main__":
     This script prints transactions in the mempool
     """)
     parser.add_argument("-s", '--swap', default='UniswapV3', choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
-    parser.add_argument("-n", "--network", default='main', choices=['main', 'goerli'], help="Select mainnet or testnet network")
+    parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
 
     args = parser.parse_args()
     SWAP = args.swap
