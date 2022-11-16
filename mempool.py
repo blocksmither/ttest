@@ -56,7 +56,7 @@ class MempoolReader():
                 print("ADDING/RETRIEVING LIQUIDITY")
             else:
                 print("SWAPING")
-                if event['event']['transaction']['hash'] is None:
+                if event['event']['transaction']['blockNumber'] is None:
                     self.connector.predict_price(self.pair, event['event']['transaction']['netBalanceChanges'])
                 else:
                     print("Too slow. Can't predict price. Tx is already in the blockchain and price changed.")

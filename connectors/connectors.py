@@ -220,5 +220,5 @@ class UniswapV3(BaseConnector):
         price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** 12
         return price, 1 / price
 
-    def predict_price(self, pair):
+    def predict_price(self, pair, deltas):
         print("Not yet supported")
