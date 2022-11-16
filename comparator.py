@@ -11,12 +11,6 @@ def reverse_pair(pair):
     return "-".join(tokens)
 
 
-swaps = [
-    connectors.UniswapV2(),
-    connectors.UniswapV3(),
-    connectors.Sushiswap()
-]
-
 pairs = [
     'USDC-WETH'
 ]
@@ -29,7 +23,7 @@ def compare(connection_type='api', network='mainnet'):
         rates[pair] = {'prices': []}
         rates[reverse_pair(pair)] = {'prices': []}
         for swap in swaps:
-            prices = swap.get_prices(pair, network, connection=connection_type)
+            prices = swap.get_prices(pair, connection=connection_type)
 
             rates[pair]['prices'].append({'swap': swap.name, 'price': float(prices[0])})
             rates[reverse_pair(pair)]['prices'].append({'swap': swap.name, 'price': float(prices[1])})
@@ -57,6 +51,12 @@ if __name__ == "__main__":
     TYPE = args.connection
     RATES = args.rates
     NETWORK = args.network.strip()
+
+    swaps = [
+        connectors.UniswapV2(NETWORK),
+        connectors.UniswapV3(NETWORK),
+        connectors.Sushiswap(NETWORK)
+    ]
 
     if NETWORK in ['mainnet', 'mainnet-fork']:
         print(datetime.datetime.now())
