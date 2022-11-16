@@ -64,7 +64,7 @@ class MempoolReader():
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
-                "network": "main"
+                "network": self.network
             }
         }
         wsapp.send(json.dumps(data))
@@ -99,11 +99,11 @@ if __name__ == "__main__":
     This script prints transactions in the mempool
     """)
     parser.add_argument("-s", '--swap', default='UniswapV3', choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
-    # parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'mainnet-fork', 'goerli'], help="Select mainnet or testnet network")
+    parser.add_argument("-n", "--network", default='main', choices=['main', 'goerli'], help="Select mainnet or testnet network")
 
     args = parser.parse_args()
     SWAP = args.swap
-    NETWORK = 'mainnet'
+    NETWORK = args.network.strip()
 
     reader = MempoolReader('USDC-WETH', SWAP, NETWORK)
     reader.start()

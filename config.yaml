@@ -41,7 +41,7 @@ networks:
           UniswapV2:
               'USDC-WETH': '0x647595535c370F6092C6daE9D05a7Ce9A8819F37'
           UniswapV3:
-              'USDC-WETH': '0x6337B3caf9C5236c7f3D1694410776119eDaF9FAA'
+              'USDC-WETH': '0x0d5db8197ec962ceae76c63dc80e4cb6efdb1d52'
           Sushiswap:
               'USDC-WETH': '0x4354ef54608f23c2838E44f1e9E7287762AAcD9B'
       tokens:
