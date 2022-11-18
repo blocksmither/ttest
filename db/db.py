@@ -9,6 +9,7 @@ class Database():
     def __init__(self):
         self.con = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'arb.db'), detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
         self.cur = self.con.cursor()
+        self.drop_database()
         self.create_database()
 
     def drop_database(self):
@@ -22,7 +23,8 @@ class Database():
             date TIMESTAMP,
             reserves0 text,
             reserves1 text,
-            sqrtprice text
+            sqrtprice text,
+            liquidity text
         );"""
         self.cur.execute(sql)
         self.con.commit()
@@ -33,20 +35,22 @@ class Database():
         self.cur.execute(sql)
         self.con.commit()
 
-    def update(self, address, reserves0=None, reserves1=None, sqrtprice=None):
+    def update(self, address, reserves0=None, reserves1=None, sqrtprice=None, liquidity=None):
         now = datetime.datetime.now()
         sql = f"""insert or replace into {self.table_name} (
             address,
             date,
             reserves0,
             reserves1,
-            sqrtprice
+            sqrtprice,
+            liquidity
         ) values (
             '{address}',
             '{now}',
             '{reserves0}',
             '{reserves1}',
-            '{sqrtprice}'
+            '{sqrtprice}',
+            '{liquidity}'
         )"""
         self.cur.execute(sql)
         self.con.commit()

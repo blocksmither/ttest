@@ -1,4 +1,5 @@
 from db.db import Database
+from connectors.sqrtpricemath import SqrtPriceMath
 
 from web3 import Web3
 from decimal import Decimal
@@ -213,10 +214,39 @@ class UniswapV3(BaseConnector):
     def get_prices_sdk(self, pair):
         address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
         contract = self.web3.eth.contract(address=address, abi=self.abi)
-        sqrtPriceX96 = Decimal(contract.functions.slot0().call()[0])
-        db.update(address, sqrtprice=sqrtPriceX96)
+        slot0 = contract.functions.slot0().call()
+        liquidity = contract.functions.liquidity().call()
+        sqrtPriceX96 = Decimal(slot0[0])
+        db.update(address, sqrtprice=sqrtPriceX96, liquidity=liquidity)
         price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** 12
-        return price, 1 / price
+        return price, 1 / price, slot0, liquidity
 
     def predict_price(self, pair, deltas):
-        print("Not yet supported")
+        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
+        current_price = db.get(address)
+        if current_price is None:
+            print("Not current price available. Run watcher separetly to be able to predict.")
+        else:
+            now = datetime.datetime.now()
+            tdelta = now - current_price[1]
+            if tdelta.total_seconds() > 1:
+                print("Last price saved is too old to make a prediction")
+            else:
+                memdeltas = {}
+                for nbc in deltas:
+                    if nbc['address'].lower() == address.lower():
+                        for bc in nbc['balanceChanges']:
+                            memdeltas[bc['asset']['symbol']] = bc['delta']
+
+                price = 2 ** 192 / Decimal(current_price[4]) ** 2 * 10 ** 12
+
+                dprice = SqrtPriceMath.getNextSqrtPriceFromAmount0RoundingUp(
+                    int(current_price[4]),
+                    int(current_price[5]),
+                    abs(int(memdeltas[pair.split("-")[0]])),
+                    int(memdeltas[pair.split("-")[0]]) > 0
+                )
+                dprice = 2 ** 192 / Decimal(dprice) ** 2 * 10 ** 12
+
+                print(f"Current price: {price}")
+                print(f"Predicted price: {dprice}")
