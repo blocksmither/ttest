@@ -1,0 +1,10 @@
+dotenv: .env
+wallets:
+  goerli:
+    privateKey: PUTGOERLITESTNETKEYHERE
+compiler:
+  solc:
+    remappings:
+      - "@uniswap=${SOLIDITY_ROOTDIR}/dependencies/Uniswap"
+      - "@openzeppelin=${SOLIDITY_ROOTDIR}/dependencies/OpenZeppelin"
+dependencies:
