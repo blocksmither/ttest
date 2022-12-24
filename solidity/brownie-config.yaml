@@ -8,3 +8,5 @@ compiler:
       - "@uniswap=${SOLIDITY_ROOTDIR}/dependencies/Uniswap"
       - "@openzeppelin=${SOLIDITY_ROOTDIR}/dependencies/OpenZeppelin"
 dependencies:
+network:
+  default: mainnet-fork
