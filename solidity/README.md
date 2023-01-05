@@ -1,9 +1,11 @@
 # Preinstallation
 You will need to install eth-brownie with pip.
 
-# Compiling
+# Prequisites
 
-Before compiling you need to source the `.env` file. Check the INFURA ID and other variables before proceeding.
+Before compiling or running tests you will need to source the `.env` file. Check the INFURA ID and other variables before proceeding.
+
+# Compiling
 
 To compile run the following
 `source .env && brownie compile`
