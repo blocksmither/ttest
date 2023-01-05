@@ -21,7 +21,7 @@ def test_profitlessSwapV3toV2(botContract):
     # Expect balance change to reflect WETH deposit amount
     assert wethbal == wethExpected
     assert usdcbal == usdcExpected
-    wethTradeAmount = 1e18
+    wethTradeAmount = 5e17
     # Record balances before swapping
     usdcBeforeBal = usdcbal
     wethBeforeBal = wethbal
