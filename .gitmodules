@@ -1,0 +1,15 @@
+[submodule "solidity/contracts/dependencies/Uniswap/v3-periphery"]
+	path = solidity/contracts/dependencies/Uniswap/v3-periphery
+	url = https://github.com/Uniswap/v3-periphery.git
+[submodule "solidity/contracts/dependencies/Uniswap/v3-core"]
+	path = solidity/contracts/dependencies/Uniswap/v3-core
+	url = https://github.com/Uniswap/v3-core.git
+[submodule "solidity/contracts/dependencies/Uniswap/v2-core"]
+	path = solidity/contracts/dependencies/Uniswap/v2-core
+	url = https://github.com/Uniswap/v2-core.git
+[submodule "solidity/contracts/dependencies/Uniswap/v2-periphery"]
+	path = solidity/contracts/dependencies/Uniswap/v2-periphery
+	url = https://github.com/Uniswap/v2-periphery.git
+[submodule "solidity/contracts/dependencies/OpenZeppelin/openzeppelin-contracts"]
+	path = solidity/contracts/dependencies/OpenZeppelin/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts.git
