@@ -17,10 +17,7 @@ To compile and run interactive prompt
 # Test Cases
 
 Test Cases Handled
- - Swap WETH for USDC on UniswapV2
- - Swap WETH for USDC on UniswapV3
- - Swap WETH->USDC-WETH for no profit between V2 and V3
- - Swap WETH->USDC->WETH for profit between V2 and V3 by imbalancing the pool before swap
+ - Swap WETH->USDC-WETH on all possible permutations of DEXes (UniswapV2, UniswapV3, Sushiswap)
 
 To run all test cases:
 `brownie test --network mainnet-fork`
@@ -37,10 +34,10 @@ To run all test cases:
 # TODO
 
 1. Make Bot upgradeable by selfdestructing and redeploying to the same address
-2. Add Sushiswap and other DEXes
+2. ~~Add Sushiswap~~ and other DEXes
 3. Gas Optimizations
 4. Add ability to borrow
-5. Add ability to make more than hops over 3 or more DEXes
+5. ~~Add ability to make more than hops over 3 or more DEXes~~
 6. Add withdraw functions for all ERC20 and ETH
 7. Add Bundling
 8. Add ability to call directy to pool pairs instead of router for gas optimization and accuracy when required
