@@ -1,10 +1,12 @@
 import pytest
+from brownie import accounts
 from scripts.deploy import deployBot, fundWithWETH, loadYAMLConfig
-import time
-from brownie import accounts, network
+
+
 @pytest.fixture
 def botContract():
     return deployBot()
+
 
 def test_swapUniswapV3SingleInput(botContract):
     account = accounts[0]
@@ -14,7 +16,7 @@ def test_swapUniswapV3SingleInput(botContract):
     # Expect Balances to be 0 when not yet funded.
     assert wethbal == wethExpected
     assert usdcbal == usdcExpected
-    fundWithWETH(botContract,3e18,account)
+    fundWithWETH(botContract, 3e18, account)
     wethExpected = 3e18
     (wethbal, usdcbal, _) = botContract.getBalances()
     # Expect balance change to reflect WETH deposit amount
@@ -34,6 +36,7 @@ def test_swapUniswapV3SingleInput(botContract):
     assert usdcbal > usdcBeforeBal
     assert wethbal == wethExpected
 
+
 def test_swapUniswapV2SingleInput(botContract):
     account = accounts[0]
     wethExpected = 0
@@ -42,7 +45,7 @@ def test_swapUniswapV2SingleInput(botContract):
     # Expect Balances to be 0 when not yet funded.
     assert wethbal == wethExpected
     assert usdcbal == usdcExpected
-    fundWithWETH(botContract,3e18,account)
+    fundWithWETH(botContract, 3e18, account)
     wethExpected = 3e18
     (wethbal, usdcbal, _) = botContract.getBalances()
     # Expect balance change to reflect WETH deposit amount
