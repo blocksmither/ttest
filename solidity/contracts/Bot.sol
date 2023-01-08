@@ -129,12 +129,18 @@ contract Bot {
     address holder;
     uint currentAmount = arbAmount;
 
+    bytes32 k256Sushiswap  = keccak256(abi.encodePacked('Sushiswap'));
+    bytes32 k256UniswapV2  = keccak256(abi.encodePacked('UniswapV2'));
+    bytes32 k256UniswapV3  = keccak256(abi.encodePacked('UniswapV3'));
+    bytes32 k256Dex;
+
     for (uint i = 0; i < dexs.length; i++) {
-      if (keccak256(abi.encodePacked(dexs[i])) == keccak256(abi.encodePacked('Sushiswap'))) {
+      k256Dex = keccak256(abi.encodePacked(dexs[i])); 
+      if (k256Dex == k256Sushiswap) {
         currentAmount = swapSushiSwap(currentIn, currentOut, currentAmount, 0, address(this));
-      } else if (keccak256(abi.encodePacked(dexs[i])) == keccak256(abi.encodePacked('UniswapV2'))) {
+      } else if (k256Dex == k256UniswapV2) {
         currentAmount = swapUniswapV2(currentIn, currentOut, currentAmount, 0, address(this));
-      } else if (keccak256(abi.encodePacked(dexs[i])) == keccak256(abi.encodePacked('UniswapV3'))) {
+      } else if (k256Dex == k256UniswapV3) {
         currentAmount = swapUniswapV3(currentIn, currentOut, currentAmount, 0, 3000, address(this), 0);
       } else {
         revert();
