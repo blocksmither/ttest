@@ -10,3 +10,6 @@ compiler:
 dependencies:
 network:
   default: mainnet-fork
+networks:
+  mainnet:
+    host: https://mainnet.infura.io/v3/9165d99361774eb39d895e8623049a66

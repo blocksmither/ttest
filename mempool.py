@@ -7,6 +7,8 @@ import datetime
 import argparse
 import os
 import yaml
+import brownie
+from brownie import accounts
 
 
 def symbol_dec(symbol):
@@ -28,6 +30,7 @@ class MempoolReader():
         self.connector = eval(f"connectors.{swap}('{network}')")
         self.address = self.config['networks'][self.network]['pairs'][self.swap][self.pair]
         self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
+        self.solBotProject = brownie.project.load('./solidity')
 
     @property
     def mempool_network(self):
@@ -58,6 +61,18 @@ class MempoolReader():
                 print("SWAPING")
                 if event['event']['transaction']['blockNumber'] is None:
                     self.connector.predict_price(self.pair, event['event']['transaction']['netBalanceChanges'])
+                    # Test Code that Spin up a fork, broadcast the transaction, then try to swap against it.
+                    try:
+                        brownie.network.connect(network='mainnet-fork',launch_rpc=True)
+                        solidityBot = self.solBotProject.Bot.deploy({'from': accounts[0]})
+                        solidityBot.depositETHAndUSDC({'from': accounts[0], 'value': 10e18})
+                        solidityBot.getBalances()
+                        # Call solidityBot.multiswap({'from': accounts[0])
+                        solidityBot.getBalances()
+                        brownie.network.disconnect()
+                    except Exception as e:
+                        print('Failed to test bot on ganache fork')
+                        print(e)
                 else:
                     print("Too slow. Can't predict price. Tx is already in the blockchain and price changed.")
         except:
