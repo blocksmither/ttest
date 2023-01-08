@@ -34,9 +34,16 @@ contract Bot {
     IWETH.approve(address(sushiRouter),type(uint).max);
   }
   
-  function depositETH() external payable {
+  function depositETH() public payable {
     IWETH.deposit{value: msg.value}();
   }
+
+  // Fund with ETH, leave half in WETH and half in USDC
+  function depositETHAndUSDC() public payable {
+    require(msg.sender == owner);
+    IWETH.deposit{value: msg.value}();
+    swapUniswapV2(WETH, USDC, msg.value/2, 0, address(this));
+  } 
 
   function getBalances() external view returns (uint, uint, uint) {
     uint wethbal = IWETH.balanceOf(address(this));
