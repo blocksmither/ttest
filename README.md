@@ -6,6 +6,32 @@ Python package::
 
     pip install -r requirements.txt
 
+
+LINKGRAPHER
+=========
+
+Install `neo4j` and start neo4j service before running `linkgrapher.py` according to installation instructions for your OS.  
+Enable remote connection to neo4j. You can view neo4j page to visualize graphs at http://localhost:7474.
+
+`linkgrapher_query.py` is used to create a graph database with each node being a pair or pool and edge relationships linking nodes if they share the same ERC20 Token
+
+- Node
+  - id (Address of pool or pair)
+  - token0 (Address of token0)
+  - token0symbol (Shortform symbol of token0)
+  - token1 (Address of token1)
+  - token1symbol (Shortform symbol of token1)
+
+Finding pools is done using subgraph. Queries to subgraph are limited and fully building all graphs may require queries which are not free. Therefore it doesn't make sense to query multiple times. Also it's difficult to share the graph database between us. Instead the raw json format result from subgraph is saved into local files.
+
+A separate function reads the json files and creates the neo4j graphs with `linkgrapher_database.py`
+
+Finding linked pairs example:
+
+`find_shared_token_pairs('0x0002bc7e2db8df0f26b6db17e1f5e661cb07ebcb','0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')`
+
+Will return an array of pair addresses that use WETH token (0xc02a)
+
 COMPARATOR
 ========
 Help:
