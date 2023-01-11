@@ -8,8 +8,7 @@ compiler:
       - "@uniswap=${SOLIDITY_ROOTDIR}/dependencies/Uniswap"
       - "@openzeppelin=${SOLIDITY_ROOTDIR}/dependencies/OpenZeppelin"
 dependencies:
-network:
-  default: mainnet-fork
 networks:
+  default: mainnet-fork
   mainnet:
     host: https://mainnet.infura.io/v3/9165d99361774eb39d895e8623049a66

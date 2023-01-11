@@ -1,14 +1,15 @@
+import argparse
+import datetime
+import json
+import os
+from decimal import Decimal
+
+import brownie
+import websocket
+import yaml
 from connectors import connectors
 
-from decimal import Decimal
-import websocket
-import json
-import datetime
-import argparse
-import os
-import yaml
-import brownie
-from brownie import accounts
+from comparator import compare
 
 
 def symbol_dec(symbol):
@@ -31,6 +32,7 @@ class MempoolReader():
         self.address = self.config['networks'][self.network]['pairs'][self.swap][self.pair]
         self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
         self.solBotProject = brownie.project.load('./solidity')
+        self.solBotProject.load_config()
 
     @property
     def mempool_network(self):
@@ -63,12 +65,23 @@ class MempoolReader():
                     self.connector.predict_price(self.pair, event['event']['transaction']['netBalanceChanges'])
                     # Test Code that Spin up a fork, broadcast the transaction, then try to swap against it.
                     try:
-                        brownie.network.connect(network='mainnet-fork',launch_rpc=True)
-                        solidityBot = self.solBotProject.Bot.deploy({'from': accounts[0]})
-                        solidityBot.depositETHAndUSDC({'from': accounts[0], 'value': 10e18})
-                        solidityBot.getBalances()
+                        brownie.network.connect(network='mainnet-fork', launch_rpc=True)
+                        solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
+                        solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
+                        balances = solidityBot.getBalances()
+                        print(balances)
                         # Call solidityBot.multiswap({'from': accounts[0])
-                        solidityBot.getBalances()
+                        swap_args = compare(network=self.network, return_swap_args=True)
+                        solidityBot.multiSwap(
+                            swap_args['WETH-USDC']['inToken'],
+                            swap_args['WETH-USDC']['arbToken'],
+                            1e18,
+                            swap_args['WETH-USDC']['dexs'],
+                            False,
+                            {'from': brownie.accounts[0]}
+                        )
+                        balances = solidityBot.getBalances()
+                        print(balances)
                         brownie.network.disconnect()
                     except Exception as e:
                         print('Failed to test bot on ganache fork')
