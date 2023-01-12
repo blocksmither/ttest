@@ -1,7 +1,6 @@
-import json
 from py2neo import Graph
 from py2neo.bulk import create_nodes,create_relationships
-import gc
+import json, time, concurrent.futures, gc
 
 #TODO - This is really slow on large number of pairs, find way to speed it up possibly using bulk API
 # https://py2neo.org/2021.1/bulk/index.html
@@ -135,5 +134,14 @@ def plot_v3_graphs(graph,v3poolfile,v2poolfile):
 # Connect to the graph database
 graph = Graph("bolt://localhost:7687", auth=("neo4j", "neo4j123"))
 
-plot_v2_graphs(graph,'./pairpages/v2pair-1.json')
-plot_v3_graphs(graph,'./pairpages/v3pool-1.json','./pairpages/v2pair-1.json')
+print("Setup Uniswap V2 first")
+start_time1 = time.time_ns()
+plot_v2_graphs(graph, './pairpages/v2pair-1.json')
+duration1 = (time.time_ns() - start_time1) /1000/1000/1000
+print("---------")
+print("Setup Uniswap V3")
+start_time2 = time.time_ns()
+plot_v3_graphs(graph, './pairpages/v3pool-1.json', './pairpages/v2pair-1.json')
+duration2 = (time.time_ns() - start_time2) /1000/1000/1000
+print("Executed V2 setup in %f seconds" % (duration1))
+print("Executed V3 setup in %f seconds" % (duration2))
