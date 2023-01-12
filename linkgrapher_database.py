@@ -1,139 +1,152 @@
-import json
 from py2neo import Graph
 from py2neo.bulk import create_nodes,create_relationships
-import gc
+import json, time, concurrent.futures, gc
 
-#TODO - This is really slow on large number of pairs, find way to speed it up possibly using bulk API
-# https://py2neo.org/2021.1/bulk/index.html
+def remove_reciprocals(lst):
+    seen_pairs = set()
+    return [tup for tup in lst if not (tup[2], tup[0]) in seen_pairs and not seen_pairs.add((tup[0], tup[2]))]
+
+def create_relationships_chunk(graph, chunk):
+    create_relationships(
+        graph.auto(),
+        chunk,
+        "SHARES_TOKEN",
+        start_node_key=("Pair","id"),
+        end_node_key=("Pair","id")
+    )
+
+def create_nodes_chunk(graph, chunk):
+        graph.create(*chunk)
+
+def create_relationships_with_retry(graph,chunknumber,chunkmax,chunk,rel_type,start_node_key,end_node_key,tries=30):
+    # Use begin(),commit(), and rollback() to ensure tx is properly closed or rolledback on fail, and is not open when starting
+    # Otherwise a failed transaction thread could fail every time
+    for i in range(tries):
+        try:
+            start_time=time.time_ns()
+            tx=graph.begin()
+            print(f"Attempting chunk {chunknumber}/{chunkmax}")
+            create_relationships(tx,chunk,rel_type,start_node_key,end_node_key)
+            graph.commit(tx)
+            duration_ms = (time.time_ns() - start_time)/1000/1000
+            print(f"Finished {chunknumber} in {duration_ms} milliseconds")
+            break
+        except Exception as e:
+            graph.rollback(tx)
+            if i+1 == tries:
+                raise e
+            print(f"!WARNING! backing off {i/2} seconds on chunk {chunknumber}")
+            time.sleep(i/2)
+
+
 def plot_v2_graphs(graph, v2poolfile):
-    
-    f = open(v2poolfile)
-    v2pairs = json.load(f)
-    f.close()
-    # Process the results and add nodes and edges to the graph
-    totalPairs = len(v2pairs["data"]["pairs"])
-    paircounter = 1
-    createKeys = ["id","token0","token0symbol","token1","token1symbol"]
+
+    with open(v2poolfile) as f:
+        v2pairs = json.load(f)
+
+    print("Creating nodes for v2 pairs...")
+    # Using list comprehension to create nodes
+    createKeys = ["id",'dexname',"token0","token0symbol","token1","token1symbol"]
     createData = []
     for pair in v2pairs["data"]["pairs"]:
-        print("Processing %d/%d pairs" % (paircounter,totalPairs))
-        # Create a node for the liquidity pool pair
-        createData.append([pair["id"],pair["token0"]["id"],pair["token0"]["symbol"],pair["token1"]["id"],pair["token1"]["symbol"]])
-        paircounter+=1
+        createData.append([pair["id"],'UniswapV2',pair["token0"]["id"],pair["token0"]["symbol"],pair["token1"]["id"],pair["token1"]["symbol"]])
     create_nodes(graph.auto(),createData,labels={"Pair"},keys=createKeys)
 
-    # Create links between DEX Pairs
-    # TODO - speed up for loop. Very slow for large number of pairs (i.e. 1000).
-    #   Using something like set() might speed up
-    #   https://note.nkmk.me/en/python-set/
-    #   https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
-    paircounter = 1
-    relationshipData=[]
-    for pair in v2pairs["data"]["pairs"]:
-        gc.disable()
-        pair2counter = 1
-        for pair2 in v2pairs["data"]["pairs"]:
-            pair2tokens = [pair2["token0"],pair2["token1"]]
-            print("On Pair %d, linking %d/%d pairs" % (paircounter,pair2counter,totalPairs))
-            if(
-              (pair["token0"] in pair2tokens or pair["token1"] in pair2tokens)
-              # don't link pair to itself
-              and pair["id"] is not pair2["id"]
-              # don't link if the reciprocal relationship already in pair
-              # otherwise will create pair->pair2 and pair2->pair for every token match
-              and (pair2["id"], {},pair["id"]) not in relationshipData):
-                relationshipData.append((
-                pair["id"],
-                {},
-                pair2["id"]
-                ))
-            pair2counter+=1
-        paircounter+=1
-    gc.enable()
-    create_relationships(
-        graph.auto(),
-        relationshipData,
-        "SHARES_TOKEN",
-        start_node_key=("Pair","id"),
-        end_node_key=("Pair","id")
-    )
+    print("Creating relationships between v2 pairs...")
+    pair2tokens = [[pair2["token0"], pair2["token1"]] for pair2 in v2pairs["data"]["pairs"]]
+    relationshipData = [(pair["id"], {}, pair2["id"])
+                    for paircounter, pair in enumerate(v2pairs["data"]["pairs"])
+                    for pair2counter, (pair2, tokens) in enumerate(zip(v2pairs["data"]["pairs"], pair2tokens))
+                    if (pair["id"] is not pair2["id"])
+                    and (pair["token0"] in tokens or pair["token1"] in tokens)
+                    ]
+    print("removing reciprocal relationships...")
+    relationshipDataClean = remove_reciprocals(relationshipData)
+    print("sorting relationship list to minimized thread deadlocks")
+    relationshipDataClean.sort()
+    print("committing relationships...")
 
+    chunk_size = 100
+    chunks = [relationshipDataClean[i:i+chunk_size] for i in range(0, len(relationshipDataClean), chunk_size)]
+    chunkmax = len(chunks)
 
-def plot_v3_graphs(graph,v3poolfile,v2poolfile):
-    
-    f = open(v3poolfile)
-    v3pools = json.load(f)
-    f.close()
-    f = open(v2poolfile)
-    v2pairs = json.load(f)
-    f.close()
-    
-    totalPools = len(v3pools["data"]["pools"])
-    totalPairs = len(v2pairs["data"]["pairs"])
-    # Process the results and add nodes and edges to the graph
-    poolcounter = 1
-    createKeys = ["id","token0","token0symbol","token1","token1symbol"]
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_chunk = [executor.submit(create_relationships_with_retry,graph, chunknumber, chunkmax, chunk,"SHARES_TOKEN",start_node_key=("Pair","id"),end_node_key=("Pair","id")) for chunknumber,chunk in enumerate(chunks)]
+        for i, future in enumerate(concurrent.futures.as_completed(future_to_chunk)):
+            try:
+                future.result()
+                print(f"Successfully processed chunk {i}")
+            except Exception as exc:
+                print(f"!Error! Failed to create relationships for chunk {i}, with error {exc}")
+        gc.collect()
+
+def plot_v3_graphs(graph, v3poolfile, v2poolfile):
+
+    with open(v3poolfile) as f:
+        v3pools = json.load(f)
+
+    with open(v2poolfile) as f:
+        v2pairs = json.load(f)
+
+    print("Creating V3 Pair nodes...")
+    # Using list comprehension to create nodes
+    createKeys = ["id",'dexname',"token0","token0symbol","token1","token1symbol"]
     createData = []
     for pool in v3pools["data"]["pools"]:
-        print("Creating %d/%d pools" %(poolcounter,totalPools))
-        # Create a node for the liquidity pool pool
-        createData.append([pool["id"],pool["token0"]["id"],pool["token0"]["symbol"],pool["token1"]["id"],pool["token1"]["symbol"]])
-        poolcounter+=1
-    create_nodes(graph.auto(),createData,labels={"Pair"},keys=createKeys)
+        createData.append([pool["id"],'UniswapV3',pool["token0"]["id"],pool["token0"]["symbol"],pool["token1"]["id"],pool["token1"]["symbol"]])
+    create_nodes(graph.auto(), createData, labels={"Pair"}, keys=createKeys)
 
-    # Create links between DEX Pools and Pairs
-    # TODO - speed up for loop. Very slow for large number of pairs.
-    #   Using something like set() might speed up
-    #   https://note.nkmk.me/en/python-set/
-    #   https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset
-    poolcounter=1
-    relationshipData=[]
-    for pool in v3pools["data"]["pools"]:
-        gc.disable()
-        print("Processing %d/%d pools" %(poolcounter,totalPools))
-        # Create edges between pools that share the same ERC20 token
-        pool2counter = 1
-        for pool2 in v3pools["data"]["pools"]:
-            print("On Pool %d, linking %d/%d pools" % (poolcounter,pool2counter,totalPools))
-            pool2tokens = [pool2["token0"],pool2["token1"]]
-            if(
-              (pool["token0"] in pool2tokens or pool["token1"] in pool2tokens)
-              # don't link pool to itself
-              and pool["id"] is not pool2["id"]
-              # don't link if the reciprocal relationship already in pool
-              # otherwise will create pool->pool2 and pool2->pool for every token match
-              and (pool2["id"], {},pool["id"]) not in relationshipData):
-                relationshipData.append((
-                pool["id"],
-                {},
-                pool2["id"]
-                ))
-            pool2counter+=1
-        # Create edges between v3pools and v2pairs that share the same ERC20 token
-        pair2counter = 1
-        for pair2 in v2pairs["data"]["pairs"]:
-            print("On Pool %d, linking %d/%d pairs" % (poolcounter,pair2counter,totalPairs))
-            pair2tokens = [pair2["token0"],pair2["token1"]]
-            if pool["token0"] in pair2tokens or pool["token1"] in pair2tokens:
-                relationshipData.append((
-                    pool["id"],
-                    {},
-                    pair2["id"]
-                ))
-            pair2counter+=1
-        poolcounter+=1
-    gc.enable()
-    create_relationships(
-        graph.auto(),
-        relationshipData,
-        "SHARES_TOKEN",
-        start_node_key=("Pair","id"),
-        end_node_key=("Pair","id")
-    )
+    # Using list comprehension to create relationship between pools
+    relationshipData = [(pool["id"], {}, pool2["id"])
+                       for pool in v3pools["data"]["pools"]
+                       for pool2 in v3pools["data"]["pools"]
+                       if pool["token0"]["id"] in [pool2["token0"]["id"], pool2["token1"]["id"]] and pool["id"] != pool2["id"]]
 
+    # List of relationships will contain reciprocals, remove them
+    # Pool1->Pool2 and Pool2->Pool1, so only one copy: Pool1->Pool2 remains
+    print("removing reciprocal relationships...")
+    relationshipDataClean = remove_reciprocals(relationshipData)
+
+    print("creating relationships between V3 and V2 Pairs...")
+    # Using list comprehension to create relationship between pools and pairs
+    relationshipDataClean += [(pool["id"], {}, pair2["id"])
+                        for pool in v3pools["data"]["pools"]
+                        for pair2 in v2pairs["data"]["pairs"]
+                        if pool["token0"]["id"] in [pair2["token0"]["id"], pair2["token1"]["id"]]]
+
+    print("sorting relationship list to minimized thread deadlocks")
+    relationshipData.sort()
+    print("committing relationships...")
+    # Commit relationship edges in chunks of chunk_size and run the create function in separate threads to speed up create_relationship()
+    chunk_size = 100
+    chunks = [relationshipDataClean[i:i+chunk_size] for i in range(0, len(relationshipDataClean), chunk_size)]
+    chunkmax = len(chunks)
+
+    # Create a thread pool and use submit() to submit function and params to be executed by a thread in the thread pool
+    # Use dict to store the future object returned by submit() to associate each future with corresponding chunk of relationships
+    # Use as_completed() to return iterator of Future objects of the the completed futures. Wait for threads to finish and check results of completed futures
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_chunk = [executor.submit(create_relationships_with_retry,graph, chunknumber, chunkmax, chunk,"SHARES_TOKEN",start_node_key=("Pair","id"),end_node_key=("Pair","id")) for chunknumber,chunk in enumerate(chunks)]
+        for i, future in enumerate(concurrent.futures.as_completed(future_to_chunk)):
+            try:
+                future.result()
+                print(f"Successfully processed chunk {i}")
+            except Exception as exc:
+                print(f"!Error! Failed to create relationships for chunk {i}, with error {exc}")
+        gc.collect()
 
 # Connect to the graph database
-graph = Graph("bolt://localhost:7687", auth=("neo4j", "neo4j"))
+graph = Graph("bolt://localhost:7687", auth=("neo4j", "neo4j123"))
 
-plot_v2_graphs(graph,'./pairpages/v2pair-1.json')
-plot_v3_graphs(graph,'./pairpages/v3pool-1.json','./pairpages/v2pair-1.json')
+print("Setup Uniswap V2 first")
+start_time1 = time.time_ns()
+plot_v2_graphs(graph, './pairpages/v2pair-1.json')
+duration1 = (time.time_ns() - start_time1) /1000/1000/1000
+print("---------")
+print("Setup Uniswap V3")
+start_time2 = time.time_ns()
+plot_v3_graphs(graph, './pairpages/v3pool-1.json', './pairpages/v2pair-1.json')
+duration2 = (time.time_ns() - start_time2) /1000/1000/1000
+print("Executed V2 setup in %f seconds" % (duration1))
+print("Executed V3 setup in %f seconds" % (duration2))
