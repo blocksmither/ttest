@@ -7,7 +7,7 @@ def query_v2_pairs():
     url = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
     query = """
     query {
-      pairs(first: 100) {
+      pairs(first: 1000) {
         id
         token0 {
           id
@@ -32,7 +32,7 @@ def query_v3_pools():
     url = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"
     query = """
     query {
-      pools(first: 100) {
+      pools(first: 1000) {
         id
         token0 {
           id
