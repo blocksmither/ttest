@@ -35,7 +35,6 @@ Will return an array of pair addresses that use WETH token (0xc02a)
 TODO:
  * Find better way to query pairs than subgraph because subgraph results are limited and cost to query all pairs
    * If subgraph is used, write logic to paginate queries and save results, so queries do not need to be repeated as they cost
- * Improve speed of relationship (graph edge) edge creator `SHARES_TOKEN`. Current for loop over lists is ~O(n^2)
  * Add logic to only create new relationship edges so graph DB can be updated. Current logic will duplicate relationship edges.
  * Create new relationship `IDENTICAL_PAIR` type when both tokens match. [(P1.token0 = P2.token0 or P2.token1) and (P1.token1 = P2.token0 or P2.token1)]
    * If using Bitwise logic:
