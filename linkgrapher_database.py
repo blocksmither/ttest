@@ -133,7 +133,7 @@ def plot_v3_graphs(graph,v3poolfile,v2poolfile):
 
 
 # Connect to the graph database
-graph = Graph("bolt://localhost:7687", auth=("neo4j", "neo4j"))
+graph = Graph("bolt://localhost:7687", auth=("neo4j", "neo4j123"))
 
 plot_v2_graphs(graph,'./pairpages/v2pair-1.json')
 plot_v3_graphs(graph,'./pairpages/v3pool-1.json','./pairpages/v2pair-1.json')
