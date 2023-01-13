@@ -1,6 +1,6 @@
 Installation
 ========
-Python 3.6.8
+Python 3.7.3
 
 Python package::
 
