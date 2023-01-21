@@ -1,0 +1,11 @@
+--2023-01-22 04:05:18--  https://api.etherscan.io/api?module=contract
+Resolving api.etherscan.io (api.etherscan.io)... 23.111.175.138, 217.79.240.58, 217.79.243.34
+Connecting to api.etherscan.io (api.etherscan.io)|23.111.175.138|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 135 [application/json]
+Saving to: ‘api?module=contract’
+
+api?module=contract    0%[                       ]       0  --.-KB/s               api?module=contract  100%[======================>]     135  --.-KB/s    in 0s      
+
+2023-01-22 04:06:19 (368 MB/s) - ‘api?module=contract’ saved [135/135]
+
