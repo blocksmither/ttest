@@ -30,11 +30,12 @@ class MempoolReader():
         self.swap = swap
         self.network = network
         self.connector = eval(f"connectors.{swap}('{network}')")
-        self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
         self.address1 = self.config['networks'][self.network]['exchangeRouters']['UniswapV2']
         self.address2 = self.config['networks'][self.network]['exchangeRouters']['UniswapV3']
         self.address3 = self.config['networks'][self.network]['exchangeRouters']['UniswapV302']
         self.address4 = self.config['networks'][self.network]['exchangeRouters']['Sushiswap']
+        self.wsapp = websocket.WebSocketApp(
+            "wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
         self.solBotProject = brownie.project.load('./solidity')
         self.solBotProject.load_config()
         self.w3 = Web3(Web3.HTTPProvider(
