@@ -66,10 +66,10 @@ class MempoolReader():
                     print("in ratio", in_ratio)
                     print("out ratio",out_ratio)
                     threshold = self.check_threshold
-                    if (in_ratio > self.threshold
-                            or out_ratio > self.threshold):
+                    if (in_ratio > self.check_threshold
+                            or out_ratio > self.check_threshold):
                         print(
-                            "Possible Arbitrage opportunity swap amount is greater than treshold ", self.threshold)
+                            "Possible Arbitrage opportunity swap amount is greater than treshold ", self.check_threshold)
                         try:
                             brownie.network.connect(network='mainnet-fork', launch_rpc=True)
                             solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
