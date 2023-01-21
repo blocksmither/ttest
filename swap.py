@@ -55,10 +55,21 @@ def get_swap_blocknative(subcall, router_address):
                     router_address = router_address
                     )
         case 'exactInput':
+            # This has multiple pools
             raise Exception("No handle for swap method %s" % call_method)
         case 'exactOutputSingle':
-            raise Exception("No handle for swap method %s" % call_method)
+            # params key nested twice
+            params = params['params']
+            return RouterSwap(
+                    token_in = params['tokenIn'],
+                    token_in_amount = int(params['amountInMax']),
+                    token_out = params['tokenOut'],
+                    token_out_amount = int(params['amountOut']),
+                    dex_name = dex_name,
+                    router_address = router_address
+                    )
         case 'exactOutput':
+            # This has multiple pools
             raise Exception("No handle for swap method %s" % call_method)
         # Uniswap V2 and Sushiswap Router Methods
         case 'swapExactTokensForTokens':
