@@ -61,10 +61,15 @@ class MempoolReader():
                         self.w3, swap.token_in, swap.token_out, swap.dex_name)
                     reserves = get_v2_pair_reserves(
                         self.w3, pair_address, swap.dex_name)
-                    if (swap.token_in_amount / reserves['token0'] > self.check_threshold
-                            or swap.token_out_amount / reserves['token1'] > self.check_threshold):
+                    in_ratio = swap.token_in_amount / reserves['token0']
+                    out_ratio = swap.token_out_amount / reserves['token1']
+                    print("in ratio", in_ratio)
+                    print("out ratio",out_ratio)
+                    threshold = self.check_threshold
+                    if (in_ratio > self.threshold
+                            or out_ratio > self.threshold):
                         print(
-                            "Possible Arbitrage opportunity swap amount is greater than treshold ", self.check_treshold)
+                            "Possible Arbitrage opportunity swap amount is greater than treshold ", self.threshold)
                         try:
                             brownie.network.connect(network='mainnet-fork', launch_rpc=True)
                             solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
