@@ -101,7 +101,7 @@ class MempoolReader():
             "categoryCode": "initialize",
             "eventCode": "checkDappId",
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -117,7 +117,7 @@ class MempoolReader():
                 "address": self.address1,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -133,7 +133,7 @@ class MempoolReader():
                 "address": self.address2,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -149,7 +149,7 @@ class MempoolReader():
                 "address": self.address3,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -165,7 +165,7 @@ class MempoolReader():
                 "address": self.address4,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
