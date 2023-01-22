@@ -75,9 +75,9 @@ class MempoolReader():
                     if (in_ratio > self.check_threshold
                             or out_ratio > self.check_threshold):
                         print(
-                            "Possible Arbitrage opportunity swap amount for txid ",
+                            "Possible Arbitrage opportunity! Swap amount for txid ",
                             event['event']['transaction']['hash'],
-                            " is greater than treshold ", self.check_threshold)
+                            " is greater than threshold ", self.check_threshold)
 
                         print("getting alt pairs")
                         alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
