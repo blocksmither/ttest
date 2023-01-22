@@ -15,6 +15,7 @@ class RouterSwap:
     router_address: str
     swap_method: str
     router_name: str
+    dex_name: str
 
 class UnparsableSwapMethodException(Exception):
     """Swap detected but contract method cannot be parsed properly. Contract method may be unsupported or unrecognized."""
@@ -68,7 +69,8 @@ def get_swap_blocknative(subcall, router_address):
                 token_out_amount=int(params['amountOutMinimum']),
                 router_name=router_name,
                 swap_method='exactInputSingle',
-                router_address=router_address
+                router_address=router_address,
+                dex_name='uniswapv3'
             )
         case 'exactInput':
             # This has multiple pools
@@ -83,7 +85,8 @@ def get_swap_blocknative(subcall, router_address):
                 token_out_amount=int(params['amountOut']),
                 router_name=router_name,
                 swap_method='exactOutputSingle',
-                router_address=router_address
+                router_address=router_address,
+                dex_name='uniswapv3'
             )
         case 'exactOutput':
             # This has multiple pools
@@ -98,6 +101,12 @@ def get_swap_blocknative(subcall, router_address):
             # TODO: Catch multiple pairs that could be imbalanced and check against other dexes
             if len(params['path']) > 2:
                 raise Exception('Cannot parse v2 swap path across >1 pairs')
+
+            if router_name == 'sushiswap':
+                dex_name = 'sushiswap'
+            else:
+                dex_name = 'uniswapv2'
+            
             return RouterSwap(
                 token_in=params['path'][0],
                 token_in_amount=int(params['amountIn']),
@@ -105,7 +114,8 @@ def get_swap_blocknative(subcall, router_address):
                 token_out_amount=int(params['amountOutMin']),
                 router_name=router_name,
                 swap_method='swapExactTokensForTokens',
-                router_address=router_address
+                router_address=router_address,
+                dex_name=dex_name
             )
         case 'swapTokensforExactTokens':
             # This can affect multiple pairs if path length > 2
@@ -116,6 +126,12 @@ def get_swap_blocknative(subcall, router_address):
             # TODO: Catch multiple pairs that could be imbalanced and check against other dexes
             if len(params['path']) > 2:
                 raise Exception('Cannot parse v2 swap path across >1 pairs')
+
+            if router_name == 'sushiswap':
+                dex_name = 'sushiswap'
+            else:
+                dex_name = 'uniswapv2'
+
             return RouterSwap(
                 token_in=params['path'][0],
                 token_in_amount=int(params['amountOut']),
@@ -123,7 +139,8 @@ def get_swap_blocknative(subcall, router_address):
                 token_out_amount=int(params['amountInMax']),
                 router_name=router_name,
                 swap_method='swapTokensForExactTokens',
-                router_address=router_address
+                router_address=router_address,
+                dex_name=dex_name
             )
         case 'swapExactETHForTokens':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
