@@ -10,7 +10,7 @@ import websocket
 import yaml
 from connectors import connectors
 from comparator import compare
-from swap import parse_swap_tx_blocknative, get_v2_pair, get_v2_pair_reserves, UnparsableTransactionException, UnparsableSwapMethodException
+from swap import parse_swap_tx_blocknative, get_v2_pair, get_v2_pair_reserves, get_v2_token0, UnparsableTransactionException, UnparsableSwapMethodException
 
 
 def symbol_dec(symbol):
@@ -56,14 +56,19 @@ class MempoolReader():
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
-                print(swap)
                 if swap.dex_name == 'uniswapv2' or swap.dex_name == 'uniswapv302' or swap.dex_name == 'sushiswap':
                     pair_address = get_v2_pair(
                         self.w3, swap.token_in, swap.token_out, swap.dex_name)
                     reserves = get_v2_pair_reserves(
                         self.w3, pair_address, swap.dex_name)
-                    in_ratio = swap.token_in_amount / reserves['token0']
-                    out_ratio = swap.token_out_amount / reserves['token1']
+                    pair_token0 = get_v2_token0(
+                        self.w3, pair_address, swap.dex_name)
+                    if swap.token_in == pair_token0:
+                        in_ratio = swap.token_in_amount / reserves['token0']
+                        out_ratio = swap.token_out_amount / reserves['token1']
+                    else:
+                        in_ratio = swap.token_in_amount / reserves['token1']
+                        out_ratio = swap.token_out_amount / reserves['token0']
                     print("in ratio", in_ratio)
                     print("out ratio",out_ratio)
                     threshold = self.check_threshold

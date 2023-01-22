@@ -177,3 +177,19 @@ def get_v2_pair_reserves(w3, pair_address, dex_name):
     (token0_reserve, token1_reserve,
      last_block_timestamp) = pair_contract.functions.getReserves().call()
     return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
+
+def get_v2_token0(w3, pair_address, dex_name):
+    if dex_name == 'uniswapv2' or dex_name == 'uniswapv302':
+        with open('./interfaces/uniswapv2/pair.abi', 'r') as f:
+            pair_abi = f.read().rstrip()
+    elif dex_name == 'sushiswap':
+        with open('./interfaces/sushiswap/pair.abi', 'r') as f:
+            pair_abi = f.read().rstrip()
+    else:
+        raise Exception("Cannot run get_v2_pair_reserves on dex %s" % dex_name)
+
+    pair_contract = w3.eth.contract(address=pair_address, abi=pair_abi)
+    token0 = pair_contract.functions.token0().call()
+    # We assume we already know both token addresses but not which is token0 or token1
+    # Speed up execution by evaluating what is token0, assume other token is token1
+    return token0
