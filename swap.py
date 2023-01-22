@@ -19,6 +19,27 @@ class RouterSwap:
     dex_name: str
 
 
+@dataclass
+class Pair:
+    # A Pair may contain more than 2 tokens for some DEX
+    # token0 address from a contract should be tokens[0]
+    tokens: list
+    reserves: list
+    # Address of the contract that created the pair
+    factory: str
+    # Address of the Pair Contract
+    address: str
+    fee: float
+    dex_name: str
+
+
+@dataclass
+class V3Pool(Pair):
+    sqrtpricex96: int
+    tick: int
+    liquidity: int
+
+
 class UnparsableSwapMethodException(Exception):
     """Swap detected but contract method cannot be parsed properly. Contract method may be unsupported or unrecognized."""
 
@@ -260,7 +281,20 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                 pair = factory_contract.functions.getPair(token0, token1).call()
 
                 if pair != EMPTY_PAIR:
-                    alt_pair_list.append(pair)
+                    reserves = get_v2_pair_reserves(w3, pair, 'uniswapv2')
+                    pair_token0 = get_v2_token0(w3, pair, 'uniswapv2')
+                    if pair_token0 == token0:
+                        pair_token1 = token1
+                    else:
+                        pair_token1 = token0
+                    alt_pair_list.append(Pair(
+                        tokens=[pair_token0, pair_token1],
+                        reserves=[reserves['token0'], reserves['token1']],
+                        dex_name='uniswapv2',
+                        factory=factory_address,
+                        fee=0.003,
+                        address=pair
+                    ))
 
             case 'sushiswap':
                 factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
@@ -273,7 +307,20 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                 pair = factory_contract.functions.getPair(token0, token1).call()
 
                 if pair != EMPTY_PAIR:
-                    alt_pair_list.append(pair)
+                    reserves = get_v2_pair_reserves(w3, pair, 'sushiswap')
+                    pair_token0 = get_v2_token0(w3, pair, 'sushiswap')
+                    if pair_token0 == token0:
+                        pair_token1 = token1
+                    else:
+                        pair_token1 = token0
+                    alt_pair_list.append(Pair(
+                        tokens=[pair_token0, pair_token1],
+                        reserves=[reserves['token0'], reserves['token1']],
+                        dex_name='sushiswap',
+                        factory=factory_address,
+                        fee=0.003,
+                        address=pair
+                    ))
 
     if len(alt_pair_list) < 1:
         raise Exception("No alternative pairs found! Cannot arbitrage without another pair")
