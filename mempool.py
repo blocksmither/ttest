@@ -10,7 +10,7 @@ import websocket
 import yaml
 from connectors import connectors
 from comparator import compare
-from swap import parse_swap_tx_blocknative, get_v2_pair, get_v2_pair_reserves
+from swap import parse_swap_tx_blocknative, get_v2_pair, get_v2_pair_reserves, UnparsableTransactionException, UnparsableSwapMethodException
 
 
 def symbol_dec(symbol):
@@ -93,6 +93,8 @@ class MempoolReader():
                             print('Failed to test bot on ganache fork')
                             print(e)
 
+        except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
+            pass
         except Exception as e:
             pass
 

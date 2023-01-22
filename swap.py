@@ -16,13 +16,18 @@ class RouterSwap:
     swap_method: str
     dex_name: str
 
+class UnparsableSwapMethodException(Exception):
+    """Swap detected but contract method cannot be parsed properly. Contract method may be unsupported or unrecognized."""
+
+class UnparsableTransactionException(Exception):
+    """The provided transaction cannot be parsed for swaps. It may have a swap embedded but input data is unsupported or unrecognized"""
 
 def parse_swap_tx_blocknative(blocknative_data):
     if 'subCalls' in blocknative_data['event']['contractCall']:
         subcalls = blocknative_data['event']['contractCall']['subCalls']
     else:
         # cannot parse swap in current logic so stop
-        raise Exception('Cannot parse swap data that does not list subCalls')
+        raise UnparsableTransactionException('Cannot parse swap data that does not list subCalls')
 
     to_address = blocknative_data['event']['transaction']['to']
     swaps = []
@@ -121,21 +126,21 @@ def get_swap_blocknative(subcall, router_address):
                 router_address=router_address
             )
         case 'swapExactETHForTokens':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapTokensForExactEth':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactTokensForETH':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapETHForExactTokens':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactTokensForETHSupportingFeeOnTransferTokens':
-            raise Exception("No handle for swap method %s" % call_method)
+            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case _:
-            raise Exception(
+            raise UnparsableSwapMethodException(
                 "Unrecognized contractcall method %s" % call_method)
 
 
