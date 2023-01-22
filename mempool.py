@@ -109,6 +109,8 @@ class MempoolReader():
 
         except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
             pass
+        except KeyError:
+            pass
         except Exception as e:
             pass
 
