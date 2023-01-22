@@ -14,7 +14,7 @@ class RouterSwap:
     token_out_amount: int
     router_address: str
     swap_method: str
-    dex_name: str
+    router_name: str
 
 class UnparsableSwapMethodException(Exception):
     """Swap detected but contract method cannot be parsed properly. Contract method may be unsupported or unrecognized."""
@@ -45,13 +45,13 @@ def get_swap_blocknative(subcall, router_address):
     params = subcall['data']['params']
     config_router = config['networks']['mainnet']['exchangeRouters']
     if router_address == config_router['UniswapV3']:
-        dex_name = 'uniswapv3'
+        router_name = 'uniswapv3'
     elif router_address == config_router['UniswapV302']:
-        dex_name = 'uniswapv302'
+        router_name = 'uniswapv302'
     elif router_address == config_router['UniswapV2']:
-        dex_name = 'uniswapv2'
+        router_name = 'uniswapv2'
     elif router_address == config_router['Sushiswap']:
-        dex_name = 'sushiswap'
+        router_name = 'sushiswap'
     else:
         raise Exception(
             "Swap Router is not recognized in to address of transaction: %s" % (router_address))
@@ -66,7 +66,7 @@ def get_swap_blocknative(subcall, router_address):
                 token_in_amount=int(params['amountIn']),
                 token_out=params['tokenOut'],
                 token_out_amount=int(params['amountOutMinimum']),
-                dex_name=dex_name,
+                router_name=router_name,
                 swap_method='exactInputSingle',
                 router_address=router_address
             )
@@ -81,7 +81,7 @@ def get_swap_blocknative(subcall, router_address):
                 token_in_amount=int(params['amountInMaximum']),
                 token_out=params['tokenOut'],
                 token_out_amount=int(params['amountOut']),
-                dex_name=dex_name,
+                router_name=router_name,
                 swap_method='exactOutputSingle',
                 router_address=router_address
             )
@@ -103,7 +103,7 @@ def get_swap_blocknative(subcall, router_address):
                 token_in_amount=int(params['amountIn']),
                 token_out=params['path'][1],
                 token_out_amount=int(params['amountOutMin']),
-                dex_name=dex_name,
+                router_name=router_name,
                 swap_method='swapExactTokensForTokens',
                 router_address=router_address
             )
@@ -121,7 +121,7 @@ def get_swap_blocknative(subcall, router_address):
                 token_in_amount=int(params['amountOut']),
                 token_out=params['path'][1],
                 token_out_amount=int(params['amountInMax']),
-                dex_name=dex_name,
+                router_name=router_name,
                 swap_method='swapTokensForExactTokens',
                 router_address=router_address
             )
@@ -144,17 +144,17 @@ def get_swap_blocknative(subcall, router_address):
                 "Unrecognized contractcall method %s" % call_method)
 
 
-def get_v2_pair(w3, token_in, token_out, dex_name):
-    if dex_name == 'uniswapv2' or dex_name == 'uniswapv302':
+def get_v2_pair(w3, token_in, token_out, router_name):
+    if router_name == 'uniswapv2' or router_name == 'uniswapv302':
         with open('./interfaces/uniswapv2/factory.abi', 'r') as f:
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
-    elif dex_name == 'sushiswap':
+    elif router_name == 'sushiswap':
         with open('./interfaces/sushiswap/factory.abi', 'r') as f:
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
     else:
-        raise Exception("Cannot run get_v2_pair on dex %s" % dex_name)
+        raise Exception("Cannot run get_v2_pair on dex router %s" % router_name)
 
     factory_contract = w3.eth.contract(
         address=factory_address, abi=factory_abi)
@@ -163,30 +163,30 @@ def get_v2_pair(w3, token_in, token_out, dex_name):
     return pair_address
 
 
-def get_v2_pair_reserves(w3, pair_address, dex_name):
-    if dex_name == 'uniswapv2' or dex_name == 'uniswapv302':
+def get_v2_pair_reserves(w3, pair_address, router_name):
+    if router_name == 'uniswapv2' or router_name == 'uniswapv302':
         with open('./interfaces/uniswapv2/pair.abi', 'r') as f:
             pair_abi = f.read().rstrip()
-    elif dex_name == 'sushiswap':
+    elif router_name == 'sushiswap':
         with open('./interfaces/sushiswap/pair.abi', 'r') as f:
             pair_abi = f.read().rstrip()
     else:
-        raise Exception("Cannot run get_v2_pair_reserves on dex %s" % dex_name)
+        raise Exception("Cannot run get_v2_pair_reserves on dex %s" % router_name)
 
     pair_contract = w3.eth.contract(address=pair_address, abi=pair_abi)
     (token0_reserve, token1_reserve,
      last_block_timestamp) = pair_contract.functions.getReserves().call()
     return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
-def get_v2_token0(w3, pair_address, dex_name):
-    if dex_name == 'uniswapv2' or dex_name == 'uniswapv302':
+def get_v2_token0(w3, pair_address, router_name):
+    if router_name == 'uniswapv2' or router_name == 'uniswapv302':
         with open('./interfaces/uniswapv2/pair.abi', 'r') as f:
             pair_abi = f.read().rstrip()
-    elif dex_name == 'sushiswap':
+    elif router_name == 'sushiswap':
         with open('./interfaces/sushiswap/pair.abi', 'r') as f:
             pair_abi = f.read().rstrip()
     else:
-        raise Exception("Cannot run get_v2_pair_reserves on dex %s" % dex_name)
+        raise Exception("Cannot run get_v2_pair_reserves on dex %s" % router_name)
 
     pair_contract = w3.eth.contract(address=pair_address, abi=pair_abi)
     token0 = pair_contract.functions.token0().call()

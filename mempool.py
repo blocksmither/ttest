@@ -56,13 +56,13 @@ class MempoolReader():
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
-                if swap.dex_name == 'uniswapv2' or swap.dex_name == 'uniswapv302' or swap.dex_name == 'sushiswap':
+                if swap.router_name == 'uniswapv2' or swap.router_name == 'uniswapv302' or swap.router_name == 'sushiswap':
                     pair_address = get_v2_pair(
-                        self.w3, swap.token_in, swap.token_out, swap.dex_name)
+                        self.w3, swap.token_in, swap.token_out, swap.router_name)
                     reserves = get_v2_pair_reserves(
-                        self.w3, pair_address, swap.dex_name)
+                        self.w3, pair_address, swap.router_name)
                     pair_token0 = get_v2_token0(
-                        self.w3, pair_address, swap.dex_name)
+                        self.w3, pair_address, swap.router_name)
                     if swap.token_in == pair_token0:
                         in_ratio = swap.token_in_amount / reserves['token0']
                         out_ratio = swap.token_out_amount / reserves['token1']
