@@ -10,7 +10,7 @@ import websocket
 import yaml
 from connectors import connectors
 from comparator import compare
-from swap import parse_swap_tx_blocknative, get_v2_pair, get_v2_pair_reserves, get_v2_token0, UnparsableTransactionException, UnparsableSwapMethodException
+from swap import parse_swap_tx_blocknative, get_alt_pairs, get_v2_pair, get_v2_pair_reserves, get_v2_token0, UnparsableTransactionException, UnparsableSwapMethodException
 
 
 def symbol_dec(symbol):
@@ -78,6 +78,11 @@ class MempoolReader():
                             "Possible Arbitrage opportunity swap amount for txid ",
                             event['event']['transaction']['hash'],
                             " is greater than treshold ", self.check_threshold)
+
+                        print("getting alt pairs")
+                        alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
+                        print(alt_pairs)
+
                         if self.test_mode:
                             try:
                                 brownie.network.connect(network='mainnet-fork', launch_rpc=True)

@@ -210,3 +210,64 @@ def get_v2_token0(w3, pair_address, router_name):
     # We assume we already know both token addresses but not which is token0 or token1
     # Speed up execution by evaluating what is token0, assume other token is token1
     return token0
+
+def get_alt_pairs(w3, token0, token1, dex_name):
+    dex_list = [
+       'uniswapv3',
+       'uniswapv2',
+       'sushiswap'
+    ]
+    dex_list.remove(dex_name)
+
+    alt_pair_list = []
+
+    # Placeholder code to lookup matching pairs in hashmap instead of slow contract calls
+    is_pair_in_hashmap = False
+    if is_pair_in_hashmap:
+        return alt_pair_list
+
+    for dex in dex_list:
+        match dex:
+            case 'uniswapv3':
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV3']
+                with open('./interfaces/uniswapv3/factory.abi','r') as f:
+                    factory_abi = f.read().rstrip()
+
+                factory_contract = w3.eth.contract(
+                    address=factory_address, abi=factory_abi)
+
+                for pool_fee in [1, 500, 3000, 10000]:
+                    alt_pair_list.append(
+                        factory_contract.functions.getPool(
+                            token0, token1, pool_fee
+                        ).call()
+                    )
+
+            case 'uniswapv2':
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
+                with open('./interfaces/uniswapv2/factory.abi','r') as f:
+                    factory_abi = f.read().rstrip()
+
+                factory_contract = w3.eth.contract(
+                    address=factory_address, abi=factory_abi)
+
+                alt_pair_list.append(
+                    factory_contract.functions.getPair(token0, token1).call()
+                )
+
+            case 'sushiswap':
+                factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
+                with open('./interfaces/sushiswap/factory.abi','r') as f:
+                    factory_abi = f.read().rstrip()
+
+                factory_contract = w3.eth.contract(
+                    address=factory_address, abi=factory_abi)
+
+                alt_pair_list.append(
+                    factory_contract.functions.getPair(token0, token1).call()
+                )
+
+    if len(alt_pair_list) < 1:
+        raise Exception("No alternative pairs found! Cannot arbitrage without another pair")
+
+    return alt_pair_list
