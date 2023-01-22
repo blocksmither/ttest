@@ -25,7 +25,7 @@ class MempoolReader():
     with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
         config = yaml.safe_load(file)
 
-    def __init__(self, pair, swap, network, threshold):
+    def __init__(self, pair, swap, network, threshold, test):
         self.pair = pair
         self.swap = swap
         self.network = network
@@ -41,6 +41,7 @@ class MempoolReader():
         self.w3 = Web3(Web3.HTTPProvider(
             self.config['networks'][self.network]['web3Provider']))
         self.check_threshold = threshold
+        self.test_mode = test
 
     @property
     def mempool_network(self):
@@ -69,29 +70,32 @@ class MempoolReader():
                     if (in_ratio > self.check_threshold
                             or out_ratio > self.check_threshold):
                         print(
-                            "Possible Arbitrage opportunity swap amount is greater than treshold ", self.check_threshold)
-                        try:
-                            brownie.network.connect(network='mainnet-fork', launch_rpc=True)
-                            solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
-                            solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
-                            balances = solidityBot.getBalances()
-                            print(balances)
-                            # Call solidityBot.multiswap({'from': accounts[0])
-                            swap_args = compare(network=self.network, return_swap_args=True)
-                            solidityBot.multiSwap(
-                                swap_args['WETH-USDC']['inToken'],
-                                swap_args['WETH-USDC']['arbToken'],
-                                1e18,
-                                swap_args['WETH-USDC']['dexs'],
-                                False,
-                                {'from': brownie.accounts[0]}
-                            )
-                            balances = solidityBot.getBalances()
-                            print(balances)
-                            brownie.network.disconnect()
-                        except Exception as e:
-                            print('Failed to test bot on ganache fork')
-                            print(e)
+                            "Possible Arbitrage opportunity swap amount for txid ",
+                            event['event']['transaction']['hash'],
+                            " is greater than treshold ", self.check_threshold)
+                        if self.test_mode:
+                            try:
+                                brownie.network.connect(network='mainnet-fork', launch_rpc=True)
+                                solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
+                                solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
+                                before_balances = solidityBot.getBalances()
+                                # Call solidityBot.multiswap({'from': accounts[0])
+                                swap_args = compare(network=self.network, return_swap_args=True)
+                                solidityBot.multiSwap(
+                                    swap_args['WETH-USDC']['inToken'],
+                                    swap_args['WETH-USDC']['arbToken'],
+                                    1e18,
+                                    swap_args['WETH-USDC']['dexs'],
+                                    False,
+                                    {'from': brownie.accounts[0]}
+                                )
+                                balances = solidityBot.getBalances()
+                                print("balances before ", before_balances)
+                                print("balances after ", balances)
+                                brownie.network.disconnect()
+                            except Exception as e:
+                                print('Failed to test bot on ganache fork')
+                                print(e)
 
         except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
             pass
@@ -193,13 +197,16 @@ if __name__ == "__main__":
                         choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
     parser.add_argument("-n", "--network", default='mainnet',
                         choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
-    parser.add_argument("-t", "--threshold", default=0.01,
+    parser.add_argument("-d", "--threshold", default=0.01,
                         help="Threshold amount for possible arbitrage, should typically be 0.01 or greater")
+    parser.add_argument("-t", "--test", action="store_true", default=False,
+                        help="Spin mainnet fork on ganache and test a swap on opportunities")
 
     args = parser.parse_args()
     SWAP = args.swap
     NETWORK = args.network.strip()
     THRESHOLD = float(args.threshold)
+    TEST_MODE_FLAG = args.test
 
-    reader = MempoolReader('USDC-WETH', SWAP, NETWORK, THRESHOLD)
+    reader = MempoolReader('USDC-WETH', SWAP, NETWORK, THRESHOLD, TEST_MODE_FLAG)
     reader.start()
