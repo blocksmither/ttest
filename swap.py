@@ -219,6 +219,8 @@ def get_alt_pairs(w3, token0, token1, dex_name):
     ]
     dex_list.remove(dex_name)
 
+    EMPTY_PAIR = '0x0000000000000000000000000000000000000000'
+
     alt_pair_list = []
 
     # Placeholder code to lookup matching pairs in hashmap instead of slow contract calls
@@ -237,11 +239,9 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                     address=factory_address, abi=factory_abi)
 
                 for pool_fee in [1, 500, 3000, 10000]:
-                    alt_pair_list.append(
-                        factory_contract.functions.getPool(
-                            token0, token1, pool_fee
-                        ).call()
-                    )
+                    pair =  factory_contract.functions.getPool(token0, token1, pool_fee).call()
+                    if pair != EMPTY_PAIR:
+                        alt_pair_list.append(pair)
 
             case 'uniswapv2':
                 factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
@@ -251,9 +251,10 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                 factory_contract = w3.eth.contract(
                     address=factory_address, abi=factory_abi)
 
-                alt_pair_list.append(
-                    factory_contract.functions.getPair(token0, token1).call()
-                )
+                pair = factory_contract.functions.getPair(token0, token1).call()
+
+                if pair != EMPTY_PAIR:
+                    alt_pair_list.append(pair)
 
             case 'sushiswap':
                 factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
@@ -263,9 +264,10 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                 factory_contract = w3.eth.contract(
                     address=factory_address, abi=factory_abi)
 
-                alt_pair_list.append(
-                    factory_contract.functions.getPair(token0, token1).call()
-                )
+                pair = factory_contract.functions.getPair(token0, token1).call()
+
+                if pair != EMPTY_PAIR:
+                    alt_pair_list.append(pair)
 
     if len(alt_pair_list) < 1:
         raise Exception("No alternative pairs found! Cannot arbitrage without another pair")
