@@ -237,7 +237,7 @@ def get_alt_pairs(w3, token0, token1, dex_name):
     for dex in dex_list:
         match dex:
             case 'uniswapv3':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV3']                
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV3']
                 with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv3', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
@@ -250,7 +250,7 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                         alt_pair_list.append(pair)
 
             case 'uniswapv2':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']         
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
                 with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
@@ -263,7 +263,7 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                     alt_pair_list.append(pair)
 
             case 'sushiswap':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']                
+                factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
                 with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
