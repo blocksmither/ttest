@@ -39,7 +39,7 @@ class MempoolReader():
         self.address4 = self.config['networks'][self.network]['exchangeRouters']['Sushiswap']
         self.wsapp = websocket.WebSocketApp(
             "wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
-        self.solBotProject = brownie.project.load('./solidity')
+        self.solBotProject = brownie.project.load(os.path.join(os.path.dirname(__file__), 'solidity'))
         self.solBotProject.load_config()
         self.w3 = Web3(Web3.HTTPProvider(
             self.config['networks'][self.network]['web3Provider']))
@@ -59,13 +59,23 @@ class MempoolReader():
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
-                if swap.router_name == 'uniswapv2' or swap.router_name == 'uniswapv302' or swap.router_name == 'sushiswap':
+                if swap.router_name in ['uniswapv2', 'uniswapv302', 'sushiswap']:
                     pair_address = get_v2_pair(
-                        self.w3, swap.token_in, swap.token_out, swap.router_name)
+                        self.w3,
+                        swap.token_in,
+                        swap.token_out,
+                        swap.router_name
+                    )
                     reserves = get_v2_pair_reserves(
-                        self.w3, pair_address, swap.router_name)
+                        self.w3,
+                        pair_address,
+                        swap.router_name
+                    )
                     pair_token0 = get_v2_token0(
-                        self.w3, pair_address, swap.router_name)
+                        self.w3,
+                        pair_address,
+                        swap.router_name
+                    )
                     if swap.token_in == pair_token0:
                         in_ratio = swap.token_in_amount / reserves['token0']
                         out_ratio = swap.token_out_amount / reserves['token1']
@@ -74,7 +84,7 @@ class MempoolReader():
                         out_ratio = swap.token_out_amount / reserves['token0']
                     print("in ratio", in_ratio)
                     print("out ratio", out_ratio)
-                    threshold = self.check_threshold
+
                     if in_ratio > self.check_threshold or \
                             out_ratio > self.check_threshold:
                         print(
