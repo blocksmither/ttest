@@ -2,15 +2,18 @@ import argparse
 import datetime
 import json
 import os
-from web3 import Web3
-from decimal import Decimal
 
 import brownie
 import websocket
 import yaml
 from connectors import connectors
+from swap import (UnparsableSwapMethodException,
+                  UnparsableTransactionException, get_alt_pairs, get_v2_pair,
+                  get_v2_pair_reserves, get_v2_token0,
+                  parse_swap_tx_blocknative)
+from web3 import Web3
+
 from comparator import compare
-from swap import parse_swap_tx_blocknative, get_alt_pairs, get_v2_pair, get_v2_pair_reserves, get_v2_token0, UnparsableTransactionException, UnparsableSwapMethodException
 
 
 def symbol_dec(symbol):
@@ -70,10 +73,10 @@ class MempoolReader():
                         in_ratio = swap.token_in_amount / reserves['token1']
                         out_ratio = swap.token_out_amount / reserves['token0']
                     print("in ratio", in_ratio)
-                    print("out ratio",out_ratio)
+                    print("out ratio", out_ratio)
                     threshold = self.check_threshold
-                    if (in_ratio > self.check_threshold
-                            or out_ratio > self.check_threshold):
+                    if in_ratio > self.check_threshold or \
+                            out_ratio > self.check_threshold:
                         print(
                             "Possible Arbitrage opportunity! Swap amount for txid ",
                             event['event']['transaction']['hash'],
@@ -107,11 +110,11 @@ class MempoolReader():
                                 print('Failed to test bot on ganache fork')
                                 print(e)
 
-        except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
+        except (UnparsableTransactionException, UnparsableSwapMethodException):
             pass
         except KeyError:
             pass
-        except Exception as e:
+        except Exception:
             pass
 
     def on_open(self, wsapp):
@@ -191,6 +194,7 @@ class MempoolReader():
             }
         }
         wsapp.send(json.dumps(data))
+
     def start(self):
         print("Reading mempool of:")
         print(f"Network: {self.network}")

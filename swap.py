@@ -1,8 +1,9 @@
-import json
+import os
 from dataclasses import dataclass
+
 import yaml
 
-with open('./config.yaml', 'r') as f:
+with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as f:
     config = yaml.safe_load(f)
 
 
@@ -17,11 +18,14 @@ class RouterSwap:
     router_name: str
     dex_name: str
 
+
 class UnparsableSwapMethodException(Exception):
     """Swap detected but contract method cannot be parsed properly. Contract method may be unsupported or unrecognized."""
 
+
 class UnparsableTransactionException(Exception):
     """The provided transaction cannot be parsed for swaps. It may have a swap embedded but input data is unsupported or unrecognized"""
+
 
 def parse_swap_tx_blocknative(blocknative_data):
     if 'subCalls' in blocknative_data['event']['contractCall']:
@@ -106,7 +110,7 @@ def get_swap_blocknative(subcall, router_address):
                 dex_name = 'sushiswap'
             else:
                 dex_name = 'uniswapv2'
-            
+
             return RouterSwap(
                 token_in=params['path'][0],
                 token_in_amount=int(params['amountIn']),
@@ -163,11 +167,11 @@ def get_swap_blocknative(subcall, router_address):
 
 def get_v2_pair(w3, token_in, token_out, router_name):
     if router_name == 'uniswapv2' or router_name == 'uniswapv302':
-        with open('./interfaces/uniswapv2/factory.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
     elif router_name == 'sushiswap':
-        with open('./interfaces/sushiswap/factory.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswasushiswappv2', 'factory.abi'), 'r') as f:
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
     else:
@@ -182,10 +186,10 @@ def get_v2_pair(w3, token_in, token_out, router_name):
 
 def get_v2_pair_reserves(w3, pair_address, router_name):
     if router_name == 'uniswapv2' or router_name == 'uniswapv302':
-        with open('./interfaces/uniswapv2/pair.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
             pair_abi = f.read().rstrip()
     elif router_name == 'sushiswap':
-        with open('./interfaces/sushiswap/pair.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'sushiswap', 'pair.abi'), 'r') as f:
             pair_abi = f.read().rstrip()
     else:
         raise Exception("Cannot run get_v2_pair_reserves on dex %s" % router_name)
@@ -195,12 +199,13 @@ def get_v2_pair_reserves(w3, pair_address, router_name):
      last_block_timestamp) = pair_contract.functions.getReserves().call()
     return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
+
 def get_v2_token0(w3, pair_address, router_name):
     if router_name == 'uniswapv2' or router_name == 'uniswapv302':
-        with open('./interfaces/uniswapv2/pair.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
             pair_abi = f.read().rstrip()
     elif router_name == 'sushiswap':
-        with open('./interfaces/sushiswap/pair.abi', 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'sushiswap', 'pair.abi'), 'r') as f:
             pair_abi = f.read().rstrip()
     else:
         raise Exception("Cannot run get_v2_pair_reserves on dex %s" % router_name)
@@ -211,11 +216,12 @@ def get_v2_token0(w3, pair_address, router_name):
     # Speed up execution by evaluating what is token0, assume other token is token1
     return token0
 
+
 def get_alt_pairs(w3, token0, token1, dex_name):
     dex_list = [
-       'uniswapv3',
-       'uniswapv2',
-       'sushiswap'
+        'uniswapv3',
+        'uniswapv2',
+        'sushiswap'
     ]
     dex_list.remove(dex_name)
 
@@ -231,21 +237,21 @@ def get_alt_pairs(w3, token0, token1, dex_name):
     for dex in dex_list:
         match dex:
             case 'uniswapv3':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV3']
-                with open('./interfaces/uniswapv3/factory.abi','r') as f:
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV3']                
+                with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv3', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
                 factory_contract = w3.eth.contract(
                     address=factory_address, abi=factory_abi)
 
                 for pool_fee in [1, 500, 3000, 10000]:
-                    pair =  factory_contract.functions.getPool(token0, token1, pool_fee).call()
+                    pair = factory_contract.functions.getPool(token0, token1, pool_fee).call()
                     if pair != EMPTY_PAIR:
                         alt_pair_list.append(pair)
 
             case 'uniswapv2':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
-                with open('./interfaces/uniswapv2/factory.abi','r') as f:
+                factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']         
+                with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
                 factory_contract = w3.eth.contract(
@@ -257,8 +263,8 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                     alt_pair_list.append(pair)
 
             case 'sushiswap':
-                factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
-                with open('./interfaces/sushiswap/factory.abi','r') as f:
+                factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']                
+                with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
                     factory_abi = f.read().rstrip()
 
                 factory_contract = w3.eth.contract(
