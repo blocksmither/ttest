@@ -192,7 +192,7 @@ def get_v2_pair(w3, token_in, token_out, router_name):
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['UniswapV2']
     elif router_name == 'sushiswap':
-        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswasushiswappv2', 'factory.abi'), 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
             factory_abi = f.read().rstrip()
         factory_address = config['networks']['mainnet']['exchangeFactories']['Sushiswap']
     else:
