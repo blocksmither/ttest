@@ -178,14 +178,14 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
 
             return RouterSwap(
                 # path0 will be WETH
-                token_in = params['path'][0],
-                token_in_amount = blocknative_data['event']['transaction']['value'],
-                token_out = params['path'][1],
-                token_out_amount = int(params['amountOutMin']),
-                router_name = router_name,
-                swap_method = 'swapExactTokensForTokens',
-                router_address = router_address,
-                dex_name = dex_name
+                token_in=params['path'][0],
+                token_in_amount=blocknative_data['event']['transaction']['value'],
+                token_out=params['path'][1],
+                token_out_amount=int(params['amountOutMin']),
+                router_name=router_name,
+                swap_method='swapExactTokensForTokens',
+                router_address=router_address,
+                dex_name=dex_name
             )
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapTokensForExactEth':
