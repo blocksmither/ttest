@@ -52,8 +52,7 @@ def parse_swap_tx_blocknative(blocknative_data):
     if 'subCalls' in blocknative_data['event']['contractCall']:
         subcalls = blocknative_data['event']['contractCall']['subCalls']
     else:
-        # cannot parse swap in current logic so stop
-        raise UnparsableTransactionException('Cannot parse swap data that does not list subCalls')
+        subcalls = [blocknative_data['event']['contractCall']]
 
     to_address = blocknative_data['event']['transaction']['to']
     swaps = []
