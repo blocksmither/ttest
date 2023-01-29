@@ -52,7 +52,7 @@ def parse_swap_tx_blocknative(blocknative_data):
     if 'subCalls' in blocknative_data['event']['contractCall']:
         subcalls = blocknative_data['event']['contractCall']['subCalls']
     else:
-        subcalls = [blocknative_data['event']['contractCall']]
+        subcalls = [{'data': blocknative_data['event']['contractCall']}]
 
     to_address = blocknative_data['event']['transaction']['to']
     swaps = []
