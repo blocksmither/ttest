@@ -59,14 +59,14 @@ def parse_swap_tx_blocknative(blocknative_data):
     swaps = []
     for subcall in subcalls:
         try:
-            swaps.append(get_swap_blocknative(subcall, to_address))
+            swaps.append(get_swap_blocknative(subcall, to_address, blocknative_data))
         except Exception as e:
             print('!! Error getting swap : ', e)
     return swaps
 
 
 # TODO  use estimate inout methods instead of minmax for some functions
-def get_swap_blocknative(subcall, router_address):
+def get_swap_blocknative(subcall, router_address, blocknative_data):
     call_method = subcall['data']['methodName']
     params = subcall['data']['params']
     config_router = config['networks']['mainnet']['exchangeRouters']
@@ -168,6 +168,25 @@ def get_swap_blocknative(subcall, router_address):
                 dex_name=dex_name
             )
         case 'swapExactETHForTokens':
+            if len(params['path']) > 2:
+                raise Exception('Cannot parse v2 swap path across >1 pairs')
+
+            if router_name == 'sushiswap':
+                dex_name = 'sushiswap'
+            else:
+                dex_name = 'uniswapv2'
+
+            return RouterSwap(
+                # path0 will be WETH
+                token_in = params['path'][0],
+                token_in_amount = blocknative_data['event']['transaction']['value'],
+                token_out = params['path'][1],
+                token_out_amount = int(params['amountOutMin']),
+                router_name = router_name,
+                swap_method = 'swapExactTokensForTokens',
+                router_address = router_address,
+                dex_name = dex_name
+            )
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapTokensForExactEth':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
@@ -268,6 +287,7 @@ def get_alt_pairs(w3, token0, token1, dex_name):
                 for pool_fee in [1, 500, 3000, 10000]:
                     pair = factory_contract.functions.getPool(token0, token1, pool_fee).call()
                     if pair != EMPTY_PAIR:
+                        # TODO get reserves and use Pair or Pool type
                         alt_pair_list.append(pair)
 
             case 'uniswapv2':
