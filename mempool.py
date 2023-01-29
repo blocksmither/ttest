@@ -8,7 +8,7 @@ import websocket
 import yaml
 from connectors import connectors
 from swap import (UnparsableSwapMethodException,
-                  UnparsableTransactionException, get_alt_pairs, get_v2_pair,
+                  UnparsableTransactionException, Pair, get_alt_pairs, get_v2_pair,
                   get_v2_pair_reserves, get_v2_token0,
                   parse_swap_tx_blocknative)
 from web3 import Web3
@@ -76,14 +76,36 @@ class MempoolReader():
                         pair_address,
                         swap.router_name
                     )
+                    if swap.dex_name == 'uniswapv2':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV2']
+                        pair_fee = 0.003
+                    elif swap.dex_name == 'uniswapv3':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
+                    elif swap.dex_name == 'sushiswap':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
+                        pair_fee = 0.003
+
                     if swap.token_in == pair_token0:
                         in_ratio = swap.token_in_amount / reserves['token0']
                         out_ratio = swap.token_out_amount / reserves['token1']
+                        pair_token1 = swap.token_out
                     else:
                         in_ratio = swap.token_in_amount / reserves['token1']
                         out_ratio = swap.token_out_amount / reserves['token0']
+                        pair_token1 = swap.token_in
+
                     print("in ratio", in_ratio)
                     print("out ratio", out_ratio)
+
+                    affected_pair = Pair(
+                        tokens=[pair_token0, pair_token1],
+                        reserves=[reserves['token0'], reserves['token1']],
+                        factory=pair_factory,
+                        address=pair_address,
+                        fee=pair_fee,
+                        dex_name=swap.dex_name
+                    )
+                    print("Affected Pair: ", affected_pair)
 
                     if in_ratio > self.check_threshold or \
                             out_ratio > self.check_threshold:
