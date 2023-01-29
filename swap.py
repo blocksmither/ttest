@@ -142,7 +142,7 @@ def get_swap_blocknative(subcall, router_address):
                 router_address=router_address,
                 dex_name=dex_name
             )
-        case 'swapTokensforExactTokens':
+        case 'swapTokensForExactTokens':
             # This can affect multiple pairs if path length > 2
             # Example if len(path)==3 then 2 pairs are affected
             # Pair1 = path[0] and path[1]  Pair2 = path[1] and path[2]
