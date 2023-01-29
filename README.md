@@ -7,6 +7,11 @@ Python package::
     pip install -r requirements.txt
 
 
+TESTS
+========
+    $ python -m unittest discover -s tests\unit
+
+
 COMPARATOR
 ========
 Help:

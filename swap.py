@@ -69,6 +69,7 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
     call_method = subcall['data']['methodName']
     params = subcall['data']['params']
     config_router = config['networks']['mainnet']['exchangeRouters']
+
     if router_address == config_router['UniswapV3']:
         router_name = 'uniswapv3'
     elif router_address == config_router['UniswapV302']:
