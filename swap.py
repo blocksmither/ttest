@@ -191,13 +191,47 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
         case 'swapTokensForExactEth':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactTokensForETH':
-            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
+            if len(params['path']) > 2:
+                raise Exception('Cannot parse v2 swap path across >1 pairs')
+
+            if router_name == 'sushiswap':
+                dex_name = 'sushiswap'
+            else:
+                dex_name = 'uniswapv2'
+
+            return RouterSwap(
+                token_in=params['path'][0],
+                token_in_amount=int(params['amountIn']),
+                token_out=params['path'][1],
+                token_out_amount=int(params['amountOutMin']),
+                router_name=router_name,
+                swap_method='swapExactTokensForTokens',
+                router_address=router_address,
+                dex_name=dex_name
+            )
         case 'swapETHForExactTokens':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
-            raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
+            if len(params['path']) > 2:
+                raise Exception('Cannot parse v2 swap path across >1 pairs')
+
+            if router_name == 'sushiswap':
+                dex_name = 'sushiswap'
+            else:
+                dex_name = 'uniswapv2'
+
+            return RouterSwap(
+                token_in=params['path'][0],
+                token_in_amount=int(params['amountIn']),
+                token_out=params['path'][1],
+                token_out_amount=int(params['amountOutMin']),
+                router_name=router_name,
+                swap_method='swapExactTokensForTokens',
+                router_address=router_address,
+                dex_name=dex_name
+            )
         case 'swapExactTokensForETHSupportingFeeOnTransferTokens':
             raise UnparsableSwapMethodException("No handle for swap method %s" % call_method)
         case _:
