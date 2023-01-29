@@ -9,7 +9,7 @@ with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'c
     config = yaml.safe_load(f)
 
 
-class TestGetSwapBlocknative(unittest.TestCase):
+class TestGetSwapBlocknativeSinglecall(unittest.TestCase):
 
     def setUp(self):
         with open(os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'examples', 'blocknative_tx', 'singlecall.json')))) as f:
