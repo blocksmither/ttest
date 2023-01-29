@@ -70,15 +70,14 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
     params = subcall['data']['params']
     config_router = config['networks']['mainnet']['exchangeRouters']
 
-    if router_address == config_router['UniswapV3']:
-        router_name = 'uniswapv3'
-    elif router_address == config_router['UniswapV302']:
-        router_name = 'uniswapv302'
-    elif router_address == config_router['UniswapV2']:
-        router_name = 'uniswapv2'
-    elif router_address == config_router['Sushiswap']:
-        router_name = 'sushiswap'
-    else:
+    routers = {
+        config_router['UniswapV3']: 'uniswapv3',
+        config_router['UniswapV302']: 'uniswapv302',
+        config_router['UniswapV2']: 'uniswapv2',
+        config_router['Sushiswap']: 'sushiswap'
+    }
+    router_name = routers.get(router_address)
+    if router_name is None:
         raise Exception(
             "Swap Router is not recognized in to address of transaction: %s" % (router_address))
 
