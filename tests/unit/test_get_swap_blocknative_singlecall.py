@@ -23,13 +23,13 @@ class TestGetSwapBlocknative(unittest.TestCase):
         automatic = get_swap_blocknative(self.subcall, self.router_address, self.blocknative_data)
 
         manual = RouterSwap(
-            token_in=self.params['path'][0],
-            token_in_amount=int(self.params['amountIn']),
-            token_out=self.params['path'][1],
-            token_out_amount=int(self.params['amountOutMin']),
-            router_name='uniswapv2',
+            token_in='0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            token_in_amount=4471910857149137564,
+            token_out='0x38A94e92A19E970c144DEd0B2DD47278CA11CC1F',
+            token_out_amount=1954858848453030,
+            router_address='0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
             swap_method='swapExactTokensForTokens',
-            router_address=self.router_address,
+            router_name='uniswapv2',
             dex_name='uniswapv2'
         )
 
