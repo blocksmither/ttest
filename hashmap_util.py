@@ -13,7 +13,7 @@ ROUTER_2_DEX = {
 }
 
 
-def find_pairs(token1_address, token2_address=None, dex=None):
+def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None):
     if token2_address:
         pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     else:
@@ -26,5 +26,7 @@ def find_pairs(token1_address, token2_address=None, dex=None):
 
     if dex:
         return [result for result in results if result['dex'] == dex]
+    elif alt_dex:
+        return [result for result in results if result['dex'] != alt_dex]
     else:
         return results
