@@ -134,6 +134,15 @@ class Sushiswap(BaseConnector):
 
         return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
+    def get_get_token0(self, pair_address):
+        pair_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(pair_address),
+            abi=self.pair_abi
+        )
+        token0 = pair_contract.functions.token0().call()
+
+        return token0
+
 
 class UniswapV2(BaseConnector):
     name = "UniswapV2"
@@ -229,6 +238,15 @@ class UniswapV2(BaseConnector):
         token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
 
         return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
+
+    def get_get_token0(self, pair_address):
+        pair_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(pair_address),
+            abi=self.pair_abi
+        )
+        token0 = pair_contract.functions.token0().call()
+
+        return token0
 
 
 class UniswapV3(BaseConnector):

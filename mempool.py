@@ -10,7 +10,7 @@ import yaml
 from connectors import connectors
 from swap import (Pair, UnparsableSwapMethodException,
                   UnparsableTransactionException, get_alt_pairs,
-                  get_v2_token0, parse_swap_tx_blocknative)
+                  parse_swap_tx_blocknative)
 from web3 import Web3
 
 from comparator import compare
@@ -77,10 +77,8 @@ class MempoolReader():
                     reserves = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_reserves(
                         pair_address
                     )
-                    pair_token0 = get_v2_token0(
-                        self.w3,
-                        pair_address,
-                        swap.router_name
+                    pair_token0 = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_token0(
+                        pair_address
                     )
                     if swap.dex_name == 'uniswapv2':
                         pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV2']
