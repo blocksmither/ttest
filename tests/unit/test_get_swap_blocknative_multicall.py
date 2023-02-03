@@ -34,7 +34,3 @@ class TestGetSwapBlocknativeMulticall(unittest.TestCase):
     def testExceptionRaisedForInvalidRouterAddress(self):
         with self.assertRaises(Exception):
             get_swap_blocknative(self.subcall, "invalid", self.blocknative_data)
-
-
-if __name__ == "__main__":
-    unittest.main()

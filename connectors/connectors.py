@@ -47,6 +47,8 @@ class Sushiswap(BaseConnector):
     abi = info_json["abi"]
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'pair.abi'), 'r') as f:
+        pair_abi = f.read().rstrip()
 
     def get_prices_api(self, pair):
         address = config['networks'][self.network]['pairs']['Sushiswap'][pair]
@@ -122,6 +124,16 @@ class Sushiswap(BaseConnector):
         ).call()
         return pair_address
 
+    def get_pair_reserves(self, pair_address):
+        pair_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(pair_address),
+            abi=self.pair_abi
+        )
+
+        token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
+
+        return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
+
 
 class UniswapV2(BaseConnector):
     name = "UniswapV2"
@@ -131,6 +143,8 @@ class UniswapV2(BaseConnector):
     abi = info_json["abi"]
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
+        pair_abi = f.read().rstrip()
 
     def get_prices_api(self, pair):
         address = config['networks'][self.network]['pairs']['UniswapV2'][pair]
@@ -205,6 +219,16 @@ class UniswapV2(BaseConnector):
             token_out
         ).call()
         return pair_address
+
+    def get_pair_reserves(self, pair_address):
+        pair_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(pair_address),
+            abi=self.pair_abi
+        )
+
+        token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
+
+        return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
 
 class UniswapV3(BaseConnector):

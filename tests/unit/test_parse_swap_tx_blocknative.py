@@ -29,7 +29,3 @@ class TestParseSwapTxBlocknative(unittest.TestCase):
         ]
 
         self.assertEqual(automatic, manual)
-
-
-if __name__ == "__main__":
-    unittest.main()

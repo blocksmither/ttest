@@ -259,6 +259,7 @@ def get_v2_pair(w3, token_in, token_out, router_name):
 
 
 def get_v2_pair_reserves(w3, pair_address, router_name):
+    # Deprecated. Moved to 'connectors'
     if router_name == 'uniswapv2' or router_name == 'uniswapv302':
         with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
             pair_abi = f.read().rstrip()
