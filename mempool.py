@@ -29,11 +29,14 @@ class MempoolReader():
     with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
         config = yaml.safe_load(file)
 
-    def __init__(self, pair, swap, network, threshold, test):
+    def __init__(self, pair, network, threshold, test):
         self.pair = pair
-        self.swap = swap
         self.network = network
-        self.connector = eval(f"connectors.{swap}('{network}')")
+        self.connectors = {
+            'UniswapV2': connectors.UniswapV2(network),
+            'UniswapV3': connectors.UniswapV3(network),
+            'Sushiswap': connectors.Sushiswap(network)
+        }
         self.address1 = self.config['networks'][self.network]['exchangeRouters']['UniswapV2']
         self.address2 = self.config['networks'][self.network]['exchangeRouters']['UniswapV3']
         self.address3 = self.config['networks'][self.network]['exchangeRouters']['UniswapV302']
@@ -68,7 +71,7 @@ class MempoolReader():
                             dex=hutil.ROUTER_2_DEX[swap.router_name]
                         )[0]['id']
                     except:
-                        self.connector.get_pair(
+                        self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
                             swap.token_in,
                             swap.token_out
                         )
@@ -247,8 +250,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
     This script prints transactions in the mempool
     """)
-    parser.add_argument("-s", '--swap', default='UniswapV3',
-                        choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
     parser.add_argument("-n", "--network", default='mainnet',
                         choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
     parser.add_argument("-d", "--threshold", default=0.01,
@@ -257,10 +258,9 @@ if __name__ == "__main__":
                         help="Spin mainnet fork on ganache and test a swap on opportunities")
 
     args = parser.parse_args()
-    SWAP = args.swap
     NETWORK = args.network.strip()
     THRESHOLD = float(args.threshold)
     TEST_MODE_FLAG = args.test
 
-    reader = MempoolReader('USDC-WETH', SWAP, NETWORK, THRESHOLD, TEST_MODE_FLAG)
+    reader = MempoolReader('USDC-WETH', NETWORK, THRESHOLD, TEST_MODE_FLAG)
     reader.start()
