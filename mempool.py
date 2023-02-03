@@ -9,7 +9,7 @@ import websocket
 import yaml
 from connectors import connectors
 from swap import (Pair, UnparsableSwapMethodException,
-                  UnparsableTransactionException, get_alt_pairs, get_v2_pair,
+                  UnparsableTransactionException, get_alt_pairs,
                   get_v2_pair_reserves, get_v2_token0,
                   parse_swap_tx_blocknative)
 from web3 import Web3
@@ -68,11 +68,9 @@ class MempoolReader():
                             dex=hutil.ROUTER_2_DEX[swap.router_name]
                         )[0]['id']
                     except:
-                        pair_address = get_v2_pair(
-                            self.w3,
+                        self.connector.get_pair(
                             swap.token_in,
-                            swap.token_out,
-                            swap.router_name
+                            swap.token_out
                         )
                     reserves = get_v2_pair_reserves(
                         self.w3,

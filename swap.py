@@ -239,6 +239,7 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
 
 
 def get_v2_pair(w3, token_in, token_out, router_name):
+    # Deprecated. Moved to 'connectors'
     if router_name == 'uniswapv2' or router_name == 'uniswapv302':
         with open(os.path.join(os.path.dirname(__file__), 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
             factory_abi = f.read().rstrip()

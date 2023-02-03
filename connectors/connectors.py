@@ -22,9 +22,9 @@ class BaseConnector():
 
     def __init__(self, network):
         self.network = network
+        self.web3 = Web3(Web3.HTTPProvider(config['networks'][self.network]['web3Provider']))
 
     def get_prices(self, pair, connection='sdk'):
-        self.web3 = Web3(Web3.HTTPProvider(config['networks'][self.network]['web3Provider']))
         if connection == "api":
             return self.get_prices_api(pair)
         elif connection == "sdk":
@@ -45,6 +45,8 @@ class Sushiswap(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
         info_json = json.load(f)
     abi = info_json["abi"]
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
+        factory_abi = f.read().rstrip()
 
     def get_prices_api(self, pair):
         address = config['networks'][self.network]['pairs']['Sushiswap'][pair]
@@ -107,6 +109,19 @@ class Sushiswap(BaseConnector):
                 print(f"Current price: {price}")
                 print(f"Predicted price: {dprice}")
 
+    def get_pair(self, token_in, token_out):
+        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories']['Sushiswap'])
+
+        factory_contract = self.web3.eth.contract(
+            address=factory_address,
+            abi=self.factory_abi
+        )
+        pair_address = factory_contract.functions.getPair(
+            token_in,
+            token_out
+        ).call()
+        return pair_address
+
 
 class UniswapV2(BaseConnector):
     name = "UniswapV2"
@@ -114,6 +129,8 @@ class UniswapV2(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
         info_json = json.load(f)
     abi = info_json["abi"]
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
+        factory_abi = f.read().rstrip()
 
     def get_prices_api(self, pair):
         address = config['networks'][self.network]['pairs']['UniswapV2'][pair]
@@ -175,6 +192,19 @@ class UniswapV2(BaseConnector):
 
                 print(f"Current price: {price}")
                 print(f"Predicted price: {dprice}")
+
+    def get_pair(self, token_in, token_out):
+        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories']['UniswapV2'])
+
+        factory_contract = self.web3.eth.contract(
+            address=factory_address,
+            abi=self.factory_abi
+        )
+        pair_address = factory_contract.functions.getPair(
+            token_in,
+            token_out
+        ).call()
+        return pair_address
 
 
 class UniswapV3(BaseConnector):
