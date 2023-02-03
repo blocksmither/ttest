@@ -13,20 +13,12 @@ ROUTER_2_DEX = {
 }
 
 
-def find_pairs_given_token(token_address, dex=None):
-    try:
-        results = hashmap[token_address.lower()]
-    except:
-        raise Exception('Token not in the hashmap')
-
-    if dex:
-        return [result for result in results if result['dex'] == dex]
+def find_pairs(token1_address, token2_address=None, dex=None):
+    if token2_address:
+        pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     else:
-        return results
+        pair_addresses = token1_address
 
-
-def find_pairs_given_pair(token1_address, token2_address, dex=None):
-    pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     try:
         results = hashmap[pair_addresses]
     except:

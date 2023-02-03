@@ -61,11 +61,19 @@ class MempoolReader():
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
                 if swap.router_name in ['uniswapv2', 'uniswapv302', 'sushiswap']:
-                    pair_address = hutil.find_pairs_given_pair(
-                        swap.token_in,
-                        swap.token_out,
-                        dex=hutil.ROUTER_2_DEX[swap.router_name]
-                    )[0]['id']
+                    try:
+                        pair_address = hutil.find_pairs(
+                            swap.token_in,
+                            swap.token_out,
+                            dex=hutil.ROUTER_2_DEX[swap.router_name]
+                        )[0]['id']
+                    except:
+                        pair_address = get_v2_pair(
+                            self.w3,
+                            swap.token_in,
+                            swap.token_out,
+                            swap.router_name
+                        )
                     reserves = get_v2_pair_reserves(
                         self.w3,
                         pair_address,

@@ -29,6 +29,6 @@ class TestGetV2Pair(unittest.TestCase):
         router_name = 'uniswapv2'
         pair_address = get_v2_pair(self.w3, self.token_in, self.token_out, router_name)
 
-        pair_address2 = hutil.find_pairs_given_pair(self.token_in, self.token_out, dex=hutil.ROUTER_2_DEX[router_name])[0]['id']
+        pair_address2 = hutil.find_pairs(self.token_in, self.token_out, dex=hutil.ROUTER_2_DEX[router_name])[0]['id']
 
         self.assertEqual(pair_address.lower(), pair_address2.lower())
