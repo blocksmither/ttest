@@ -35,3 +35,18 @@ class TestGetV2Pair(unittest.TestCase):
         pair_address = swap.get_pair(self.token_in, self.token_out)
 
         self.assertEqual(pair_address.lower(), expected.lower())
+
+    def test_find_pairs(self):
+        pair_address = hutil.find_pairs(self.token_in)
+
+        self.assertTrue(len(pair_address) > 0)
+
+    def test_find_pairs_failed(self):
+        with self.assertRaises(Exception):
+            hutil.find_pairs("dasdas")
+
+    def test_find_pairs_alt_dex(self):
+        pairs = hutil.find_pairs(self.token_in, self.token_out, alt_dex='UniswapV2')
+
+        for pair in pairs:
+            self.assertTrue(pair['dex'] != 'UniswapV2')

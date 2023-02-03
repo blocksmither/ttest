@@ -17,7 +17,7 @@ def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None):
     if token2_address:
         pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     else:
-        pair_addresses = token1_address
+        pair_addresses = token1_address.lower()
 
     try:
         results = hashmap[pair_addresses]
