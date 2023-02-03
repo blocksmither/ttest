@@ -5,84 +5,93 @@ import requests
 
 
 def query_v2_pairs():
-    # Query the UniswapV2 API for the first 100 liquidity pool pairs
+    all_pairs = {'data': {'pairs': []}}
     url = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
-    query = """
-    query {
-         pairs(first: 1000, orderBy: totalSupply, orderDirection: desc) {
-            id
-            token0 {
+    for i in range(5):
+        query = f"""
+        query {{
+            pairs(first: 1000, skip: {i * 1000}, orderBy: reserveETH, orderDirection: desc) {{
                 id
-                symbol
-                decimals
-            }
-            token1 {
-                id
-                symbol
-                decimals
-            }
-            totalSupply
-        }
-    }
-    """
-    headers = {"Content-Type": "application/json"}
-    payload = {"query": query}
-    v2pairs = requests.post(url, json=payload, headers=headers).json()
+                token0 {{
+                    id
+                    symbol
+                    decimals
+                }}
+                token1 {{
+                    id
+                    symbol
+                    decimals
+                }}
+            }}
+        }}
+        """
+
+        payload = {"query": query}
+        v2pairs = requests.post(url, json=payload).json()
+
+        all_pairs['data']['pairs'] += v2pairs['data']['pairs']
 
     with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'v2pair-1.json'), 'w') as f:
-        json.dump(v2pairs, f, indent=2)
+        json.dump(all_pairs, f, indent=2)
 
 
 def query_sushi_pairs():
-    # Query the UniswapV2 API for the first 100 liquidity pool pairs
+    all_pairs = {'data': {'pairs': []}}
     url = "https://api.thegraph.com/subgraphs/name/sushiswap/exchange"
-    query = """
-    query {
-      pairs(first: 1000, orderBy: totalSupply, orderDirection: desc) {
-        id
-        token0 {
-          id
-          symbol
-        }
-        token1 {
-          id
-          symbol
-        }
-      }
-    }
-    """
-    headers = {"Content-Type": "application/json"}
-    payload = {"query": query}
-    sushipairs = requests.post(url, json=payload, headers=headers).json()
+    for i in range(5):
+        query = f"""
+        query {{
+            pairs(first: 1000, skip: {i * 1000}, orderBy: reserveETH, orderDirection: desc) {{
+                id
+                token0 {{
+                    id
+                    symbol
+                    decimals
+                }}
+                token1 {{
+                    id
+                    symbol
+                    decimals
+                }}
+            }}
+        }}
+        """
+
+        payload = {"query": query}
+        sushipairs = requests.post(url, json=payload).json()
+
+        all_pairs['data']['pairs'] += sushipairs['data']['pairs']
 
     with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'sushipair-1.json'), 'w') as f:
-        json.dump(sushipairs, f, indent=2)
+        json.dump(all_pairs, f, indent=2)
 
 
 def query_v3_pools():
-    # Query the UniswapV2 API for the first 100 liquidity pool pairs
+    all_pairs = {'data': {'pools': []}}
     url = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"
-    query = """
-    query {
-      pools(first: 1000, orderBy: liquidity, orderDirection: desc) {
-        id
-        token0 {
-          id
-          symbol
-        }
-        token1 {
-          id
-          symbol
-        }
-      }
-    }
-    """
-    headers = {"Content-Type": "application/json"}
-    payload = {"query": query}
-    v3pools = requests.post(url, json=payload, headers=headers).json()
+    for i in range(5):
+        query = f"""
+        query {{
+        pools(first: 1000, skip: {i * 1000},orderBy: liquidity, orderDirection: desc) {{
+            id
+            token0 {{
+            id
+            symbol
+            }}
+            token1 {{
+            id
+            symbol
+            }}
+        }}
+        }}
+        """
+        payload = {"query": query}
+        v3pools = requests.post(url, json=payload).json()
+
+        all_pairs['data']['pools'] += v3pools['data']['pools']
 
     with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'v3pool-1.json'), 'w') as f:
-        json.dump(v3pools, f, indent=2)
+        json.dump(all_pairs, f, indent=2)
 
 
 def build_hashmap_json():
