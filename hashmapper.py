@@ -143,7 +143,7 @@ def build_hashmap_json():
             hashmap[pair_addresses] = [pair]
 
     for pair in v3pairs["data"]["pools"]:
-        pair['dex'] = 'UniswapV'
+        pair['dex'] = 'UniswapV3'
         try:
             hashmap[pair["token0"]["id"]].append(pair)
         except:

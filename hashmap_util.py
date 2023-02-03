@@ -5,20 +5,34 @@ with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'hashmap.json')) 
     hashmap = json.load(f)
 
 
-def find_pairs_given_token(token_address):
+ROUTER_2_DEX = {
+    'uniswapv2': 'UniswapV2',
+    'sushiswap': 'Sushiswap',
+    'uniswapv3': 'UniswapV3',
+    'uniswapv302': 'UniswapV3',
+}
+
+
+def find_pairs_given_token(token_address, dex=None):
     try:
         results = hashmap[token_address.lower()]
     except:
         raise Exception('Token not in the hashmap')
-    pair_ids = [result["id"] for result in results]
-    return pair_ids
+
+    if dex:
+        return [result for result in results if result['dex'] == dex]
+    else:
+        return results
 
 
-def find_pairs_given_pair(token1_address, token2_address):
+def find_pairs_given_pair(token1_address, token2_address, dex=None):
     pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     try:
         results = hashmap[pair_addresses]
     except:
         raise Exception('Token pair not in the hashmap')
-    pair_ids = [result["id"] for result in results]
-    return pair_ids
+
+    if dex:
+        return [result for result in results if result['dex'] == dex]
+    else:
+        return results
