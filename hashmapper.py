@@ -72,17 +72,20 @@ def query_v3_pools():
     for i in range(5):
         query = f"""
         query {{
-        pools(first: 1000, skip: {i * 1000},orderBy: liquidity, orderDirection: desc) {{
-            id
-            token0 {{
-            id
-            symbol
+            pools(first: 1000, skip: {i * 1000},orderBy: liquidity, orderDirection: desc) {{
+                id
+                feeTier
+                token0 {{
+                    id
+                    symbol
+                    decimals
+                }}
+                token1 {{
+                    id
+                    symbol
+                    decimals
+                }}
             }}
-            token1 {{
-            id
-            symbol
-            }}
-        }}
         }}
         """
         payload = {"query": query}
