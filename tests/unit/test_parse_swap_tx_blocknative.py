@@ -2,11 +2,7 @@ import json
 import os
 import unittest
 
-import yaml
 from swap import RouterSwap, parse_swap_tx_blocknative
-
-with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'config.yaml'))) as f:
-    config = yaml.safe_load(f)
 
 
 class TestParseSwapTxBlocknative(unittest.TestCase):
