@@ -20,7 +20,7 @@ class TestGetV2Pair(unittest.TestCase):
     def test_uniswapv2(self):
         router_name = 'uniswapv2'
         pair_address = get_v2_pair(self.w3, self.token_in, self.token_out, router_name)
-        
+
         expected = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
 
         self.assertEqual(pair_address.lower(), expected.lower())

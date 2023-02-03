@@ -178,17 +178,6 @@
         }
       },
       {
-        "id": "0x1f4c763bde1d4832b3ea0640e66da00b98831355",
-        "token0": {
-          "id": "0x1a7e4e63778b4f12a199c062f3efdd288afcbce8",
-          "symbol": "agEUR"
-        },
-        "token1": {
-          "id": "0x31429d1856ad1377a8a0079410b297e1a9e214c2",
-          "symbol": "ANGLE"
-        }
-      },
-      {
         "id": "0x230813772d6d3788dfcd3e7b65fb3dd371b3d8d6",
         "token0": {
           "id": "0x5f944b0c4315cb7c3a846b025ab4045da44abf6c",
@@ -274,6 +263,17 @@
         "token1": {
           "id": "0xfe8ad43f4fb193a98b6788b7747f29bb94ec8f47",
           "symbol": "BTCTW"
+        }
+      },
+      {
+        "id": "0x1f4c763bde1d4832b3ea0640e66da00b98831355",
+        "token0": {
+          "id": "0x1a7e4e63778b4f12a199c062f3efdd288afcbce8",
+          "symbol": "agEUR"
+        },
+        "token1": {
+          "id": "0x31429d1856ad1377a8a0079410b297e1a9e214c2",
+          "symbol": "ANGLE"
         }
       },
       {
@@ -497,6 +497,17 @@
         }
       },
       {
+        "id": "0x7836b563527bbc70f2428d7feeacbb6890537764",
+        "token0": {
+          "id": "0x8642a849d0dcb7a15a974794668adcfbe4794b56",
+          "symbol": "PROS"
+        },
+        "token1": {
+          "id": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
+          "symbol": "GMEE"
+        }
+      },
+      {
         "id": "0xad7c57df811afed29dfd1d3b59de81638d8c6be0",
         "token0": {
           "id": "0x557b933a7c2c45672b610f8954a3deb39a51a8ca",
@@ -505,6 +516,17 @@
         "token1": {
           "id": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
           "symbol": "GMEE"
+        }
+      },
+      {
+        "id": "0xb5de0c3753b6e1b4dba616db82767f17513e6d4e",
+        "token0": {
+          "id": "0x090185f2135308bad17527004364ebcc2d37e5f6",
+          "symbol": "SPELL"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -538,17 +560,6 @@
         "token1": {
           "id": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
           "symbol": "GMEE"
-        }
-      },
-      {
-        "id": "0xb5de0c3753b6e1b4dba616db82767f17513e6d4e",
-        "token0": {
-          "id": "0x090185f2135308bad17527004364ebcc2d37e5f6",
-          "symbol": "SPELL"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -662,6 +673,17 @@
         }
       },
       {
+        "id": "0xd89a636b9d04a3d5710a8b876b8648b8df1c6769",
+        "token0": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
+        },
+        "token1": {
+          "id": "0x86ed939b500e121c0c5f493f399084db596dad20",
+          "symbol": "SPC"
+        }
+      },
+      {
         "id": "0x6469b34a2a4723163c4902dbbdea728d20693c12",
         "token0": {
           "id": "0x85f17cf997934a597031b2e18a9ab6ebd4b9f6a4",
@@ -681,17 +703,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x7836b563527bbc70f2428d7feeacbb6890537764",
-        "token0": {
-          "id": "0x8642a849d0dcb7a15a974794668adcfbe4794b56",
-          "symbol": "PROS"
-        },
-        "token1": {
-          "id": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
-          "symbol": "GMEE"
         }
       },
       {
@@ -1003,17 +1014,6 @@
         }
       },
       {
-        "id": "0x82ecdd4635766560c4e3a8efa8a7c1fff566111e",
-        "token0": {
-          "id": "0x7f280dac515121dcda3eac69eb4c13a52392cace",
-          "symbol": "FNC"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x3b168f685a37fcd99064a17cfef0a379b62c37a0",
         "token0": {
           "id": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
@@ -1029,6 +1029,17 @@
         "token0": {
           "id": "0x3f5919205a01fa0c44e8f4c4ba897629b26b076a",
           "symbol": "SPJ"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x82ecdd4635766560c4e3a8efa8a7c1fff566111e",
+        "token0": {
+          "id": "0x7f280dac515121dcda3eac69eb4c13a52392cace",
+          "symbol": "FNC"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1135,14 +1146,14 @@
         }
       },
       {
-        "id": "0x5fa4370164a2fabeef159b893299d59ff5dc1e6d",
+        "id": "0x4e726311e7036d7be9a9b2a1e9e00c48aeec28ae",
         "token0": {
-          "id": "0x01597e397605bf280674bf292623460b4204c375",
-          "symbol": "BENT"
+          "id": "0x7f0693074f8064cfbcf9fa6e5a3fa0e4f58ccccf",
+          "symbol": "gm"
         },
         "token1": {
-          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
-          "symbol": "DAI"
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -1157,10 +1168,10 @@
         }
       },
       {
-        "id": "0x4e726311e7036d7be9a9b2a1e9e00c48aeec28ae",
+        "id": "0x1498bd576454159bb81b5ce532692a8752d163e8",
         "token0": {
-          "id": "0x7f0693074f8064cfbcf9fa6e5a3fa0e4f58ccccf",
-          "symbol": "gm"
+          "id": "0x9ea3b5b4ec044b70375236a281986106457b20ef",
+          "symbol": "DELTA"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1172,17 +1183,6 @@
         "token0": {
           "id": "0x0f2d719407fdbeff09d87557abb7232601fd9f29",
           "symbol": "SYN"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x1498bd576454159bb81b5ce532692a8752d163e8",
-        "token0": {
-          "id": "0x9ea3b5b4ec044b70375236a281986106457b20ef",
-          "symbol": "DELTA"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1216,17 +1216,6 @@
         "token0": {
           "id": "0x25deb74aac0a426b77bd897fbf063ba4ac52ee96",
           "symbol": "EIN"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xd4e7a6e2d03e4e48dfc27dd3f46df1c176647e38",
-        "token0": {
-          "id": "0x2e9d63788249371f1dfc918a52f8d799f4a38c94",
-          "symbol": "TOKE"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1278,6 +1267,17 @@
         }
       },
       {
+        "id": "0xd4e7a6e2d03e4e48dfc27dd3f46df1c176647e38",
+        "token0": {
+          "id": "0x2e9d63788249371f1dfc918a52f8d799f4a38c94",
+          "symbol": "TOKE"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xe06f8d30ac334c857fc8c380c85969c150f38a6a",
         "token0": {
           "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
@@ -1297,6 +1297,17 @@
         "token1": {
           "id": "0xda9fdab21bc4a5811134a6e0ba6ca06624e67c07",
           "symbol": "QUIDD"
+        }
+      },
+      {
+        "id": "0x5fa4370164a2fabeef159b893299d59ff5dc1e6d",
+        "token0": {
+          "id": "0x01597e397605bf280674bf292623460b4204c375",
+          "symbol": "BENT"
+        },
+        "token1": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
         }
       },
       {
@@ -1352,17 +1363,6 @@
         "token1": {
           "id": "0x8642a849d0dcb7a15a974794668adcfbe4794b56",
           "symbol": "PROS"
-        }
-      },
-      {
-        "id": "0x8496e5f9bfb467841427e4f3183181c2e8dc162b",
-        "token0": {
-          "id": "0x09f098b155d561fc9f7bccc97038b7e3d20baf74",
-          "symbol": "ZOO"
-        },
-        "token1": {
-          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
-          "symbol": "DAI"
         }
       },
       {
@@ -1476,6 +1476,17 @@
         }
       },
       {
+        "id": "0x0581092f7704b95f589daaa03bc28aae0cdebdd9",
+        "token0": {
+          "id": "0x470d156d1f6f7865d7b6c1beffb12187cd799e91",
+          "symbol": "IMI"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x95cfa1f48fad82232772d3b1415ad4393517f3b5",
         "token0": {
           "id": "0x69fa0fee221ad11012bab0fdb45d444d3d2ce71c",
@@ -1520,10 +1531,10 @@
         }
       },
       {
-        "id": "0xd4b4d9807d897bcb508af71e37c96fbb643d13a4",
+        "id": "0xc0affcde0a28033d21fdf1d51104885c3e10db73",
         "token0": {
-          "id": "0xb87204dfdff7276d64c402f90bf0160ab1e66d17",
-          "symbol": "\ud83c\udf63"
+          "id": "0x5b4c95f76b8bd3ada1d8baa717cf658e14cf0dbf",
+          "symbol": "GURA"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1531,10 +1542,10 @@
         }
       },
       {
-        "id": "0xc0affcde0a28033d21fdf1d51104885c3e10db73",
+        "id": "0x3e04863dba602713bb5d0edbf7db7c3a9a2b6027",
         "token0": {
-          "id": "0x5b4c95f76b8bd3ada1d8baa717cf658e14cf0dbf",
-          "symbol": "GURA"
+          "id": "0x55c08ca52497e2f1534b59e2917bf524d4765257",
+          "symbol": "UwU"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1550,6 +1561,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x8496e5f9bfb467841427e4f3183181c2e8dc162b",
+        "token0": {
+          "id": "0x09f098b155d561fc9f7bccc97038b7e3d20baf74",
+          "symbol": "ZOO"
+        },
+        "token1": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
         }
       },
       {
@@ -1740,32 +1762,10 @@
         }
       },
       {
-        "id": "0xb124c4e18a282143d362a066736fd60d22393ef4",
-        "token0": {
-          "id": "0x808507121b80c02388fad14726482e061b8da827",
-          "symbol": "PENDLE"
-        },
-        "token1": {
-          "id": "0xbf682bd31a615123d28d611b38b0ae3d2b675c2c",
-          "symbol": "OT-SLP-29DEC2022"
-        }
-      },
-      {
         "id": "0x5ab0ec69f46a807c00ad6479e5427b6289b8ec89",
         "token0": {
           "id": "0x3f01fa3ebaf10b496630808d4fa87f82ba40b926",
           "symbol": "WAGMI"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x3e04863dba602713bb5d0edbf7db7c3a9a2b6027",
-        "token0": {
-          "id": "0x55c08ca52497e2f1534b59e2917bf524d4765257",
-          "symbol": "UwU"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1784,17 +1784,6 @@
         }
       },
       {
-        "id": "0x33f6ddaea2a8a54062e021873bcaee006cdf4007",
-        "token0": {
-          "id": "0x62b9c7356a2dc64a1969e19c23e4f579f9810aa7",
-          "symbol": "cvxCRV"
-        },
-        "token1": {
-          "id": "0xd533a949740bb3306d119cc777fa900ba034cd52",
-          "symbol": "CRV"
-        }
-      },
-      {
         "id": "0x96335e7cdbcd91fb33c26991b00cc13a87a811b9",
         "token0": {
           "id": "0x45080a6531d671ddff20db42f93792a489685e32",
@@ -1806,6 +1795,17 @@
         }
       },
       {
+        "id": "0x33f6ddaea2a8a54062e021873bcaee006cdf4007",
+        "token0": {
+          "id": "0x62b9c7356a2dc64a1969e19c23e4f579f9810aa7",
+          "symbol": "cvxCRV"
+        },
+        "token1": {
+          "id": "0xd533a949740bb3306d119cc777fa900ba034cd52",
+          "symbol": "CRV"
+        }
+      },
+      {
         "id": "0x67e8e786e1b49ad6935df713866f0c10fef7da64",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -1814,6 +1814,17 @@
         "token1": {
           "id": "0xc880fcb325a5d725404a35438583962dc4b5d610",
           "symbol": "ACAB"
+        }
+      },
+      {
+        "id": "0xb124c4e18a282143d362a066736fd60d22393ef4",
+        "token0": {
+          "id": "0x808507121b80c02388fad14726482e061b8da827",
+          "symbol": "PENDLE"
+        },
+        "token1": {
+          "id": "0xbf682bd31a615123d28d611b38b0ae3d2b675c2c",
+          "symbol": "OT-SLP-29DEC2022"
         }
       },
       {
@@ -1938,17 +1949,6 @@
         }
       },
       {
-        "id": "0x0de56b00b45a07b15ca09661336f785e7e4d1d45",
-        "token0": {
-          "id": "0x4c3a8eceb656ec63eae80a4ebd565e4887db6160",
-          "symbol": "SOKU"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0xcb4288ee0484b51ccb8d40893c4812df72cd5f70",
         "token0": {
           "id": "0x16ba8efe847ebdfef99d399902ec29397d403c30",
@@ -1982,10 +1982,32 @@
         }
       },
       {
+        "id": "0xed92bfe08de542bbb40fdbe0a27ca66313c0c457",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc",
+          "symbol": "HOP"
+        }
+      },
+      {
         "id": "0x97f34c8e5992eb985c5f740e7ee8c7e48a1de76a",
         "token0": {
           "id": "0xad32a8e6220741182940c5abf610bde99e737b2d",
           "symbol": "DOUGH"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x0de56b00b45a07b15ca09661336f785e7e4d1d45",
+        "token0": {
+          "id": "0x4c3a8eceb656ec63eae80a4ebd565e4887db6160",
+          "symbol": "SOKU"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2136,6 +2158,17 @@
         }
       },
       {
+        "id": "0x4a9c7b98c1a92db0ad33b31b549fb1820fe571ff",
+        "token0": {
+          "id": "0x8287c7b963b405b7b8d467db9d79eec40625b13a",
+          "symbol": "SWINGBY"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xf55c33d94150d93c2cfb833bcca30be388b14964",
         "token0": {
           "id": "0xa1faa113cbe53436df28ff0aee54275c13b40975",
@@ -2235,54 +2268,10 @@
         }
       },
       {
-        "id": "0xed92bfe08de542bbb40fdbe0a27ca66313c0c457",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc",
-          "symbol": "HOP"
-        }
-      },
-      {
-        "id": "0x4a9c7b98c1a92db0ad33b31b549fb1820fe571ff",
-        "token0": {
-          "id": "0x8287c7b963b405b7b8d467db9d79eec40625b13a",
-          "symbol": "SWINGBY"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x53162d78dca413d9e28cf62799d17a9e278b60e8",
         "token0": {
           "id": "0x4104b135dbc9609fc1a9490e61369036497660c8",
           "symbol": "APW"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xc558f600b34a5f69dd2f0d06cb8a88d829b7420a",
-        "token0": {
-          "id": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
-          "symbol": "LDO"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xc40d16476380e4037e6b1a2594caf6a6cc8da967",
-        "token0": {
-          "id": "0x514910771af9ca656af840dff83e8264ecf986ca",
-          "symbol": "LINK"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2320,17 +2309,6 @@
         "token1": {
           "id": "0xf1dc500fde233a4055e25e5bbf516372bc4f6871",
           "symbol": "SDL"
-        }
-      },
-      {
-        "id": "0x3048497db630f5cd299da184f009ecf423a1172c",
-        "token0": {
-          "id": "0x0e74417b5a86bb99e6bd27cd4ef8772c8eea8310",
-          "symbol": "EON"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -2378,6 +2356,17 @@
         }
       },
       {
+        "id": "0xe364992388319410c62eb4595d848c8ceb41172b",
+        "token0": {
+          "id": "0x86ed939b500e121c0c5f493f399084db596dad20",
+          "symbol": "SPC"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xb2aef5dbec896830b7391c3d7dee130ad36b8e9f",
         "token0": {
           "id": "0x44e2dec86b9f0e0266e9aa66e10323a2bd69cf9a",
@@ -2411,6 +2400,17 @@
         }
       },
       {
+        "id": "0xc558f600b34a5f69dd2f0d06cb8a88d829b7420a",
+        "token0": {
+          "id": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+          "symbol": "LDO"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x060c603d9243e5152c406ee4eb603e4e9e47a11f",
         "token0": {
           "id": "0x9d4aa5600e0c8c2085bb82d946ca6642742a8250",
@@ -2426,6 +2426,17 @@
         "token0": {
           "id": "0x55296f69f40ea6d20e478533c15a6b08b654e758",
           "symbol": "XYO"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x3048497db630f5cd299da184f009ecf423a1172c",
+        "token0": {
+          "id": "0x0e74417b5a86bb99e6bd27cd4ef8772c8eea8310",
+          "symbol": "EON"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2455,28 +2466,6 @@
         }
       },
       {
-        "id": "0xa1181481beb2dc5de0daf2c85392d81c704bf75d",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
-          "symbol": "ENS"
-        }
-      },
-      {
-        "id": "0xe364992388319410c62eb4595d848c8ceb41172b",
-        "token0": {
-          "id": "0x86ed939b500e121c0c5f493f399084db596dad20",
-          "symbol": "SPC"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x8f9ef75cd6e610dd8acf8611c344573032fb9c3d",
         "token0": {
           "id": "0x896e145568624a498c5a909187363ae947631503",
@@ -2503,6 +2492,17 @@
         "token0": {
           "id": "0x893700a1a86ee68b92536bf6fd4d3200d7369f7d",
           "symbol": "EMT"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0xc40d16476380e4037e6b1a2594caf6a6cc8da967",
+        "token0": {
+          "id": "0x514910771af9ca656af840dff83e8264ecf986ca",
+          "symbol": "LINK"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2598,14 +2598,14 @@
         }
       },
       {
-        "id": "0x7cf6a842e72c4bd7bc92e0c17ebdaa95ac1e7825",
+        "id": "0x18cd890f4e23422dc4aa8c2d6e0bd3f3bd8873d8",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
         },
         "token1": {
-          "id": "0xe76c6c83af64e4c60245d8c7de953df673a7a33d",
-          "symbol": "RAIL"
+          "id": "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff",
+          "symbol": "IMX"
         }
       },
       {
@@ -2620,14 +2620,14 @@
         }
       },
       {
-        "id": "0x18cd890f4e23422dc4aa8c2d6e0bd3f3bd8873d8",
+        "id": "0x7cf6a842e72c4bd7bc92e0c17ebdaa95ac1e7825",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
         },
         "token1": {
-          "id": "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff",
-          "symbol": "IMX"
+          "id": "0xe76c6c83af64e4c60245d8c7de953df673a7a33d",
+          "symbol": "RAIL"
         }
       },
       {
@@ -2697,17 +2697,6 @@
         }
       },
       {
-        "id": "0x10b47177e92ef9d5c6059055d92ddf6290848991",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xc5bddf9843308380375a611c18b50fb9341f502a",
-          "symbol": "yveCRV-DAO"
-        }
-      },
-      {
         "id": "0xc5e5551e7434484adbf2ccd9669befecb1273eb4",
         "token0": {
           "id": "0x7825e833d495f3d1c28872415a4aee339d26ac88",
@@ -2716,6 +2705,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x10b47177e92ef9d5c6059055d92ddf6290848991",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc5bddf9843308380375a611c18b50fb9341f502a",
+          "symbol": "yveCRV-DAO"
         }
       },
       {
@@ -2760,17 +2760,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x77337ff10206480739a768124a18f3aa8c089153",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xebd9d99a3982d547c5bb4db7e3b1f9f14b67eb83",
-          "symbol": "ID"
         }
       },
       {
@@ -2884,17 +2873,6 @@
         }
       },
       {
-        "id": "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e",
-          "symbol": "VEGA"
-        }
-      },
-      {
         "id": "0x17a2194d55f52fd0c711e0e42b41975494bb109b",
         "token0": {
           "id": "0x1337def16f9b486faed0293eb623dc8395dfe46a",
@@ -2903,6 +2881,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x29c827ce49accf68a1a278c67c9d30c52fbbc348",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e",
+          "symbol": "VEGA"
         }
       },
       {
@@ -2961,6 +2950,17 @@
         }
       },
       {
+        "id": "0xee35e548c7457fcdd51ae95ed09108be660ea374",
+        "token0": {
+          "id": "0x967da4048cd07ab37855c090aaf366e4ce1b9f48",
+          "symbol": "OCEAN"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x2fe250c81f5980b054bbd3a440e240189cffaf6f",
         "token0": {
           "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
@@ -2976,17 +2976,6 @@
         "token0": {
           "id": "0x5166e09628b696285e3a151e84fb977736a83575",
           "symbol": "VOL"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xee35e548c7457fcdd51ae95ed09108be660ea374",
-        "token0": {
-          "id": "0x967da4048cd07ab37855c090aaf366e4ce1b9f48",
-          "symbol": "OCEAN"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -3148,6 +3137,17 @@
         }
       },
       {
+        "id": "0xa1181481beb2dc5de0daf2c85392d81c704bf75d",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+          "symbol": "ENS"
+        }
+      },
+      {
         "id": "0x55232f2b42d8d63114a3e7a65b822e692a18d61b",
         "token0": {
           "id": "0x1c9922314ed1415c95b9fd453c3818fd41867d0b",
@@ -3211,6 +3211,17 @@
         "token1": {
           "id": "0xe4ae84448db5cfe1daf1e6fb172b469c161cb85f",
           "symbol": "UOP"
+        }
+      },
+      {
+        "id": "0x5bed065ecee481f77eea07a07e934f144f94cde6",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xe57425f1598f9b0d6219706b77f4b3da573a3695",
+          "symbol": "BTCBR"
         }
       },
       {
@@ -3335,6 +3346,17 @@
         }
       },
       {
+        "id": "0x295685c8fe08d8192981d21ea1fe856a07443920",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xccc8cb5229b0ac8069c51fd58367fd1e622afd97",
+          "symbol": "GODS"
+        }
+      },
+      {
         "id": "0x36e06522f0555f35db55856b1dc3842b7b4cd830",
         "token0": {
           "id": "0x6fc2f1044a3b9bb3e43a43ec8f840843ed753061",
@@ -3390,14 +3412,14 @@
         }
       },
       {
-        "id": "0x458ae80894a0924ac763c034977e330c565f1687",
+        "id": "0xee5e493d6b1f1819e41ddc6f6f55dbf73b6724a9",
         "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
+          "id": "0xa41a879bcfdd75983a987fd6b68fae37777e8b28",
+          "symbol": "XEX"
         },
         "token1": {
-          "id": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
-          "symbol": "PSP"
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -3423,17 +3445,6 @@
         }
       },
       {
-        "id": "0x295685c8fe08d8192981d21ea1fe856a07443920",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xccc8cb5229b0ac8069c51fd58367fd1e622afd97",
-          "symbol": "GODS"
-        }
-      },
-      {
         "id": "0x4f8dfe04b61a0e20ed7fd7d7bac2b856b652ab95",
         "token0": {
           "id": "0xccffcb6f02124931dd30e41515dd7b84edeee3e5",
@@ -3442,6 +3453,17 @@
         "token1": {
           "id": "0xdac17f958d2ee523a2206206994597c13d831ec7",
           "symbol": "USDT"
+        }
+      },
+      {
+        "id": "0x458ae80894a0924ac763c034977e330c565f1687",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
+          "symbol": "PSP"
         }
       },
       {
@@ -3464,17 +3486,6 @@
         "token1": {
           "id": "0x79256db1bdb6259315a1a3d7dd237f69cadfd8fc",
           "symbol": "PHOON"
-        }
-      },
-      {
-        "id": "0xa1d7b2d891e3a1f9ef4bbc5be20630c2feb1c470",
-        "token0": {
-          "id": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
-          "symbol": "SNX"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -3522,6 +3533,17 @@
         }
       },
       {
+        "id": "0x7b504a15ef05f4eed1c07208c5815c49022a0c19",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc944e90c64b2c07662a292be6244bdf05cda44a7",
+          "symbol": "GRT"
+        }
+      },
+      {
         "id": "0x05767d9ef41dc40689678ffca0608878fb3de906",
         "token0": {
           "id": "0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b",
@@ -3552,17 +3574,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x7b504a15ef05f4eed1c07208c5815c49022a0c19",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xc944e90c64b2c07662a292be6244bdf05cda44a7",
-          "symbol": "GRT"
         }
       },
       {
@@ -3709,6 +3720,17 @@
         }
       },
       {
+        "id": "0x77337ff10206480739a768124a18f3aa8c089153",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xebd9d99a3982d547c5bb4db7e3b1f9f14b67eb83",
+          "symbol": "ID"
+        }
+      },
+      {
         "id": "0xfe308fe2eb938f772807aec2e87fc762d47c40e0",
         "token0": {
           "id": "0x1456688345527be1f37e9e627da0837d6f08c925",
@@ -3786,21 +3808,21 @@
         }
       },
       {
-        "id": "0x5bed065ecee481f77eea07a07e934f144f94cde6",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xe57425f1598f9b0d6219706b77f4b3da573a3695",
-          "symbol": "BTCBR"
-        }
-      },
-      {
         "id": "0xfc98737f842bfff2f4f8b48589943b52728d7c14",
         "token0": {
           "id": "0x0dc7d0192c148d7d2d6fa32dc280f953c0ad6a34",
           "symbol": "MetaCat"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0xa1d7b2d891e3a1f9ef4bbc5be20630c2feb1c470",
+        "token0": {
+          "id": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
+          "symbol": "SNX"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -3827,17 +3849,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x1ad651a07b98464aa42f6cad68d0ce8639b659a5",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xc4c346edc55504574cceb00aa1091d22404a4bc3",
-          "symbol": "MEZZ"
         }
       },
       {
@@ -3995,17 +4006,6 @@
         }
       },
       {
-        "id": "0x321198908bd33b066252d63d363667e3f7094a34",
-        "token0": {
-          "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-          "symbol": "SUSHI"
-        },
-        "token1": {
-          "id": "0x8798249c2e607446efb7ad49ec89dd1865ff4272",
-          "symbol": "xSUSHI"
-        }
-      },
-      {
         "id": "0xf39ff863730268c9bb867b3a69d031d1c1614b31",
         "token0": {
           "id": "0xabe580e7ee158da464b51ee1a83ac0289622e6be",
@@ -4014,6 +4014,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x321198908bd33b066252d63d363667e3f7094a34",
+        "token0": {
+          "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+          "symbol": "SUSHI"
+        },
+        "token1": {
+          "id": "0x8798249c2e607446efb7ad49ec89dd1865ff4272",
+          "symbol": "xSUSHI"
         }
       },
       {
@@ -4061,17 +4072,6 @@
         }
       },
       {
-        "id": "0x938625591adb4e865b882377e2c965f9f9b85e34",
-        "token0": {
-          "id": "0x24a6a37576377f63f194caa5f518a60f45b42921",
-          "symbol": "BANK"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0xb1d4a2cfd23211b2cd5cdee626ff4ca2068e3805",
         "token0": {
           "id": "0x72de803b67b6ab05b61efab2efdcd414d16ebf6d",
@@ -4091,6 +4091,17 @@
         "token1": {
           "id": "0xe8679fe133f38f19e1cffeba98a4baa5c897ce51",
           "symbol": "BTY"
+        }
+      },
+      {
+        "id": "0x938625591adb4e865b882377e2c965f9f9b85e34",
+        "token0": {
+          "id": "0x24a6a37576377f63f194caa5f518a60f45b42921",
+          "symbol": "BANK"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -4204,6 +4215,17 @@
         }
       },
       {
+        "id": "0x1ad651a07b98464aa42f6cad68d0ce8639b659a5",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc4c346edc55504574cceb00aa1091d22404a4bc3",
+          "symbol": "MEZZ"
+        }
+      },
+      {
         "id": "0x753f33c13fe44d41a8cc6ac202a6de6c53c58b6a",
         "token0": {
           "id": "0x0acc0fee1d86d2cd5af372615bf59b298d50cd69",
@@ -4245,17 +4267,6 @@
         "token1": {
           "id": "0x4575f41308ec1483f3d399aa9a2826d74da13deb",
           "symbol": "OXT"
-        }
-      },
-      {
-        "id": "0xbe71372995e8e920e4e72a29a51463677a302e8d",
-        "token0": {
-          "id": "0x888888435fde8e7d4c54cab67f206e4199454c60",
-          "symbol": "DFX"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -4303,6 +4314,17 @@
         }
       },
       {
+        "id": "0xbe71372995e8e920e4e72a29a51463677a302e8d",
+        "token0": {
+          "id": "0x888888435fde8e7d4c54cab67f206e4199454c60",
+          "symbol": "DFX"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x10b60ad466b9d8582ea43c579632eb56183525ca",
         "token0": {
           "id": "0x650f44ed6f1fe0e1417cb4b3115d52494b4d9b6d",
@@ -4347,10 +4369,10 @@
         }
       },
       {
-        "id": "0x41bfba56b9ba48d0a83775d89c247180617266bc",
+        "id": "0xd482792508470f629491302570cfead2dd4da564",
         "token0": {
-          "id": "0x24c19f7101c1731b85f1127eaa0407732e36ecdd",
-          "symbol": "SGT"
+          "id": "0x62ba3d7ccededfc19117bdba63bf864b1829d5ce",
+          "symbol": "WOKE"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4358,10 +4380,10 @@
         }
       },
       {
-        "id": "0xd482792508470f629491302570cfead2dd4da564",
+        "id": "0x41bfba56b9ba48d0a83775d89c247180617266bc",
         "token0": {
-          "id": "0x62ba3d7ccededfc19117bdba63bf864b1829d5ce",
-          "symbol": "WOKE"
+          "id": "0x24c19f7101c1731b85f1127eaa0407732e36ecdd",
+          "symbol": "SGT"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4435,17 +4457,6 @@
         }
       },
       {
-        "id": "0x58dc5a51fe44589beb22e8ce67720b5bc5378009",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xd533a949740bb3306d119cc777fa900ba034cd52",
-          "symbol": "CRV"
-        }
-      },
-      {
         "id": "0x9c2efb900290402fd2b891170085b9d651bfc5ce",
         "token0": {
           "id": "0x1337def16f9b486faed0293eb623dc8395dfe46a",
@@ -4457,14 +4468,14 @@
         }
       },
       {
-        "id": "0x9c5465026c45152bcfba70084cb1ccc065d691ca",
+        "id": "0x58dc5a51fe44589beb22e8ce67720b5bc5378009",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
         },
         "token1": {
-          "id": "0xc7230badf274995f1933598c249c824fde26f426",
-          "symbol": "SUTEKU"
+          "id": "0xd533a949740bb3306d119cc777fa900ba034cd52",
+          "symbol": "CRV"
         }
       },
       {
@@ -4498,17 +4509,6 @@
         "token1": {
           "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
           "symbol": "DAI"
-        }
-      },
-      {
-        "id": "0xa7f11e026a0af768d285360a855f2bded3047530",
-        "token0": {
-          "id": "0x875773784af8135ea0ef43b5a374aad105c5d39e",
-          "symbol": "IDLE"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -4564,6 +4564,17 @@
         "token1": {
           "id": "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373",
           "symbol": "GMEE"
+        }
+      },
+      {
+        "id": "0xa7f11e026a0af768d285360a855f2bded3047530",
+        "token0": {
+          "id": "0x875773784af8135ea0ef43b5a374aad105c5d39e",
+          "symbol": "IDLE"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -4765,17 +4776,6 @@
         }
       },
       {
-        "id": "0xe4ebd836832f1a8a81641111a5b081a2f90b9430",
-        "token0": {
-          "id": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
-          "symbol": "DYDX"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x62ccb80f72cc5c975c5bc7fb4433d3c336ce5ceb",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4809,17 +4809,6 @@
         }
       },
       {
-        "id": "0x7f8f7dd53d1f3ac1052565e3ff451d7fe666a311",
-        "token0": {
-          "id": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
-          "symbol": "MATIC"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x04631328f056046ab6a5ae62df2d4fe6bead5334",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4828,28 +4817,6 @@
         "token1": {
           "id": "0xcae516aa57d04ebf9b92813050282333f7587d2f",
           "symbol": "UNI"
-        }
-      },
-      {
-        "id": "0x22def8cf4e481417cb014d9dc64975ba12e3a184",
-        "token0": {
-          "id": "0x73968b9a57c6e53d41345fd57a6e6ae27d6cdb2f",
-          "symbol": "SDT"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x37fc088cfd67349be00f5504d00ddb7f2274b3f6",
-        "token0": {
-          "id": "0x72b886d09c117654ab7da13a14d603001de0b777",
-          "symbol": "XDEFI"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -4864,10 +4831,32 @@
         }
       },
       {
+        "id": "0x22def8cf4e481417cb014d9dc64975ba12e3a184",
+        "token0": {
+          "id": "0x73968b9a57c6e53d41345fd57a6e6ae27d6cdb2f",
+          "symbol": "SDT"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xb7169dca8f6bd82a127b8d7a41fe9a5d47fbe67c",
         "token0": {
           "id": "0x0d3d809b6a5be6b112824756101db125bbfeb685",
           "symbol": "Gnosis"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x37fc088cfd67349be00f5504d00ddb7f2274b3f6",
+        "token0": {
+          "id": "0x72b886d09c117654ab7da13a14d603001de0b777",
+          "symbol": "XDEFI"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4894,6 +4883,17 @@
         "token1": {
           "id": "0x9d16187d7d8a6adb39d7f373b7e24ea49f97e869",
           "symbol": "SLP"
+        }
+      },
+      {
+        "id": "0x9c5465026c45152bcfba70084cb1ccc065d691ca",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xc7230badf274995f1933598c249c824fde26f426",
+          "symbol": "SUTEKU"
         }
       },
       {
@@ -4963,17 +4963,6 @@
         }
       },
       {
-        "id": "0xec8c342bc3e07f05b9a782bc34e7f04fb9b44502",
-        "token0": {
-          "id": "0x853d955acef822db058eb8505911ed77f175b99e",
-          "symbol": "FRAX"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x6d431419188283a5ca833fd3b39e5592a1983e37",
         "token0": {
           "id": "0x61da4439af79d6c567afbc97421d9debfdfb96be",
@@ -4989,6 +4978,17 @@
         "token0": {
           "id": "0x3a49360098cf9061630211874398ec75704c0595",
           "symbol": "SUEX"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0xec8c342bc3e07f05b9a782bc34e7f04fb9b44502",
+        "token0": {
+          "id": "0x853d955acef822db058eb8505911ed77f175b99e",
+          "symbol": "FRAX"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -5029,6 +5029,17 @@
         }
       },
       {
+        "id": "0xe4ebd836832f1a8a81641111a5b081a2f90b9430",
+        "token0": {
+          "id": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+          "symbol": "DYDX"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x088ee5007c98a9677165d78dd2109ae4a3d04d0c",
         "token0": {
           "id": "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e",
@@ -5048,17 +5059,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xc5578194d457dcce3f272538d1ad52c68d1ce849",
-        "token0": {
-          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
-          "symbol": "DAI"
-        },
-        "token1": {
-          "id": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
-          "symbol": "wstETH"
         }
       },
       {
@@ -5121,17 +5121,6 @@
         "token0": {
           "id": "0xb1f871ae9462f1b2c6826e88a7827e76f86751d4",
           "symbol": "GNYerc20"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xa73df646512c82550c2b3c0324c4eedee53b400c",
-        "token0": {
-          "id": "0x0954906da0bf32d5479e25f46056d22f08464cab",
-          "symbol": "INDEX"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -5202,6 +5191,17 @@
         "token1": {
           "id": "0xc735efb4f32637bf3ea2f6956372d98deb68f47d",
           "symbol": "BCD"
+        }
+      },
+      {
+        "id": "0xc5578194d457dcce3f272538d1ad52c68d1ce849",
+        "token0": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
+        },
+        "token1": {
+          "id": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+          "symbol": "wstETH"
         }
       },
       {
@@ -5502,6 +5502,17 @@
         }
       },
       {
+        "id": "0xb4f3b00d13d20409afd9488ab991d0b40e6a5219",
+        "token0": {
+          "id": "0x6c6ee5e31d828de241282b9606c8e98ea48526e2",
+          "symbol": "HOT"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x34d25a4749867ef8b62a0cd1e2d7b4f7af167e01",
         "token0": {
           "id": "0x44564d0bd94343f72e3c8a0d22308b7fa71db0bb",
@@ -5539,28 +5550,6 @@
         "token0": {
           "id": "0x8a9c67fee641579deba04928c4bc45f66e26343a",
           "symbol": "JRT"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xb651bb2e04ae563aa9e6887dd92c84705902f075",
-        "token0": {
-          "id": "0x2ce99ddbb794101eb81539ade1c9792e8110749a",
-          "symbol": "EA"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xb4f3b00d13d20409afd9488ab991d0b40e6a5219",
-        "token0": {
-          "id": "0x6c6ee5e31d828de241282b9606c8e98ea48526e2",
-          "symbol": "HOT"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -5667,6 +5656,17 @@
         }
       },
       {
+        "id": "0xb90047676cc13e68632c55cb5b7cbd8a4c5a0a8e",
+        "token0": {
+          "id": "0x677ddbd918637e5f2c79e164d402454de7da8619",
+          "symbol": "VUSD"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x8c87ca150234f2d187e6cf0419c642e0486763a8",
         "token0": {
           "id": "0x03ab458634910aad20ef5f1c8ee96f1d6ac54919",
@@ -5682,17 +5682,6 @@
         "token0": {
           "id": "0x70f823ed7643fd7a26fdf8753827d31c16374fde",
           "symbol": "PKGX"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0xba13afecda9beb75de5c56bbaf696b880a5a50dd",
-        "token0": {
-          "id": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
-          "symbol": "MKR"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -5755,6 +5744,17 @@
         }
       },
       {
+        "id": "0x7f8f7dd53d1f3ac1052565e3ff451d7fe666a311",
+        "token0": {
+          "id": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+          "symbol": "MATIC"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x60cd8dcc7cce0cca6a3743727ce909b6f715b2d8",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -5763,17 +5763,6 @@
         "token1": {
           "id": "0xda007777d86ac6d989cc9f79a73261b3fc5e0da0",
           "symbol": "NODE"
-        }
-      },
-      {
-        "id": "0xb90047676cc13e68632c55cb5b7cbd8a4c5a0a8e",
-        "token0": {
-          "id": "0x677ddbd918637e5f2c79e164d402454de7da8619",
-          "symbol": "VUSD"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -5854,6 +5843,17 @@
         }
       },
       {
+        "id": "0xa73df646512c82550c2b3c0324c4eedee53b400c",
+        "token0": {
+          "id": "0x0954906da0bf32d5479e25f46056d22f08464cab",
+          "symbol": "INDEX"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xf8a22acfc93b8aee51ac7debaddefee2974a8ab5",
         "token0": {
           "id": "0x4691937a7508860f876c9c0a2a617e7d9e945d4b",
@@ -5898,6 +5898,17 @@
         }
       },
       {
+        "id": "0x88172e5d79fe75c7aed1453e89ff5d741cfa4ca7",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xd2877702675e6ceb975b4a1dff9fb7baf4c91ea9",
+          "symbol": "LUNA"
+        }
+      },
+      {
         "id": "0xb2dc93d7e3770674cce12d3af2e457cd6f8b7b93",
         "token0": {
           "id": "0x72be818236864c3f76bddb005ef51c72246045c7",
@@ -5928,17 +5939,6 @@
         "token1": {
           "id": "0xedd27c961ce6f79afc16fd287d934ee31a90d7d1",
           "symbol": "veSOS"
-        }
-      },
-      {
-        "id": "0x88172e5d79fe75c7aed1453e89ff5d741cfa4ca7",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xd2877702675e6ceb975b4a1dff9fb7baf4c91ea9",
-          "symbol": "LUNA"
         }
       },
       {
@@ -6393,17 +6393,6 @@
         }
       },
       {
-        "id": "0x577959c519c24ee6add28ad96d3531bc6878ba34",
-        "token0": {
-          "id": "0x0cec1a9154ff802e7934fc916ed7ca50bde6844e",
-          "symbol": "POOL"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x391a911c273457445d40af81bb6f4978d8ddd250",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -6412,17 +6401,6 @@
         "token1": {
           "id": "0xe9d2c26a6d249f5c600d9f0e5818c60314c82dac",
           "symbol": "SMGATE"
-        }
-      },
-      {
-        "id": "0x742c15d71ea7444964bc39b0ed729b3729adc361",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xd26114cd6ee289accf82350c8d8487fedb8a0c07",
-          "symbol": "OMG"
         }
       },
       {
@@ -6445,6 +6423,28 @@
         "token1": {
           "id": "0xcaaa93712bdac37f736c323c93d4d5fdefcc31cc",
           "symbol": "CRD"
+        }
+      },
+      {
+        "id": "0x577959c519c24ee6add28ad96d3531bc6878ba34",
+        "token0": {
+          "id": "0x0cec1a9154ff802e7934fc916ed7ca50bde6844e",
+          "symbol": "POOL"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0xd4b4d9807d897bcb508af71e37c96fbb643d13a4",
+        "token0": {
+          "id": "0xb87204dfdff7276d64c402f90bf0160ab1e66d17",
+          "symbol": "\ud83c\udf63"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -6492,10 +6492,10 @@
         }
       },
       {
-        "id": "0x88024deacdc2e9eda02a3051377ed635381faa54",
+        "id": "0x9efffcd34974e47c709a64fe85fb07e68b93d6f3",
         "token0": {
-          "id": "0x72377f31e30a405282b522d588aebbea202b4f23",
-          "symbol": "VRN"
+          "id": "0x3a3e29ffb06b516a1a85da7a5efad22fbc7c3cb9",
+          "symbol": "HZN"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -6503,10 +6503,10 @@
         }
       },
       {
-        "id": "0x9efffcd34974e47c709a64fe85fb07e68b93d6f3",
+        "id": "0x88024deacdc2e9eda02a3051377ed635381faa54",
         "token0": {
-          "id": "0x3a3e29ffb06b516a1a85da7a5efad22fbc7c3cb9",
-          "symbol": "HZN"
+          "id": "0x72377f31e30a405282b522d588aebbea202b4f23",
+          "symbol": "VRN"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -6522,6 +6522,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x742c15d71ea7444964bc39b0ed729b3729adc361",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xd26114cd6ee289accf82350c8d8487fedb8a0c07",
+          "symbol": "OMG"
         }
       },
       {
@@ -6602,17 +6613,6 @@
         }
       },
       {
-        "id": "0x7229d526d5fd693720b88eb7129058db5d497bce",
-        "token0": {
-          "id": "0x6fc13eace26590b80cccab1ba5d51890577d83b2",
-          "symbol": "UMB"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x0bff31d8179da718a7ee3669853cf9978c90a24a",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -6621,6 +6621,17 @@
         "token1": {
           "id": "0xea319e87cf06203dae107dd8e5672175e3ee976c",
           "symbol": "SURF"
+        }
+      },
+      {
+        "id": "0x7229d526d5fd693720b88eb7129058db5d497bce",
+        "token0": {
+          "id": "0x6fc13eace26590b80cccab1ba5d51890577d83b2",
+          "symbol": "UMB"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -6712,6 +6723,17 @@
         }
       },
       {
+        "id": "0xaaf448d30f01b429fb6e7f9af6a8ff66e694f312",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xe60779cc1b2c1d0580611c526a8df0e3f870ec48",
+          "symbol": "USH"
+        }
+      },
+      {
         "id": "0x82ebcd936c9e938704b65027850e42393f8bc4d4",
         "token0": {
           "id": "0x4a615bb7166210cce20e6642a6f8fb5d4d044496",
@@ -6731,6 +6753,17 @@
         "token1": {
           "id": "0xfdf888ccd94fc4a3971ff3c5ebaa47cff00445d0",
           "symbol": "BTCTRADE"
+        }
+      },
+      {
+        "id": "0x15a8e38942f9e353bec8812763fb3c104c89ecf4",
+        "token0": {
+          "id": "0x227c7df69d3ed1ae7574a1a7685fded90292eb48",
+          "symbol": "MILADY"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -6775,17 +6808,6 @@
         "token1": {
           "id": "0x767fe9edc9e0df98e07454847909b5e959d7ca0e",
           "symbol": "ILV"
-        }
-      },
-      {
-        "id": "0x15a8e38942f9e353bec8812763fb3c104c89ecf4",
-        "token0": {
-          "id": "0x227c7df69d3ed1ae7574a1a7685fded90292eb48",
-          "symbol": "MILADY"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -6965,6 +6987,17 @@
         }
       },
       {
+        "id": "0xba13afecda9beb75de5c56bbaf696b880a5a50dd",
+        "token0": {
+          "id": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+          "symbol": "MKR"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xcd92226c0489689ad879e0cbce2cf4996ede84ab",
         "token0": {
           "id": "0x34b696dc4f59889cc4652a96f8005f1fadacbe44",
@@ -6976,10 +7009,10 @@
         }
       },
       {
-        "id": "0x04444d365324134e58104b1d874d00dc68dcea53",
+        "id": "0x2958f0474c614e45b0c53bd462dc8be65ee9b65e",
         "token0": {
-          "id": "0x4fe83213d56308330ec302a8bd641f1d0113a4cc",
-          "symbol": "NU"
+          "id": "0x74dc039a1a0fdd50cc5294ddb98219a940e01158",
+          "symbol": "LEAP"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -6987,10 +7020,10 @@
         }
       },
       {
-        "id": "0x2958f0474c614e45b0c53bd462dc8be65ee9b65e",
+        "id": "0x04444d365324134e58104b1d874d00dc68dcea53",
         "token0": {
-          "id": "0x74dc039a1a0fdd50cc5294ddb98219a940e01158",
-          "symbol": "LEAP"
+          "id": "0x4fe83213d56308330ec302a8bd641f1d0113a4cc",
+          "symbol": "NU"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -7035,17 +7068,6 @@
         "token0": {
           "id": "0x75de9fa3e18071eab22823d6c2bcecde759250ca",
           "symbol": "BURN"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x1add06b17398afca1ad9993ef17061317e463888",
-        "token0": {
-          "id": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8",
-          "symbol": "XEN"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -7207,17 +7229,6 @@
         }
       },
       {
-        "id": "0x34b13f8cd184f55d0bd4dd1fe6c07d46f245c7ed",
-        "token0": {
-          "id": "0x1494ca1f11d487c2bbe4543e90080aeba4ba3c2b",
-          "symbol": "DPI"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x57b9153a4570624b51871217f311074d9cd64bcf",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -7288,6 +7299,17 @@
         "token0": {
           "id": "0x8185bc4757572da2a610f887561c32298f1a5748",
           "symbol": "ALN"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x34b13f8cd184f55d0bd4dd1fe6c07d46f245c7ed",
+        "token0": {
+          "id": "0x1494ca1f11d487c2bbe4543e90080aeba4ba3c2b",
+          "symbol": "DPI"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -7548,6 +7570,17 @@
         }
       },
       {
+        "id": "0xa7a8edfda2b8bf1e5084e2765811effee21ef918",
+        "token0": {
+          "id": "0x39fbbabf11738317a448031930706cd3e612e1b9",
+          "symbol": "WXRP"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x0edeb95d2460880ed686409e88b942fd6600ff88",
         "token0": {
           "id": "0x1a3496c18d558bd9c6c8f609e1b129f67ab08163",
@@ -7585,17 +7618,6 @@
         "token0": {
           "id": "0x16c52ceece2ed57dad87319d91b5e3637d50afa4",
           "symbol": "TCAP"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x1fe439651c324b3497f6669ba208f64fbf905a39",
-        "token0": {
-          "id": "0x7162469321ae5880f077d250b626f3271b21b903",
-          "symbol": "KSW"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -7911,17 +7933,6 @@
         }
       },
       {
-        "id": "0xa7a8edfda2b8bf1e5084e2765811effee21ef918",
-        "token0": {
-          "id": "0x39fbbabf11738317a448031930706cd3e612e1b9",
-          "symbol": "WXRP"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0xdf2ff5946df21f818d5f67e62d22486ca470798e",
         "token0": {
           "id": "0x06745bee20ad9cc7dfb6f40b66504397235f547c",
@@ -8095,17 +8106,6 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x8d87b3abf9bbba65af8095a9838846d237821008",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xe356025459d8222b068c474d50d93933f7316610",
-          "symbol": "PACEF"
         }
       },
       {
@@ -8285,17 +8285,6 @@
         }
       },
       {
-        "id": "0x3c9fbaa0998fd45ab483d71e61bfe50349532454",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xe218a21d03dea706d114d9c4490950375f3b7c05",
-          "symbol": "WARRIOR"
-        }
-      },
-      {
         "id": "0x257384c65344315723f4c120854bc3a8851d7ea3",
         "token0": {
           "id": "0x5d84cda74c22f25f4feb1035e7e14f20e9d3ab79",
@@ -8359,6 +8348,17 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x3c9fbaa0998fd45ab483d71e61bfe50349532454",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        },
+        "token1": {
+          "id": "0xe218a21d03dea706d114d9c4490950375f3b7c05",
+          "symbol": "WARRIOR"
         }
       },
       {
@@ -8439,6 +8439,17 @@
         }
       },
       {
+        "id": "0x8d308e01f0401345996552dc391e44c4f3ce8754",
+        "token0": {
+          "id": "0xb0c7a3ba49c7a6eaba6cd4a96c55a1391070ac9a",
+          "symbol": "MAGIC"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x0ab314922ae06bf9a0ed5c042da7637a03af6952",
         "token0": {
           "id": "0xb5585afebbb9d955da797845b3e0c41b3ff047ce",
@@ -8505,17 +8516,6 @@
         }
       },
       {
-        "id": "0x8d308e01f0401345996552dc391e44c4f3ce8754",
-        "token0": {
-          "id": "0xb0c7a3ba49c7a6eaba6cd4a96c55a1391070ac9a",
-          "symbol": "MAGIC"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0xfed8e81bd0fba2664e9bd9abfaffb77828f959b7",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -8524,17 +8524,6 @@
         "token1": {
           "id": "0xe9f84de264e91529af07fa2c746e934397810334",
           "symbol": "SAK3"
-        }
-      },
-      {
-        "id": "0x9cda63eba764922f71f4159658c9891043dc86fd",
-        "token0": {
-          "id": "0x25b539b1c179fbe2af92abdfdc7e152cbc97addc",
-          "symbol": "COOOM"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -8703,32 +8692,10 @@
         }
       },
       {
-        "id": "0x65551e87dbd9ef8312f2f26d5e2df8f948b0088c",
-        "token0": {
-          "id": "0x15b479fd41749d5e4ad7ee06f55c7360e54052e5",
-          "symbol": "KOPE"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0xec3bdd98f0461a7966510d2f26bafc6680aab2c5",
         "token0": {
           "id": "0x1e33dba7cd47e79c4385ba39442a693b910a0a8a",
           "symbol": "CELO"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x42cb55ad916db46574ce1a962beb9012ce5f2b34",
-        "token0": {
-          "id": "0x6af36add4e2f6e8a9cb121450d59f6c30f3f3722",
-          "symbol": "RAD"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -8817,6 +8784,17 @@
         "token0": {
           "id": "0x419c4db4b9e25d6db2ad9691ccb832c8d9fda05e",
           "symbol": "DRGN"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x42cb55ad916db46574ce1a962beb9012ce5f2b34",
+        "token0": {
+          "id": "0x6af36add4e2f6e8a9cb121450d59f6c30f3f3722",
+          "symbol": "RAD"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9022,6 +9000,17 @@
         }
       },
       {
+        "id": "0x65551e87dbd9ef8312f2f26d5e2df8f948b0088c",
+        "token0": {
+          "id": "0x15b479fd41749d5e4ad7ee06f55c7360e54052e5",
+          "symbol": "KOPE"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x78bb29f673fb6550cabba1e3d543873da704e373",
         "token0": {
           "id": "0x34b696dc4f59889cc4652a96f8005f1fadacbe44",
@@ -9165,17 +9154,6 @@
         }
       },
       {
-        "id": "0xe429ef58b72f483d416cec2505904b9b033fdb9a",
-        "token0": {
-          "id": "0x3605f9e7b830094e5f47cdb6245f2dc8f47750a5",
-          "symbol": "GM"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x252d166d00273c4101d4b9f75113e44c35be535a",
         "token0": {
           "id": "0x64bc251b0eb9200948c9155573cd459c5e17c6a4",
@@ -9224,6 +9202,17 @@
         "token0": {
           "id": "0xabea7663c472648d674bd3403d94c858dfeef728",
           "symbol": "PUDGY"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0xd6931cf24c05afd3c01016ce8a881b6c127e0c30",
+        "token0": {
+          "id": "0xa35bd2246978dfbb1980dff8ff0f5834335dfdbc",
+          "symbol": "REMIO"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9294,17 +9283,6 @@
         "token1": {
           "id": "0xf373a10d21cc4a9f84421c69ec2d9528b6162012",
           "symbol": "KGF"
-        }
-      },
-      {
-        "id": "0xc09fd764a43ce695a4065d8ab0f7f85824a3a6de",
-        "token0": {
-          "id": "0x0e050b2b7adb2cae5e8593e280ed5582953f9ad2",
-          "symbol": "TUBBY"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -9418,17 +9396,6 @@
         }
       },
       {
-        "id": "0xb8d59e30c27fe51e3b914a5c1984b73c261089ff",
-        "token0": {
-          "id": "0xb603b3fc4b5ad885e26298b7862bb6074dff32a9",
-          "symbol": "LIL"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x9a67737d2ab958d80a763bbbd4b1c826249745f4",
         "token0": {
           "id": "0x914f79f4fdffe98a68b10b8327f7a571fa36405d",
@@ -9539,10 +9506,10 @@
         }
       },
       {
-        "id": "0x12672cd54643b4881635b898ea9f7a21f014b360",
+        "id": "0xec87cb93ecd0fe2f80dbd0d85431eacf1de09d50",
         "token0": {
-          "id": "0x1e23fb8bd851cc2a341428c0b10e65d49987d744",
-          "symbol": "GCOOOM"
+          "id": "0xadd5e881984783dd432f80381fb52f45b53f3e70",
+          "symbol": "VITE"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9550,10 +9517,10 @@
         }
       },
       {
-        "id": "0xec87cb93ecd0fe2f80dbd0d85431eacf1de09d50",
+        "id": "0xb8d59e30c27fe51e3b914a5c1984b73c261089ff",
         "token0": {
-          "id": "0xadd5e881984783dd432f80381fb52f45b53f3e70",
-          "symbol": "VITE"
+          "id": "0xb603b3fc4b5ad885e26298b7862bb6074dff32a9",
+          "symbol": "LIL"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9649,17 +9616,6 @@
         }
       },
       {
-        "id": "0xd6931cf24c05afd3c01016ce8a881b6c127e0c30",
-        "token0": {
-          "id": "0xa35bd2246978dfbb1980dff8ff0f5834335dfdbc",
-          "symbol": "REMIO"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x4c91a6442191144d2b977596ec145ddd6d925f45",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9704,6 +9660,17 @@
         }
       },
       {
+        "id": "0xc09fd764a43ce695a4065d8ab0f7f85824a3a6de",
+        "token0": {
+          "id": "0x0e050b2b7adb2cae5e8593e280ed5582953f9ad2",
+          "symbol": "TUBBY"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0x91b2f60d3d6d5ffdc68a2da9b367237f4b9a2725",
         "token0": {
           "id": "0x614a0c75b1574748634dea378a7044f614b6fd9d",
@@ -9715,10 +9682,10 @@
         }
       },
       {
-        "id": "0x3f4b1011af32642bbb12eaec693fb14ca37ac69d",
+        "id": "0x457dccaf21b8be9cfb28aef5ad89ddd1f85e9b0c",
         "token0": {
-          "id": "0x69ec436a1eaefef15e75543969f800ec2afc4490",
-          "symbol": "STARZ"
+          "id": "0x728eb1d6858910f9ef729586248707a610680019",
+          "symbol": "JIRO"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9726,10 +9693,10 @@
         }
       },
       {
-        "id": "0x457dccaf21b8be9cfb28aef5ad89ddd1f85e9b0c",
+        "id": "0x3f4b1011af32642bbb12eaec693fb14ca37ac69d",
         "token0": {
-          "id": "0x728eb1d6858910f9ef729586248707a610680019",
-          "symbol": "JIRO"
+          "id": "0x69ec436a1eaefef15e75543969f800ec2afc4490",
+          "symbol": "STARZ"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9880,17 +9847,6 @@
         }
       },
       {
-        "id": "0x838bc601d2009f40aa9a453b5f8d0765b3a9c898",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        },
-        "token1": {
-          "id": "0xf8eb56c7e4e3c885c905a19583bf41644d35aa0a",
-          "symbol": "PIXLS"
-        }
-      },
-      {
         "id": "0x23a9292830fc80db7f563edb28d2fe6fb47f8624",
         "token0": {
           "id": "0xb753428af26e81097e7fd17f40c88aaa3e04902c",
@@ -9943,17 +9899,6 @@
         "token1": {
           "id": "0xf1ca9cb74685755965c7458528a36934df52a3ef",
           "symbol": "AVINOC"
-        }
-      },
-      {
-        "id": "0x0cd198a5f6cc84ca8499dd97a6c1a1c4b4a12da1",
-        "token0": {
-          "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-          "symbol": "SUSHI"
-        },
-        "token1": {
-          "id": "0x767fe9edc9e0df98e07454847909b5e959d7ca0e",
-          "symbol": "ILV"
         }
       },
       {
@@ -10078,10 +10023,10 @@
         }
       },
       {
-        "id": "0xccce147b32eeb5defd2980748e1a2008308a75bf",
+        "id": "0x715134a16acb73c86e81df5542e1cf759eeb6fc7",
         "token0": {
-          "id": "0xc016e4b42f80050bbf1d6244c6adbd0b10fe93c5",
-          "symbol": "MONSTR"
+          "id": "0x4fabb145d64652a948d72533023f6e7a623c7c53",
+          "symbol": "BUSD"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10089,10 +10034,10 @@
         }
       },
       {
-        "id": "0x715134a16acb73c86e81df5542e1cf759eeb6fc7",
+        "id": "0xccce147b32eeb5defd2980748e1a2008308a75bf",
         "token0": {
-          "id": "0x4fabb145d64652a948d72533023f6e7a623c7c53",
-          "symbol": "BUSD"
+          "id": "0xc016e4b42f80050bbf1d6244c6adbd0b10fe93c5",
+          "symbol": "MONSTR"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10485,17 +10430,6 @@
         }
       },
       {
-        "id": "0xc3e931c4cfba30b0970090a04da6490889600fbc",
-        "token0": {
-          "id": "0x8e45115181f8a01acca317a9af83707649cebfe0",
-          "symbol": "PCOOOM"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x38e03a5fb1b1a18d47b364cdd7cdce606397c72c",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10672,6 +10606,17 @@
         }
       },
       {
+        "id": "0x0cd198a5f6cc84ca8499dd97a6c1a1c4b4a12da1",
+        "token0": {
+          "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+          "symbol": "SUSHI"
+        },
+        "token1": {
+          "id": "0x767fe9edc9e0df98e07454847909b5e959d7ca0e",
+          "symbol": "ILV"
+        }
+      },
+      {
         "id": "0xb7e170c1935a5b4f6224392a28eb34b5cc3ec346",
         "token0": {
           "id": "0x3d3738c698e868a239fde7ee21e37834c7a1708c",
@@ -10727,6 +10672,17 @@
         }
       },
       {
+        "id": "0x1add06b17398afca1ad9993ef17061317e463888",
+        "token0": {
+          "id": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8",
+          "symbol": "XEN"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xf4f885137c916d39e0ede2141e3fd61f46bd1eb1",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10749,6 +10705,17 @@
         }
       },
       {
+        "id": "0x586f48aa01029884b4ba113cdc70b615802aeebc",
+        "token0": {
+          "id": "0x20ec84c46392cb3ae6a7925be92f597fcc7d88f9",
+          "symbol": "SUPER"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
         "id": "0xd5c5e3ca5f162165a6eff096156ec70f77f3a491",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10757,6 +10724,17 @@
         "token1": {
           "id": "0xf34b1db61aca1a371fe97bad2606c9f534fb9d7d",
           "symbol": "RBIS"
+        }
+      },
+      {
+        "id": "0x83c1f84de2f8fe96a12f5ce9863da12678d68e6e",
+        "token0": {
+          "id": "0x9104d72c25fda61c5fdd18c5ae2e17ffbc5ae070",
+          "symbol": "FEETS"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
         }
       },
       {
@@ -10793,17 +10771,6 @@
         }
       },
       {
-        "id": "0x586f48aa01029884b4ba113cdc70b615802aeebc",
-        "token0": {
-          "id": "0x20ec84c46392cb3ae6a7925be92f597fcc7d88f9",
-          "symbol": "SUPER"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
         "id": "0x899e2aa9ee6a0a54d2a345c00f5c163474c88d14",
         "token0": {
           "id": "0x5cdd4a1201ae120a873c2018adcc5aae29ac0f00",
@@ -10826,6 +10793,17 @@
         }
       },
       {
+        "id": "0x82f8c70a30a0f04d8caf5d96f7f52094704e77a0",
+        "token0": {
+          "id": "0x1e0275806c3cd0bdb5c99916a064d36b5e8eae8d",
+          "symbol": "TWO"
+        },
+        "token1": {
+          "id": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+          "symbol": "SUSHI"
+        }
+      },
+      {
         "id": "0x5055e0f62b6db4856a2dc9d0d5f04b0052aa8ba0",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10834,17 +10812,6 @@
         "token1": {
           "id": "0xe4804cb702abe0e1623ca821f77dbca926c97391",
           "symbol": "HUSKY"
-        }
-      },
-      {
-        "id": "0x583c942dbbc32c0d7a5bfabe911ac929b093228e",
-        "token0": {
-          "id": "0x275c668aabb1faa666f1ce5dca5dc8c744de75bf",
-          "symbol": "GHIB"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
         }
       },
       {
@@ -10896,17 +10863,6 @@
         "token0": {
           "id": "0x4eb8b4c65d8430647586cf44af4bf23ded2bb794",
           "symbol": "FPIS"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH"
-        }
-      },
-      {
-        "id": "0x83c1f84de2f8fe96a12f5ce9863da12678d68e6e",
-        "token0": {
-          "id": "0x9104d72c25fda61c5fdd18c5ae2e17ffbc5ae070",
-          "symbol": "FEETS"
         },
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -10999,6 +10955,50 @@
         "token1": {
           "id": "0x7570003f85d0c362333e1668bfd638c7f34a259b",
           "symbol": "RC_COVER__DAI_2021_3_31"
+        }
+      },
+      {
+        "id": "0x5862d8d46f6a42332dec8d8d8c27796c0f38264b",
+        "token0": {
+          "id": "0x2854f5fe2d01393360cb0532c66d7721b3f48324",
+          "symbol": "CAFE"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH"
+        }
+      },
+      {
+        "id": "0x54ca5b62d3d0540fc5be9fc560721797ed202b97",
+        "token0": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
+        },
+        "token1": {
+          "id": "0xe7ee0b13928afee21a634debbe59693b13658420",
+          "symbol": "RC_COVER_250_DAI_2021_3_31"
+        }
+      },
+      {
+        "id": "0x0f24b1c09386d98c2abd4706e333fd1f1a7a0ecf",
+        "token0": {
+          "id": "0x850fe284f917eb6dfcfe452348bead903aa63073",
+          "symbol": "SLP"
+        },
+        "token1": {
+          "id": "0xdafd66636e2561b0284edde37e42d192f2844d40",
+          "symbol": "SLP"
+        }
+      },
+      {
+        "id": "0x08c92fb7c4902babd2b6d5e51760e13a719accfa",
+        "token0": {
+          "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "symbol": "DAI"
+        },
+        "token1": {
+          "id": "0x7b73a9e765b947b4eeb05cf7dd17eefaac1b1575",
+          "symbol": "RC_WBTC__DAI_2021_3_31"
         }
       }
     ]

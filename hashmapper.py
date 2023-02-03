@@ -109,6 +109,12 @@ def build_hashmap_json():
         except:
             hashmap[pair["token1"]["id"]] = [pair]
 
+        pair_addresses = "".join(sorted([pair["token0"]["id"], pair["token1"]["id"]]))
+        try:
+            hashmap[pair_addresses].append(pair)
+        except:
+            hashmap[pair_addresses] = [pair]
+
     for pair in sushipairs["data"]["pairs"]:
         pair['dex'] = 'Sushiswap'
         try:
@@ -121,6 +127,12 @@ def build_hashmap_json():
         except:
             hashmap[pair["token1"]["id"]] = [pair]
 
+        pair_addresses = "".join(sorted([pair["token0"]["id"], pair["token1"]["id"]]))
+        try:
+            hashmap[pair_addresses].append(pair)
+        except:
+            hashmap[pair_addresses] = [pair]
+
     for pair in v3pairs["data"]["pools"]:
         pair['dex'] = 'UniswapV'
         try:
@@ -132,6 +144,12 @@ def build_hashmap_json():
             hashmap[pair["token1"]["id"]].append(pair)
         except:
             hashmap[pair["token1"]["id"]] = [pair]
+
+        pair_addresses = "".join(sorted([pair["token0"]["id"], pair["token1"]["id"]]))
+        try:
+            hashmap[pair_addresses].append(pair)
+        except:
+            hashmap[pair_addresses] = [pair]
 
     with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'hashmap.json'), 'w') as f:
         json.dump(hashmap, f, indent=2)

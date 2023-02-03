@@ -10,6 +10,7 @@ Python package::
 TESTS
 ========
     $ python -m unittest
+
 COMPARATOR
 ========
 Help:

@@ -69,7 +69,7 @@
           "symbol": "0NE",
           "decimals": "18"
         },
-        "totalSupply": "158202936106.54452950161777629"
+        "totalSupply": "155236064376.252741459475071608"
       },
       {
         "id": "0x1d53262a3c48ba1d2ff7f2f04f9bab95f2565f78",
@@ -114,6 +114,20 @@
         "totalSupply": "32907301711.557519511526634427"
       },
       {
+        "id": "0x5b24dec191849ba2cb24a29d2c517c4d9ab005c6",
+        "token0": {
+          "id": "0x73a83269b9bbafc427e76be0a2c1a1db2a26f4c2",
+          "symbol": "0NE",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xf0f9d895aca5c8678f706fb8216fa22957685a13",
+          "symbol": "CULT",
+          "decimals": "18"
+        },
+        "totalSupply": "30574548883.936109057677551362"
+      },
+      {
         "id": "0xa65653bb6e1338dbce69191bb1328700881fc051",
         "token0": {
           "id": "0x37fe0f067fa808ffbdd12891c0858532cfe7361d",
@@ -125,7 +139,7 @@
           "symbol": "0NE",
           "decimals": "18"
         },
-        "totalSupply": "10345492985.265848680073351339"
+        "totalSupply": "10740049917.045418251485501517"
       },
       {
         "id": "0x09b40a074ee473cd693df636f1306368ef161a92",
@@ -139,7 +153,7 @@
           "symbol": "TAIL",
           "decimals": "18"
         },
-        "totalSupply": "8060809337.61208732914389246"
+        "totalSupply": "7787474288.840544500635390117"
       },
       {
         "id": "0x637a902b96af15a78b64c51d36581b56c1406430",
@@ -296,20 +310,6 @@
         "totalSupply": "2191467797.206050950081380436"
       },
       {
-        "id": "0x70aa2e88af7f53b7a2224b2a702c6b1ac552affc",
-        "token0": {
-          "id": "0x2d5c73f3597b07f23c2bb3f2422932e67eca4543",
-          "symbol": "IMP",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xe8406598b63e574dda2d669f22622705d68e72fb",
-          "symbol": "Hurry",
-          "decimals": "18"
-        },
-        "totalSupply": "2097311014.622549875558880451"
-      },
-      {
         "id": "0xffa0ecb8956038ca01d02fd8b18149acb41e9f55",
         "token0": {
           "id": "0xd1ff31e3d8b78f06aea4eabb534bf5aa23278341",
@@ -366,6 +366,20 @@
         "totalSupply": "750905655.40566046819476681"
       },
       {
+        "id": "0x70aa2e88af7f53b7a2224b2a702c6b1ac552affc",
+        "token0": {
+          "id": "0x2d5c73f3597b07f23c2bb3f2422932e67eca4543",
+          "symbol": "IMP",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xe8406598b63e574dda2d669f22622705d68e72fb",
+          "symbol": "Hurry",
+          "decimals": "18"
+        },
+        "totalSupply": "653874393.945091493335142339"
+      },
+      {
         "id": "0xbd1976064da742da80ee93438cb60e00f8144f68",
         "token0": {
           "id": "0x4521c9ad6a3d4230803ab752ed238be11f8b342f",
@@ -377,7 +391,7 @@
           "symbol": "TAIL",
           "decimals": "18"
         },
-        "totalSupply": "635959844.100461360557326695"
+        "totalSupply": "651128448.595120953602210889"
       },
       {
         "id": "0x9af0f334f9f451ce9e650278e56fec212f35cec1",
@@ -548,20 +562,6 @@
         "totalSupply": "325808749.640185294185952083"
       },
       {
-        "id": "0xf4bf9a1da620798d0390bef9b02e649ac90b62c4",
-        "token0": {
-          "id": "0x0759c128fba5109bfedd4e7ac167acd9a95418ca",
-          "symbol": "2K23",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xe8406598b63e574dda2d669f22622705d68e72fb",
-          "symbol": "Hurry",
-          "decimals": "18"
-        },
-        "totalSupply": "282842712.474619009760336744"
-      },
-      {
         "id": "0x93d05fc2ee280971aaccf0f34f58f04d1cbec42b",
         "token0": {
           "id": "0x7cc97bf17c5adabe25f9d19d15a1ec8a1ad65f14",
@@ -573,7 +573,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "266457907.705114812395855394"
+        "totalSupply": "266550603.274103541853695224"
       },
       {
         "id": "0x89378c68af0f4c3f375bf8c7232fb72ae043aae8",
@@ -741,7 +741,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "138158607.186150379565669223"
+        "totalSupply": "138178636.332477040600855884"
       },
       {
         "id": "0xf62fca15b06c0eeae4e12060fc7cabaaf809d26b",
@@ -965,7 +965,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "89567549.84607014705011478"
+        "totalSupply": "89529176.063780417145339551"
       },
       {
         "id": "0x4a0617615e9af5da2f986762af990cc063ac2146",
@@ -1094,20 +1094,6 @@
         "totalSupply": "80622577.482985496523665132"
       },
       {
-        "id": "0x6ee63abde2c575af8b81b808037ada1437506143",
-        "token0": {
-          "id": "0xbd5c150e810bf6b3189da52521fab4257a611f4b",
-          "symbol": "$CATDOG",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "77459666.924148337703584307"
-      },
-      {
         "id": "0xbe5504f30b23a363282f0108df4847cdd628481f",
         "token0": {
           "id": "0x4245acecd4eef3ae8fbfe09939c9b63595887063",
@@ -1232,6 +1218,20 @@
           "decimals": "18"
         },
         "totalSupply": "70003571.337468204915682602"
+      },
+      {
+        "id": "0x3ac78be59ceaa9698966aff3b8886117a76bb266",
+        "token0": {
+          "id": "0x00c2999c8b2adf4abc835cc63209533973718eb1",
+          "symbol": "STATE",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0x7d5121505149065b562c789a0145ed750e6e8cdd",
+          "symbol": "VR",
+          "decimals": "18"
+        },
+        "totalSupply": "69839733.831243357439855522"
       },
       {
         "id": "0x783aab49d80f7682d0591acdc07a7bac8aa9938a",
@@ -1525,7 +1525,7 @@
           "symbol": "SHIWA",
           "decimals": "18"
         },
-        "totalSupply": "60656589.169594750896953332"
+        "totalSupply": "60708939.420535780439299556"
       },
       {
         "id": "0xcc3bd2d75383deb76e38d5185683b16cc461b8fc",
@@ -1640,6 +1640,20 @@
         "totalSupply": "55053254.593689171106612483"
       },
       {
+        "id": "0xcb6ae57a26080a518348f9aac01a0e82fa6818f1",
+        "token0": {
+          "id": "0x645c52cf6c5c58aa4064494f5b5ffe9c7ec0d7d4",
+          "symbol": "HKBY",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "54977395.437053626910634678"
+      },
+      {
         "id": "0xe6eb93faac0fcfefbc125b71d7bf1c216fd3bb15",
         "token0": {
           "id": "0x631c6b3332dcc35314faf56e81eea792ffcc3c2a",
@@ -1652,20 +1666,6 @@
           "decimals": "18"
         },
         "totalSupply": "54880454"
-      },
-      {
-        "id": "0xcb6ae57a26080a518348f9aac01a0e82fa6818f1",
-        "token0": {
-          "id": "0x645c52cf6c5c58aa4064494f5b5ffe9c7ec0d7d4",
-          "symbol": "HKBY",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "54785308.98239721249457618"
       },
       {
         "id": "0xffcc3fda03cf1656f9b5f962be1c0430863caff2",
@@ -1700,6 +1700,20 @@
         "token0": {
           "id": "0x68def9fb11966fe7604994d7b8ba412724896508",
           "symbol": "SCHRO",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "54772255.750516611345695978"
+      },
+      {
+        "id": "0xc8a99f01e31251c7668768f339ca6c8e6721ba14",
+        "token0": {
+          "id": "0x62bb1fe7ab796ca718634f3b2ec61ad4111c0cb6",
+          "symbol": "ANAI",
           "decimals": "18"
         },
         "token1": {
@@ -2046,34 +2060,6 @@
         "totalSupply": "49789665.890817214896921431"
       },
       {
-        "id": "0x3ac78be59ceaa9698966aff3b8886117a76bb266",
-        "token0": {
-          "id": "0x00c2999c8b2adf4abc835cc63209533973718eb1",
-          "symbol": "STATE",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0x7d5121505149065b562c789a0145ed750e6e8cdd",
-          "symbol": "VR",
-          "decimals": "18"
-        },
-        "totalSupply": "49410395.50501323540248734"
-      },
-      {
-        "id": "0xd4a22695ff58a19fd543ae119dca5335417d6389",
-        "token0": {
-          "id": "0x26f45c6d6bfdd89d37a8856838c2141348334e0f",
-          "symbol": "MASYA",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "49282002.931289069424463015"
-      },
-      {
         "id": "0x6b453412bdeaeb80396eaed6d0baf8c95f523102",
         "token0": {
           "id": "0x38e3b07d607def629b4f3f46a0082006fdd6cda2",
@@ -2256,20 +2242,6 @@
         "totalSupply": "45014279.066440025821870379"
       },
       {
-        "id": "0x9b1e46f4aaca8f916281ddceef15aaefb111bc5d",
-        "token0": {
-          "id": "0x6d9ae7f67613958a576c1313f23c7a6a45148bab",
-          "symbol": "TZURU",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "44922092.21360685155821975"
-      },
-      {
         "id": "0x6d3a9f0f58d64a43d48479f7601113b5365e8d64",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2326,10 +2298,24 @@
         "totalSupply": "44721359.549995793928182473"
       },
       {
-        "id": "0xd2a9ba543ac92b781e8ae9c3e4c3e2065f474135",
+        "id": "0xc7d57159f39f6227d7c62d8ec943dcc62d6b9c69",
         "token0": {
-          "id": "0x68ca258f69c69cddbd5be9c5f738249c26da9982",
-          "symbol": "KAIL",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xfaac5c25f5bcab15a3e2019226ab4da4a13719d0",
+          "symbol": "ECB",
+          "decimals": "18"
+        },
+        "totalSupply": "44721359.549995793928182473"
+      },
+      {
+        "id": "0xa18d47588c6a357599cc4ce05013d3edf8af4932",
+        "token0": {
+          "id": "0xafa3034d83d6b246e5bc5e0ad06db3f47bd07efc",
+          "symbol": "KABONA",
           "decimals": "18"
         },
         "token1": {
@@ -2340,15 +2326,15 @@
         "totalSupply": "44721359.549995793928182473"
       },
       {
-        "id": "0xc7d57159f39f6227d7c62d8ec943dcc62d6b9c69",
+        "id": "0x90065ef67cd757ae31e6b5cd637314fa4adc4333",
         "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
+          "id": "0xb7f314f45f95e4634382b0b5c3a20232cc7e1a58",
+          "symbol": "NIBA",
           "decimals": "18"
         },
         "token1": {
-          "id": "0xfaac5c25f5bcab15a3e2019226ab4da4a13719d0",
-          "symbol": "ECB",
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
           "decimals": "18"
         },
         "totalSupply": "44721359.549995793928182473"
@@ -2372,6 +2358,20 @@
         "token0": {
           "id": "0x28898c0c60b4c9449c8f6b9afa2926d42004fb49",
           "symbol": "ES",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "44721359.549995793928182473"
+      },
+      {
+        "id": "0x66c8fbc271f7ab9101251488fb4f4f21bf1f44a5",
+        "token0": {
+          "id": "0x5d05a47422cac7f2629666b03fb127bb4a50754a",
+          "symbol": "SHIBARMY",
           "decimals": "18"
         },
         "token1": {
@@ -2428,6 +2428,20 @@
         "token0": {
           "id": "0x9efa0572fac390e1fb559172f38e19baf968e454",
           "symbol": "$MCAT",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "44721359.549995793928182473"
+      },
+      {
+        "id": "0x4a543136eb081c5322deff4a1d47aa7702ebe57d",
+        "token0": {
+          "id": "0xbcf502702fda3efc73015c1eee4817a1dad36e4b",
+          "symbol": "NASH",
           "decimals": "18"
         },
         "token1": {
@@ -2508,6 +2522,20 @@
         "totalSupply": "44611473.676438665704118784"
       },
       {
+        "id": "0x2f8a57fabedb5ab37390424ec3cf89f271384ead",
+        "token0": {
+          "id": "0x39ddd4fab1d317a315091b197644640dc358a8d8",
+          "symbol": "ELENA",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "43226788.898166333770755317"
+      },
+      {
         "id": "0xd76314797e3b7614de24229c94e116b112205b70",
         "token0": {
           "id": "0x4e90322c42aa039970e219e7a9c7328ce30dedc6",
@@ -2578,20 +2606,6 @@
         "totalSupply": "42426406.871192851464049661"
       },
       {
-        "id": "0x71a94039a214c027b594b5595097ec8eea6d1d93",
-        "token0": {
-          "id": "0x91757d8ac5feea52a3e9353e66067bafd5dff38c",
-          "symbol": "CHIPS",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "42426406.871192851464049661"
-      },
-      {
         "id": "0x56a3c60ee64be7646745d957cf32d26d5a9c1b77",
         "token0": {
           "id": "0xba79f3246484af5df1280f204d3bee16cf64afec",
@@ -2634,6 +2648,20 @@
         "totalSupply": "42426406.871192851464049661"
       },
       {
+        "id": "0x210f1cdd44211adea3d5f25e220deb0fbc1e9f55",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc8ebeacb9b18d6c9ca89d88243c7095035a7adf3",
+          "symbol": "WTFX",
+          "decimals": "18"
+        },
+        "totalSupply": "42426406.871192851464049661"
+      },
+      {
         "id": "0x5ead5462e7d98308e64bfe3c1d76845e5d2794a1",
         "token0": {
           "id": "0x39207d2e2feef178fbda8083914554c59d9f8c00",
@@ -2660,6 +2688,20 @@
           "decimals": "18"
         },
         "totalSupply": "42261419.183768268416562882"
+      },
+      {
+        "id": "0x6c406daeca809382e649d6c8f768450bf8dbc1dd",
+        "token0": {
+          "id": "0x73a83269b9bbafc427e76be0a2c1a1db2a26f4c2",
+          "symbol": "0NE",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "42107174.335795508593299089"
       },
       {
         "id": "0xfff8000aa3ce967d854a63464ffd6e95a01af92a",
@@ -2704,20 +2746,6 @@
         "totalSupply": "41860036.893801733262402052"
       },
       {
-        "id": "0x6c406daeca809382e649d6c8f768450bf8dbc1dd",
-        "token0": {
-          "id": "0x73a83269b9bbafc427e76be0a2c1a1db2a26f4c2",
-          "symbol": "0NE",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "41582123.551757964423844146"
-      },
-      {
         "id": "0xf84815a3e01f27601e84a48572591e2342110d39",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -2760,6 +2788,20 @@
         "totalSupply": "41267332.363460615"
       },
       {
+        "id": "0xa75b2861c2f5030c33fc299c0e7002d73b49ac0c",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc5c6cd20dc511ca5032175ad50f2edec059d28ed",
+          "symbol": "SHAN",
+          "decimals": "18"
+        },
+        "totalSupply": "41231056.256176605498213098"
+      },
+      {
         "id": "0xa3007a2d7e0449184f6a9178e39f2bf6857d608f",
         "token0": {
           "id": "0x8ad4e5b2f274238eca74850408d3274b93627e5d",
@@ -2778,6 +2820,34 @@
         "token0": {
           "id": "0xa4f421076531effe0e820ed8113f365bf6fda43f",
           "symbol": "SESAME",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "41231056.256176605498213098"
+      },
+      {
+        "id": "0x67b2f0b39516fc0225fac47915e42b4874e69ef1",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xcbbc60ac1388404d381da89f24f7746df92f4664",
+          "symbol": "ETHAKI",
+          "decimals": "18"
+        },
+        "totalSupply": "41231056.256176605498213098"
+      },
+      {
+        "id": "0x5a5c6746b4e982ee1ecb5b00ab98b90ffcd10283",
+        "token0": {
+          "id": "0x682c06349aa1e465776ff9b4f1c1df5c336e4ade",
+          "symbol": "Floco",
           "decimals": "18"
         },
         "token1": {
@@ -2828,20 +2898,6 @@
           "decimals": "18"
         },
         "totalSupply": "40987803.063838393532883154"
-      },
-      {
-        "id": "0x5b24dec191849ba2cb24a29d2c517c4d9ab005c6",
-        "token0": {
-          "id": "0x73a83269b9bbafc427e76be0a2c1a1db2a26f4c2",
-          "symbol": "0NE",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xf0f9d895aca5c8678f706fb8216fa22957685a13",
-          "symbol": "CULT",
-          "decimals": "18"
-        },
-        "totalSupply": "40932342.263376584622077475"
       },
       {
         "id": "0xd4c28037b0bbc3a3693c635484a6ee491f033045",
@@ -2953,7 +3009,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "39226809.296630071679632238"
+        "totalSupply": "39257621.630285976431901344"
       },
       {
         "id": "0x4e955b53dc0030d14bdaa1fbc6a83e9b1d035ca6",
@@ -3124,6 +3180,20 @@
         "totalSupply": "38729833.462074168851791653"
       },
       {
+        "id": "0xedc652b881346a5bd58f94c809c34d9158cdb384",
+        "token0": {
+          "id": "0x5c6eff81d09cb1ebe7ce87f4f2df638f83b05b6c",
+          "symbol": "INU",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "38566314.564204587919746334"
+      },
+      {
         "id": "0x8770ccad957c221dad5a1e6f05db36ce9164b288",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -3138,20 +3208,6 @@
         "totalSupply": "37982474.240174678731753975"
       },
       {
-        "id": "0xedc652b881346a5bd58f94c809c34d9158cdb384",
-        "token0": {
-          "id": "0x5c6eff81d09cb1ebe7ce87f4f2df638f83b05b6c",
-          "symbol": "INU",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "37700569.157925647520030398"
-      },
-      {
         "id": "0x919c3d39536db1bb35dd09ffabe8a436924831c4",
         "token0": {
           "id": "0x72295e7904e5dc591f83ef11559db7a89d1e3ced",
@@ -3163,7 +3219,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "37676653.288447079705610952"
+        "totalSupply": "37783984.732427671025758978"
       },
       {
         "id": "0xdf806b127fc2b98e43db81b5af503f9a12292069",
@@ -3178,6 +3234,20 @@
           "decimals": "18"
         },
         "totalSupply": "37416573.867739413855836487"
+      },
+      {
+        "id": "0x86f8a2f4b1b9a104788b05644d9e69c23452579b",
+        "token0": {
+          "id": "0x7beb2097759ad52ebb47f2073239a7491f9c7822",
+          "symbol": "TRB",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "37231039.098494345791396595"
       },
       {
         "id": "0x84ae69357c238c68cc22276e4bfd25aaee4f1b7a",
@@ -3625,7 +3695,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "34202076.714736092819017139"
+        "totalSupply": "34236894.89230705548044194"
       },
       {
         "id": "0xe9766b5f6de2ee9034c277b9c0dd2618e2ce356b",
@@ -3653,7 +3723,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "34031832.23121239061452387"
+        "totalSupply": "34065534.012378900719367417"
       },
       {
         "id": "0x97e1fcb93ae7267dbafad23f7b9afaa08264cfd8",
@@ -3667,7 +3737,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "33713751.050175123745286727"
+        "totalSupply": "33622439.521421463441084114"
       },
       {
         "id": "0xc3de584df0bbca44f687353dd93c48beaaf8fdc5",
@@ -3724,20 +3794,6 @@
           "decimals": "18"
         },
         "totalSupply": "32171415.884290824914441479"
-      },
-      {
-        "id": "0xf0fce5d65a42470a314fb440327cf564cca7c9d9",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xdffc63f92c939deb112d88735ade3b4d21b6d491",
-          "symbol": "RESTAURANTS",
-          "decimals": "18"
-        },
-        "totalSupply": "31697415.903869799092761498"
       },
       {
         "id": "0xfd3b8e7e3e0df5d2e714d80f161a1a9a2f265935",
@@ -3894,10 +3950,10 @@
         "totalSupply": "31622776.601683793319987935"
       },
       {
-        "id": "0x86f8a2f4b1b9a104788b05644d9e69c23452579b",
+        "id": "0x8a7cb0bd049c68269f5bdf82d9937592d1453eb8",
         "token0": {
-          "id": "0x7beb2097759ad52ebb47f2073239a7491f9c7822",
-          "symbol": "TRB",
+          "id": "0x693795dcedd5e2227d0a0fa5ec095b847df68b8f",
+          "symbol": "Shoku no Nihongi",
           "decimals": "18"
         },
         "token1": {
@@ -3931,6 +3987,20 @@
         "token1": {
           "id": "0xdcb53fcac60766045c25422bf7d1d2608f69794e",
           "symbol": " BURN ",
+          "decimals": "18"
+        },
+        "totalSupply": "31622776.601683793319987935"
+      },
+      {
+        "id": "0x672062f7130380326da7198229ab506a19f67ef4",
+        "token0": {
+          "id": "0x39062a2aaa4d1967fb8803c57e85c8836f550e08",
+          "symbol": "INUVIUM",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
           "decimals": "18"
         },
         "totalSupply": "31622776.601683793319987935"
@@ -3992,6 +4062,20 @@
         "totalSupply": "31622776.601683793319987935"
       },
       {
+        "id": "0x061bfd862463322bc11abf0c7417d6a93198b09f",
+        "token0": {
+          "id": "0x938db5a626c1f5326af99d9eb1bd47d58fe2dd95",
+          "symbol": "DKDM",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "31622776.601683793319987935"
+      },
+      {
         "id": "0xa9386e08aa02f58975255d1c220232f20d3b1d8d",
         "token0": {
           "id": "0x97756478114e44e8d7a511057486749d3c7ccafb",
@@ -4004,20 +4088,6 @@
           "decimals": "18"
         },
         "totalSupply": "31481234.957829126868799811"
-      },
-      {
-        "id": "0xac5a77fc5ca662d1799bf5f54daf342e4f6b5b41",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xec62b9bbfd5f4ca7b504bd1b7855497b1e5ffe63",
-          "symbol": "Shabibi",
-          "decimals": "18"
-        },
-        "totalSupply": "31306548.835666955386788056"
       },
       {
         "id": "0x49eb7e65b2c6bbcca88252bc1651e02532ab46dd",
@@ -4132,6 +4202,20 @@
         "totalSupply": "30520998.821065589014625189"
       },
       {
+        "id": "0xd4a22695ff58a19fd543ae119dca5335417d6389",
+        "token0": {
+          "id": "0x26f45c6d6bfdd89d37a8856838c2141348334e0f",
+          "symbol": "MASYA",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "30413825.139823544929941434"
+      },
+      {
         "id": "0x4d327cf20bb78a89dc7e981ec871f6f9bc9add87",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -4171,21 +4255,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "30292640.593592665435149032"
-      },
-      {
-        "id": "0x7968d1e7037ddfa95554f5885c2a2d64791f77b4",
-        "token0": {
-          "id": "0xa62925dbf8af8298a7ec977e67aa8330980dcf8a",
-          "symbol": "HOKORI",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "30041637.771599603653988488"
+        "totalSupply": "30293311.664022307242587285"
       },
       {
         "id": "0xe62dac8900f05bdef032c1a10f5c653818d56290",
@@ -4524,18 +4594,18 @@
         "totalSupply": "28142494.55894057732739278"
       },
       {
-        "id": "0x9fd5802b06a9315d8e103bde39ba83dd0fd08bb3",
+        "id": "0xa8f846af3e593ec3d559d9219c9ea8bdb3b5cc86",
         "token0": {
+          "id": "0x1af08767c29a40f79ca4d7588b7a59094eab227e",
+          "symbol": "KISH",
+          "decimals": "18"
+        },
+        "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH",
           "decimals": "18"
         },
-        "token1": {
-          "id": "0xd976589eb245c09036a65f17907de495ad9b74a3",
-          "symbol": "SC",
-          "decimals": "9"
-        },
-        "totalSupply": "27786074.84270302111709311"
+        "totalSupply": "27999310.248721976953126729"
       },
       {
         "id": "0x1fb932fc82ef264341573b8235518006505e06c4",
@@ -4790,6 +4860,20 @@
         "totalSupply": "26457513.110645905905015157"
       },
       {
+        "id": "0x129b4b868146eb7ce677252b2c56879daa858304",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xde4a21ff1ac94e89f2943dff1e7c9caa53ab0d3d",
+          "symbol": "R69",
+          "decimals": "18"
+        },
+        "totalSupply": "26267851.073127394293738221"
+      },
+      {
         "id": "0x78cf29451ad507ee2cf09ad2e61db1fe888c56c5",
         "token0": {
           "id": "0x550e6000663eaf96a65bbd930ec19b85f2392bf9",
@@ -4857,7 +4941,7 @@
           "symbol": "TRIBE",
           "decimals": "18"
         },
-        "totalSupply": "25799732.601206711828553521"
+        "totalSupply": "25798138.458574650867972187"
       },
       {
         "id": "0x317ebce9e57902e2a614017436e87e5e3dc945ab",
@@ -4900,6 +4984,20 @@
           "decimals": "18"
         },
         "totalSupply": "25045239.068533564309430247"
+      },
+      {
+        "id": "0xe1f16baf17283dc40e48de5bc2b3e0776341d8b7",
+        "token0": {
+          "id": "0x6245a4a66090315db8df351f47224033483d188b",
+          "symbol": "DOGEVO",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "24999999.999999999999999"
       },
       {
         "id": "0x27dd251a5afc06d235f7f570e05e458144712855",
@@ -5112,6 +5210,34 @@
         "totalSupply": "24001081.590498786335542342"
       },
       {
+        "id": "0xbf6dcdfe6e138428f5abe709e33e8ac1f7780e48",
+        "token0": {
+          "id": "0x005d1123878fc55fbd56b54c73963b234a64af3c",
+          "symbol": "KIBA",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "23977498.65949023142618151"
+      },
+      {
+        "id": "0xf0fce5d65a42470a314fb440327cf564cca7c9d9",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xdffc63f92c939deb112d88735ade3b4d21b6d491",
+          "symbol": "RESTAURANTS",
+          "decimals": "18"
+        },
+        "totalSupply": "23713497.442883003429612209"
+      },
+      {
         "id": "0xcd827a3aa9d0a4d789ee6590be144a5051f43f37",
         "token0": {
           "id": "0x8c805ee1e0388782d9259d5a038d349732f21b18",
@@ -5312,20 +5438,6 @@
         "token0": {
           "id": "0x6eb7c4b8f4a3ca01062d5b752dea5c629c5f1b15",
           "symbol": "GARF",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "22360679.774997896964090736"
-      },
-      {
-        "id": "0xde8db6eb1cdc69182aab2adaab35b69f01fe0146",
-        "token0": {
-          "id": "0x84915f61c3e3ec67f7c08c7ba180892c1667aae5",
-          "symbol": "PSHIK",
           "decimals": "18"
         },
         "token1": {
@@ -5812,20 +5924,6 @@
         "totalSupply": "20211382.931407736800966589"
       },
       {
-        "id": "0x0c5a2553c67907181fa30cc1b213a981dcb6d4f8",
-        "token0": {
-          "id": "0x7c40885e9cecbaba4bcf0e64750c8c4830c0acac",
-          "symbol": "BearDAO",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "20197785.263148374814495844"
-      },
-      {
         "id": "0xd8a56ebcb194fad8d8f66c165b8459581c70a08e",
         "token0": {
           "id": "0x7101a9392eac53b01e7c07ca3baca945a56ee105",
@@ -6302,6 +6400,20 @@
         "totalSupply": "19999999.999999999999998999"
       },
       {
+        "id": "0xb698174a5c847641d26906259eb844bf1ddae207",
+        "token0": {
+          "id": "0xa081394035931ae701c25b23aaff20a2b3a08924",
+          "symbol": "SHIBURN",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "19975767.381299031577109496"
+      },
+      {
         "id": "0xef268f4016272c030bfad23bfb331f3fecbbd1a1",
         "token0": {
           "id": "0xadf07d7f1ebd6e663f6cec2f2cf48aa27659b3c8",
@@ -6314,20 +6426,6 @@
           "decimals": "18"
         },
         "totalSupply": "19950311.364018129495553155"
-      },
-      {
-        "id": "0x3adfba2477f04351ed1e4f1079b278251165d599",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc6a31ebfccea2ad829301a2f3b0e01c535f66d34",
-          "symbol": "SHIBITER",
-          "decimals": "9"
-        },
-        "totalSupply": "19847357.839435638524326702"
       },
       {
         "id": "0x9f87645f5bf1b791e3ad959f14515c7041cfd988",
@@ -6386,20 +6484,6 @@
         "totalSupply": "19154885.318759598373275242"
       },
       {
-        "id": "0xbf6dcdfe6e138428f5abe709e33e8ac1f7780e48",
-        "token0": {
-          "id": "0x005d1123878fc55fbd56b54c73963b234a64af3c",
-          "symbol": "KIBA",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "19077598.094154640687916998"
-      },
-      {
         "id": "0x772e86313d0404099a06d892a43d3770c7685b3e",
         "token0": {
           "id": "0x9c552e9f9478963ee984af2cf6225dd266d5a11e",
@@ -6440,20 +6524,6 @@
           "decimals": "18"
         },
         "totalSupply": "18857133.714412524810887385"
-      },
-      {
-        "id": "0x69bae4aaea4dc0a6ac6d3e56029514475ae4b4e6",
-        "token0": {
-          "id": "0x7ef23dc3c9034afbd6f17952d4641c926f5816c3",
-          "symbol": "USMONG",
-          "decimals": "9"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "18854273.00028297784931952"
       },
       {
         "id": "0xc7722bd0521fa3665d057f305304c0d497367116",
@@ -7198,20 +7268,6 @@
         "totalSupply": "17068708.581425390506216468"
       },
       {
-        "id": "0xb0e9c532917890a5de350b696ace8748538506af",
-        "token0": {
-          "id": "0x3da374c57f5d4a4e72ae75d9cdde2279b1b8420c",
-          "symbol": "OUTLAWINU",
-          "decimals": "9"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "16895427.194693538326359445"
-      },
-      {
         "id": "0xaf216986090fea5f59a69e624b518ea11c7a08f0",
         "token0": {
           "id": "0xad9b77f7e66bed4d4ec64393db4c35cb4039dfa4",
@@ -7282,6 +7338,20 @@
         "totalSupply": "16507676.015404073983945488"
       },
       {
+        "id": "0xff578ac8ef9df9d02368842b7b0810a14e770d71",
+        "token0": {
+          "id": "0x9d7107c8e30617cadc11f9692a19c82ae8bba938",
+          "symbol": "ROO",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "16350731.198685950411077147"
+      },
+      {
         "id": "0xbbceba90f547c4d418426f3004bec50424444dbf",
         "token0": {
           "id": "0xa940d2ee07197c4d5687f45b1defe8a9c4d509f1",
@@ -7308,20 +7378,6 @@
           "decimals": "18"
         },
         "totalSupply": "16257220.533678419162493568"
-      },
-      {
-        "id": "0xff578ac8ef9df9d02368842b7b0810a14e770d71",
-        "token0": {
-          "id": "0x9d7107c8e30617cadc11f9692a19c82ae8bba938",
-          "symbol": "ROO",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "16213935.494378496614599154"
       },
       {
         "id": "0x5f3625b55bb0817434572db7c7a04c191e7d788a",
@@ -7657,7 +7713,7 @@
           "symbol": "wPE",
           "decimals": "18"
         },
-        "totalSupply": "15649906.906100098520479455"
+        "totalSupply": "15549327.366357842966813927"
       },
       {
         "id": "0x0db4d1c020920bca6ee681bbdcfaacb6f48a4717",
@@ -8077,7 +8133,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "13558287.821933187187591448"
+        "totalSupply": "13559242.90098150868229989"
       },
       {
         "id": "0x92f556fde2e64a85b52f1b38f95aa1b238b42698",
@@ -8147,7 +8203,7 @@
           "symbol": "CULT",
           "decimals": "18"
         },
-        "totalSupply": "12972982.548101427267765865"
+        "totalSupply": "12972427.45350111672246508"
       },
       {
         "id": "0xebcbbc4b4ed11d52e54157796a0546fb17afb1ad",
@@ -8176,6 +8232,20 @@
           "decimals": "18"
         },
         "totalSupply": "12649110.640673517327994574"
+      },
+      {
+        "id": "0x97be09f2523b39b835da9ea3857cfa1d3c660cbb",
+        "token0": {
+          "id": "0x0fc6c0465c9739d4a42daca22eb3b2cb0eb9937a",
+          "symbol": "vUSD",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0x1bbf25e71ec48b84d773809b4ba55b6f4be946fb",
+          "symbol": "VOW",
+          "decimals": "18"
+        },
+        "totalSupply": "12440546.94770194788005319"
       },
       {
         "id": "0x2c5ca8a6818b98003c1a2f35f4c8c5fd0d8c1f3f",
@@ -8360,6 +8430,20 @@
         "totalSupply": "12247448.713854653247415687"
       },
       {
+        "id": "0x23d0b336aaeb965133c0c6c40eef6945da57e8b8",
+        "token0": {
+          "id": "0x6765fdd028be3d7874bc2bb3d7d5ca01c1bf14b2",
+          "symbol": "TALI",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "12228886.698481493214751386"
+      },
+      {
         "id": "0x6a52ec6ce56a909c66b9e0d942d9ab0b5492bb83",
         "token0": {
           "id": "0x2f141ce366a2462f02cea3d12cf93e4dca49e4fd",
@@ -8385,7 +8469,7 @@
           "symbol": "ARCHIE",
           "decimals": "9"
         },
-        "totalSupply": "12191643.399610186168684362"
+        "totalSupply": "12219975.183252450754412173"
       },
       {
         "id": "0x97bde83d4d09d274c80d72113de18e6922c7e079",
@@ -8400,20 +8484,6 @@
           "decimals": "18"
         },
         "totalSupply": "12178674.453596051779381926"
-      },
-      {
-        "id": "0x23d0b336aaeb965133c0c6c40eef6945da57e8b8",
-        "token0": {
-          "id": "0x6765fdd028be3d7874bc2bb3d7d5ca01c1bf14b2",
-          "symbol": "TALI",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "12142462.962047173711612153"
       },
       {
         "id": "0x5a4be5f236a8effd9fedb63b12c1098f78413be7",
@@ -8441,7 +8511,7 @@
           "symbol": "SHIBMONG",
           "decimals": "9"
         },
-        "totalSupply": "12035000.818541289058343997"
+        "totalSupply": "12056584.411244298019288723"
       },
       {
         "id": "0xc160051ee562ecad0b8f7d58d8e561ec25666863",
@@ -8470,20 +8540,6 @@
           "decimals": "18"
         },
         "totalSupply": "11999999.999999999999999"
-      },
-      {
-        "id": "0x97be09f2523b39b835da9ea3857cfa1d3c660cbb",
-        "token0": {
-          "id": "0x0fc6c0465c9739d4a42daca22eb3b2cb0eb9937a",
-          "symbol": "vUSD",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0x1bbf25e71ec48b84d773809b4ba55b6f4be946fb",
-          "symbol": "VOW",
-          "decimals": "18"
-        },
-        "totalSupply": "11857724.439522764773915773"
       },
       {
         "id": "0x25bf62e66add2820c044ab3a287ad21d65bc8d4f",
@@ -8525,7 +8581,7 @@
           "symbol": "PUREBLOOD",
           "decimals": "18"
         },
-        "totalSupply": "11528804.555256432846861313"
+        "totalSupply": "11579779.012332593858999902"
       },
       {
         "id": "0xa0fe4ddf0de54c2a5bb238a89eba1532874987db",
@@ -8722,6 +8778,20 @@
           "decimals": "18"
         },
         "totalSupply": "10133385.416532818327754792"
+      },
+      {
+        "id": "0x8953ba04b4e830c58f91a276ad8b2e69441c1b1f",
+        "token0": {
+          "id": "0x2877287cb70418678c10721f31d9c359b71ea283",
+          "symbol": "MMT",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "10087637.26882741034335065"
       },
       {
         "id": "0xe10e86dbec5933803aebfd195e95fd051a5657f1",
@@ -9032,6 +9102,20 @@
         "totalSupply": "9380831.51964685910913026"
       },
       {
+        "id": "0x320dd5f79d6366bf5d8614882433ddd9a8530b18",
+        "token0": {
+          "id": "0x91a5de30e57831529a3c1af636a78a7e4e83f3aa",
+          "symbol": "HULK",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "9337479.213067586667854447"
+      },
+      {
         "id": "0x087212f175f6cfa27b8ac5b17cf056b91ae5782c",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -9058,20 +9142,6 @@
           "decimals": "18"
         },
         "totalSupply": "9331649.742824480203675673"
-      },
-      {
-        "id": "0x320dd5f79d6366bf5d8614882433ddd9a8530b18",
-        "token0": {
-          "id": "0x91a5de30e57831529a3c1af636a78a7e4e83f3aa",
-          "symbol": "HULK",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "9317930.684321472284953748"
       },
       {
         "id": "0xda206815320dc53bf182a55d260e31929b038b37",
@@ -9155,7 +9225,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "8951854.725192047554741537"
+        "totalSupply": "8945373.04802420875003897"
       },
       {
         "id": "0x9d7039f1c48f34bbcf0e35ac84ab482aea44bb83",
@@ -9547,7 +9617,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "7743348.156501149564873674"
+        "totalSupply": "7745918.176920545620473186"
       },
       {
         "id": "0x3d8fc2134f8797dbf6d97358ff5bbac51ddc5991",
@@ -9589,7 +9659,7 @@
           "symbol": "SHIB",
           "decimals": "18"
         },
-        "totalSupply": "7532316.618800304972140121"
+        "totalSupply": "7534218.187605075383848592"
       },
       {
         "id": "0xbbd0c225185e21046378ab26cf43fd5e0097c79d",
@@ -10586,20 +10656,6 @@
         "totalSupply": "5924947.257149214488692442"
       },
       {
-        "id": "0xf71473d4daf43021eb04fff6e1f7993a271e4284",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xd19acd712e2be0bf662b00008862ef2c9c36e8c7",
-          "symbol": "GC",
-          "decimals": "18"
-        },
-        "totalSupply": "5916079.783099616042566328"
-      },
-      {
         "id": "0xecff457fc34472e1ba2976995f538afe685338ce",
         "token0": {
           "id": "0x94f1a6ac75243f7de644a41577ffbfa2723404cc",
@@ -10668,6 +10724,20 @@
           "decimals": "18"
         },
         "totalSupply": "5886425.061104575040556801"
+      },
+      {
+        "id": "0xc54ba7aabe7164ca2aa092900060fe2ba6eccd8b",
+        "token0": {
+          "id": "0x2e516ba5bf3b7ee47fb99b09eadb60bde80a82e0",
+          "symbol": "EGGS",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "5885979.92926065926074099"
       },
       {
         "id": "0x33c6acec077f17e8fe2a1bd41470042c7c4a456d",
@@ -10850,6 +10920,20 @@
           "decimals": "18"
         },
         "totalSupply": "5612486.080160912078374623"
+      },
+      {
+        "id": "0xa6237656d15a7f15348c7fd9a0e11551c516e378",
+        "token0": {
+          "id": "0x0a58153a0cd1cfaea94ce1f7fdc5d7e679eca936",
+          "symbol": "IM",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "5585696.017507576467952569"
       },
       {
         "id": "0xe4c32a2c3d048693edc89220f74759118d6bd634",
@@ -11272,6 +11356,20 @@
         "totalSupply": "5183265.679069926626056835"
       },
       {
+        "id": "0x8deb73794ed6243c61533fe399d3b5f0a9088a41",
+        "token0": {
+          "id": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8",
+          "symbol": "XEN",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0x19b423e5131d8e4996a18e69d0cb99674ba34c21",
+          "symbol": "APE2",
+          "decimals": "9"
+        },
+        "totalSupply": "5120823.192403568838333345"
+      },
+      {
         "id": "0xba4c6851646098f2588e07bddba8308aa176bfa7",
         "token0": {
           "id": "0xac665a95a3e761e93bc73f6dc14de59d14190067",
@@ -11564,6 +11662,20 @@
           "decimals": "18"
         },
         "totalSupply": "4876598.674856727772619908"
+      },
+      {
+        "id": "0x44ea48d2bc6a535aaf0bb00c863815dfec181181",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xfc894966168e9559011f680a89aaf7eacdeeb2b5",
+          "symbol": "ELENA",
+          "decimals": "18"
+        },
+        "totalSupply": "4851555.935838457019651068"
       },
       {
         "id": "0xea33983286448822165e6661c0ef28095e8d4b34",
@@ -11916,6 +12028,20 @@
         "totalSupply": "4472135.954999579392817347"
       },
       {
+        "id": "0xb994b41e2f0d1b65d780a3b7f5331f11169d3da5",
+        "token0": {
+          "id": "0x98df252d2ec7ca853f1e618f0d250efa3816ffd1",
+          "symbol": "POc20",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "4472135.954999579392817347"
+      },
+      {
         "id": "0xb607e4381e3a5f0d9f5017d4866c29434594f51e",
         "token0": {
           "id": "0x0810ba863456f71573dec11531b89a5b558f3858",
@@ -12037,6 +12163,20 @@
         "token1": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "4472135.954999579392817347"
+      },
+      {
+        "id": "0x481493078d000858355ac4c74f571ff0622f4491",
+        "token0": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xe68fb107710c59154ea15d5e0221d37bcda5c1fc",
+          "symbol": "SHINARIUM",
           "decimals": "18"
         },
         "totalSupply": "4472135.954999579392817347"
@@ -12431,7 +12571,7 @@
           "symbol": "TINU",
           "decimals": "18"
         },
-        "totalSupply": "4263586.447425012246882567"
+        "totalSupply": "4265090.476966213093332745"
       },
       {
         "id": "0xf96cfcb645a74a0ff1874fa2c24adff33293bef7",
@@ -12683,7 +12823,7 @@
           "symbol": "DIGITS",
           "decimals": "18"
         },
-        "totalSupply": "4202742.079612653365196919"
+        "totalSupply": "4217890.998190578062543138"
       },
       {
         "id": "0xf4a7aa28b9ba37fc06d28f870f779da4e7679d07",
@@ -13411,7 +13551,7 @@
           "symbol": "WETH",
           "decimals": "18"
         },
-        "totalSupply": "3818292.729505082772099433"
+        "totalSupply": "3818253.468149789073948271"
       },
       {
         "id": "0x95c01f7dc04bcac22694a0edafa635f971eaaf91",
@@ -13468,6 +13608,20 @@
           "decimals": "18"
         },
         "totalSupply": "3794733.192202055198397672"
+      },
+      {
+        "id": "0x132ec5716d3f38cb6200ae785e4e42c292bc03ea",
+        "token0": {
+          "id": "0x6e008c569307112a410a822788e9723016a35936",
+          "symbol": "Timmy",
+          "decimals": "18"
+        },
+        "token1": {
+          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "symbol": "WETH",
+          "decimals": "18"
+        },
+        "totalSupply": "3775050.608899976103909546"
       },
       {
         "id": "0x569e46f40a3152d5b1f3b38893d6e15606987f3e",
@@ -13635,7 +13789,7 @@
           "symbol": "EXPO",
           "decimals": "18"
         },
-        "totalSupply": "3717585.564827548316169089"
+        "totalSupply": "3717595.282790723335524127"
       },
       {
         "id": "0x8b8900573cc16685cbfe51fe0453b290f3b3b61c",
@@ -13806,20 +13960,6 @@
         "totalSupply": "3641782.05403057819147821"
       },
       {
-        "id": "0x780a753f43080662f67f8a9cd53431dab25e5840",
-        "token0": {
-          "id": "0x4de6233daa30d2b08cd1949e7b11ec91d6a100b7",
-          "symbol": "VALU",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3628944.423585818960765148"
-      },
-      {
         "id": "0x0157934df9c3b8ccad7a68f65e51df9eb6387877",
         "token0": {
           "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -13860,146 +14000,6 @@
           "decimals": "18"
         },
         "totalSupply": "3605551.275463989293118221"
-      },
-      {
-        "id": "0xaee8f9ce6207fccaba7c67a6f23fca3c7a6aa9a9",
-        "token0": {
-          "id": "0xb2b205a635c322575bb7338389fd71ff782e7530",
-          "symbol": " 20000 ",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3605551.275463989293118221"
-      },
-      {
-        "id": "0x680ffc3c7d2d977ab178a0d25603d947602f2571",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xd39ea122c2f7c82e6787141cdbe49ff9f0af480f",
-          "symbol": " D.A.M.N ",
-          "decimals": "18"
-        },
-        "totalSupply": "3605551.275463989293118221"
-      },
-      {
-        "id": "0x299413c61d5be78448be963fde29256a8ceef52c",
-        "token0": {
-          "id": "0x828971d62b6ff1cb8523749062f097fe6050e074",
-          "symbol": " BUH 2.0",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3605551.275463989293118221"
-      },
-      {
-        "id": "0x040893b9ce63de2e0508cce73e7dc2ae53bee244",
-        "token0": {
-          "id": "0x36329f707eaa75c286305889b6960ebc28f91a87",
-          "symbol": " Bnb Revamp ",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3605551.275463989293118221"
-      },
-      {
-        "id": "0xef3558352a56a7580b03d92a26a3f75ac0eee5e6",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xeb0a6ccb8bd1e74486d803617de77e0e885d4bce",
-          "symbol": "SNEWYEAR",
-          "decimals": "9"
-        },
-        "totalSupply": "3592885.292250617205397124"
-      },
-      {
-        "id": "0xa12859dd86417f67210cf06544a1fae4837e1f0f",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xcb5f2cc43b5cb1902e43e647e279932fa0a14f87",
-          "symbol": "THELON",
-          "decimals": "18"
-        },
-        "totalSupply": "3588614.68274206590589885"
-      },
-      {
-        "id": "0x6e50777c8a7a91d899f83eaee4ec37f18173ca1d",
-        "token0": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xe3798a240bf06610ff756850c1a1489c803c7314",
-          "symbol": "FDOGE",
-          "decimals": "18"
-        },
-        "totalSupply": "3551710.758979963026319174"
-      },
-      {
-        "id": "0x949c56cb18c94ec787ddf636b54ed042400c1edd",
-        "token0": {
-          "id": "0x1f90016e745dbe2f9a41def3b3222d68697352a0",
-          "symbol": " INVICTUS ",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3535533.905932737622003221"
-      },
-      {
-        "id": "0x4ec7088b13ae1dc2c60ec875304fb34fdf22b78f",
-        "token0": {
-          "id": "0x604c0f9ef33ad546387f4935aff99322f3449bea",
-          "symbol": "DRAGON",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3535533.905932737622003221"
-      },
-      {
-        "id": "0x6dd796eec3078843964ca6df794fbeb6cdc2c774",
-        "token0": {
-          "id": "0x12e83bac6409e9d6370b3414e95ebb228693b078",
-          "symbol": "A",
-          "decimals": "18"
-        },
-        "token1": {
-          "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "symbol": "WETH",
-          "decimals": "18"
-        },
-        "totalSupply": "3535533.905932737557638172"
       }
     ]
   }
