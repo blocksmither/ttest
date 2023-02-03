@@ -70,7 +70,8 @@ class MempoolReader():
                             dex=hutil.ROUTER_2_DEX[swap.router_name]
                         )[0]['id']
                     except:
-                        self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
+                        # not in hashmap
+                        pair_address = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
                             swap.token_in,
                             swap.token_out
                         )
