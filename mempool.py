@@ -2,12 +2,16 @@ import argparse
 import datetime
 import json
 import os
-from decimal import Decimal
 
 import brownie
 import websocket
 import yaml
 from connectors import connectors
+from swap import (UnparsableSwapMethodException,
+                  UnparsableTransactionException, Pair, get_alt_pairs, get_v2_pair,
+                  get_v2_pair_reserves, get_v2_token0,
+                  parse_swap_tx_blocknative)
+from web3 import Web3
 
 from comparator import compare
 
@@ -24,15 +28,23 @@ class MempoolReader():
     with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
         config = yaml.safe_load(file)
 
-    def __init__(self, pair, swap, network):
+    def __init__(self, pair, swap, network, threshold, test):
         self.pair = pair
         self.swap = swap
         self.network = network
         self.connector = eval(f"connectors.{swap}('{network}')")
-        self.address = self.config['networks'][self.network]['pairs'][self.swap][self.pair]
-        self.wsapp = websocket.WebSocketApp("wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
-        self.solBotProject = brownie.project.load('./solidity')
+        self.address1 = self.config['networks'][self.network]['exchangeRouters']['UniswapV2']
+        self.address2 = self.config['networks'][self.network]['exchangeRouters']['UniswapV3']
+        self.address3 = self.config['networks'][self.network]['exchangeRouters']['UniswapV302']
+        self.address4 = self.config['networks'][self.network]['exchangeRouters']['Sushiswap']
+        self.wsapp = websocket.WebSocketApp(
+            "wss://api.blocknative.com/v0", on_open=self.on_open, on_message=self.on_message)
+        self.solBotProject = brownie.project.load(os.path.join(os.path.dirname(__file__), 'solidity'))
         self.solBotProject.load_config()
+        self.w3 = Web3(Web3.HTTPProvider(
+            self.config['networks'][self.network]['web3Provider']))
+        self.check_threshold = threshold
+        self.test_mode = test
 
     @property
     def mempool_network(self):
@@ -45,50 +57,96 @@ class MempoolReader():
     def on_message(self, wsapp, message):
         event = json.loads(message)
         try:
-            event['event']['transaction']['hash']
-            print(datetime.datetime.now())
-            print(f"hash: {event['event']['transaction']['hash']}")
-            print(f"block: {event['event']['transaction']['blockNumber']}")
+            swaps = parse_swap_tx_blocknative(event)
+            for swap in swaps:
+                if swap.router_name in ['uniswapv2', 'uniswapv302', 'sushiswap']:
+                    pair_address = get_v2_pair(
+                        self.w3,
+                        swap.token_in,
+                        swap.token_out,
+                        swap.router_name
+                    )
+                    reserves = get_v2_pair_reserves(
+                        self.w3,
+                        pair_address,
+                        swap.router_name
+                    )
+                    pair_token0 = get_v2_token0(
+                        self.w3,
+                        pair_address,
+                        swap.router_name
+                    )
+                    if swap.dex_name == 'uniswapv2':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV2']
+                        pair_fee = 0.003
+                    elif swap.dex_name == 'uniswapv3':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
+                    elif swap.dex_name == 'sushiswap':
+                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
+                        pair_fee = 0.003
 
-            op_type = 1
+                    if swap.token_in == pair_token0:
+                        in_ratio = swap.token_in_amount / reserves['token0']
+                        out_ratio = swap.token_out_amount / reserves['token1']
+                        pair_token1 = swap.token_out
+                    else:
+                        in_ratio = swap.token_in_amount / reserves['token1']
+                        out_ratio = swap.token_out_amount / reserves['token0']
+                        pair_token1 = swap.token_in
 
-            for nbc in event['event']['transaction']['netBalanceChanges']:
-                if nbc['address'].lower() == self.address.lower():
-                    for bc in nbc['balanceChanges']:
-                        print(f"delta: {Decimal(bc['delta']) / 10 ** symbol_dec(bc['asset']['symbol'])}, asset: {bc['asset']['symbol']}")
-                        op_type *= float(bc['delta'])
-            if op_type > 0:
-                print("ADDING/RETRIEVING LIQUIDITY")
-            else:
-                print("SWAPING")
-                if event['event']['transaction']['blockNumber'] is None:
-                    self.connector.predict_price(self.pair, event['event']['transaction']['netBalanceChanges'])
-                    # Test Code that Spin up a fork, broadcast the transaction, then try to swap against it.
-                    try:
-                        brownie.network.connect(network='mainnet-fork', launch_rpc=True)
-                        solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
-                        solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
-                        balances = solidityBot.getBalances()
-                        print(balances)
-                        # Call solidityBot.multiswap({'from': accounts[0])
-                        swap_args = compare(network=self.network, return_swap_args=True)
-                        solidityBot.multiSwap(
-                            swap_args['WETH-USDC']['inToken'],
-                            swap_args['WETH-USDC']['arbToken'],
-                            1e18,
-                            swap_args['WETH-USDC']['dexs'],
-                            False,
-                            {'from': brownie.accounts[0]}
-                        )
-                        balances = solidityBot.getBalances()
-                        print(balances)
-                        brownie.network.disconnect()
-                    except Exception as e:
-                        print('Failed to test bot on ganache fork')
-                        print(e)
-                else:
-                    print("Too slow. Can't predict price. Tx is already in the blockchain and price changed.")
-        except:
+                    print("in ratio", in_ratio)
+                    print("out ratio", out_ratio)
+
+                    affected_pair = Pair(
+                        tokens=[pair_token0, pair_token1],
+                        reserves=[reserves['token0'], reserves['token1']],
+                        factory=pair_factory,
+                        address=pair_address,
+                        fee=pair_fee,
+                        dex_name=swap.dex_name
+                    )
+                    print("Affected Pair: ", affected_pair)
+
+                    if in_ratio > self.check_threshold or \
+                            out_ratio > self.check_threshold:
+                        print(
+                            "Possible Arbitrage opportunity! Swap amount for txid ",
+                            event['event']['transaction']['hash'],
+                            " is greater than threshold ", self.check_threshold)
+
+                        print("getting alt pairs")
+                        alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
+                        print(alt_pairs)
+
+                        if self.test_mode:
+                            try:
+                                brownie.network.connect(network='mainnet-fork', launch_rpc=True)
+                                solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
+                                solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
+                                before_balances = solidityBot.getBalances()
+                                # Call solidityBot.multiswap({'from': accounts[0])
+                                swap_args = compare(network=self.network, return_swap_args=True)
+                                solidityBot.multiSwap(
+                                    swap_args['WETH-USDC']['inToken'],
+                                    swap_args['WETH-USDC']['arbToken'],
+                                    1e18,
+                                    swap_args['WETH-USDC']['dexs'],
+                                    False,
+                                    {'from': brownie.accounts[0]}
+                                )
+                                balances = solidityBot.getBalances()
+                                print("balances before ", before_balances)
+                                print("balances after ", balances)
+                                brownie.network.disconnect()
+                            except Exception as e:
+                                print('Failed to test bot on ganache fork')
+                                print(e)
+
+        except (UnparsableTransactionException, UnparsableSwapMethodException):
+            pass
+        except KeyError:
+            pass
+        except Exception:
             pass
 
     def on_open(self, wsapp):
@@ -96,7 +154,7 @@ class MempoolReader():
             "categoryCode": "initialize",
             "eventCode": "checkDappId",
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -109,10 +167,58 @@ class MempoolReader():
             "categoryCode": "accountAddress",
             "eventCode": "watch",
             "account": {
-                "address": self.address
+                "address": self.address1,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "cf6aaedd-10c1-45bd-8970-be4ee9544d9e",
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "version": "1",
+            "blockchain": {
+                "system": "ethereum",
+                "network": self.mempool_network
+            }
+        }
+        wsapp.send(json.dumps(data))
+
+        data = {
+            "categoryCode": "accountAddress",
+            "eventCode": "watch",
+            "account": {
+                "address": self.address2,
+            },
+            "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "version": "1",
+            "blockchain": {
+                "system": "ethereum",
+                "network": self.mempool_network
+            }
+        }
+        wsapp.send(json.dumps(data))
+
+        data = {
+            "categoryCode": "accountAddress",
+            "eventCode": "watch",
+            "account": {
+                "address": self.address3,
+            },
+            "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "version": "1",
+            "blockchain": {
+                "system": "ethereum",
+                "network": self.mempool_network
+            }
+        }
+        wsapp.send(json.dumps(data))
+
+        data = {
+            "categoryCode": "accountAddress",
+            "eventCode": "watch",
+            "account": {
+                "address": self.address4,
+            },
+            "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
+            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -123,10 +229,11 @@ class MempoolReader():
 
     def start(self):
         print("Reading mempool of:")
-        print(f"Pair: {self.pair}")
-        print(f"Swap: {self.swap}")
         print(f"Network: {self.network}")
-        print(f"Address: {self.address}")
+        print(f"Address: {self.address1}")
+        print(f"Address: {self.address2}")
+        print(f"Address: {self.address3}")
+        print(f"Address: {self.address4}")
         self.wsapp.run_forever()
 
 
@@ -134,12 +241,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
     This script prints transactions in the mempool
     """)
-    parser.add_argument("-s", '--swap', default='UniswapV3', choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
-    parser.add_argument("-n", "--network", default='mainnet', choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
+    parser.add_argument("-s", '--swap', default='UniswapV3',
+                        choices=["Sushiswap", "UniswapV2", "UniswapV3"], help="Swap")
+    parser.add_argument("-n", "--network", default='mainnet',
+                        choices=['mainnet', 'goerli'], help="Select mainnet or testnet network")
+    parser.add_argument("-d", "--threshold", default=0.01,
+                        help="Threshold amount for possible arbitrage, should typically be 0.01 or greater")
+    parser.add_argument("-t", "--test", action="store_true", default=False,
+                        help="Spin mainnet fork on ganache and test a swap on opportunities")
 
     args = parser.parse_args()
     SWAP = args.swap
     NETWORK = args.network.strip()
+    THRESHOLD = float(args.threshold)
+    TEST_MODE_FLAG = args.test
 
-    reader = MempoolReader('USDC-WETH', SWAP, NETWORK)
+    reader = MempoolReader('USDC-WETH', SWAP, NETWORK, THRESHOLD, TEST_MODE_FLAG)
     reader.start()

@@ -6,9 +6,10 @@ networks:
           UniswapV3: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
           Sushiswap: '0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac'
       exchangeRouters:
-        UniswapV3: '0xE592427A0AEce92De3Edee1F18E0157C05861564'
-        UniswapV2: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
-        Sushiswap: '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F'
+          UniswapV3: '0xE592427A0AEce92De3Edee1F18E0157C05861564'
+          UniswapV302: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
+          UniswapV2: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+          Sushiswap: '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F'
       pairs:
           Sushiswap:
               'USDC-WETH': '0x397ff1542f962076d0bfe58ea045ffa2d347aca0'
