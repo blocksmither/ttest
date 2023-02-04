@@ -28,8 +28,7 @@ class MempoolReader():
     with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
         config = yaml.safe_load(file)
 
-    def __init__(self, pair, network, threshold, test):
-        self.pair = pair
+    def __init__(self, network, threshold, test):
         self.network = network
         self.connectors = {
             'UniswapV2': connectors.UniswapV2(network),
@@ -258,5 +257,5 @@ if __name__ == "__main__":
     THRESHOLD = float(args.threshold)
     TEST_MODE_FLAG = args.test
 
-    reader = MempoolReader('USDC-WETH', NETWORK, THRESHOLD, TEST_MODE_FLAG)
+    reader = MempoolReader(NETWORK, THRESHOLD, TEST_MODE_FLAG)
     reader.start()
