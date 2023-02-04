@@ -62,7 +62,7 @@ class TestCompare(unittest.TestCase):
         ]
 
     def test_compare(self):
-        swap_args = compare(self.pairs, return_swap_args=True)
+        swap_args = compare(self.pairs)
 
         self.assertIsNotNone(swap_args.get('inToken'))
         self.assertIsNotNone(swap_args.get('arbToken'))

@@ -7,7 +7,7 @@ with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
     config = yaml.safe_load(file)
 
 
-def compare(pairs, connection_type='sdk', network='mainnet', return_swap_args=False):
+def compare(pairs, connection_type='sdk', network='mainnet'):
     data = {}
     swaps = {
         'UniswapV2': connectors.UniswapV2(network),
@@ -24,19 +24,11 @@ def compare(pairs, connection_type='sdk', network='mainnet', return_swap_args=Fa
     data['max'] = max(rates, key=lambda x: x['price'])
     data['min'] = min(rates, key=lambda x: x['price'])
 
-    if return_swap_args:
-        swap_args = {
-            'inToken': pairs[0]['token0']['id'],
-            'arbToken': pairs[0]['token1']['id'],
-            'dexs': [data['min']['id'], data['max']['id']],
-            'arb': data['max']['price'] / data['min']['price']
-        }
-    else:
-        print(pair)
-        print(f"MAX: {data['max']['swap']}")
-        print(f"MIN: {data['min']['swap']}")
-        print(f"ARB: {data['max']['price'] / data['min']['price']}")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    swap_args = {
+        'inToken': pairs[0]['token0']['id'],
+        'arbToken': pairs[0]['token1']['id'],
+        'dexs': [data['min']['id'], data['max']['id']],
+        'arb': data['max']['price'] / data['min']['price']
+    }
 
-    if return_swap_args:
-        return swap_args
+    return swap_args

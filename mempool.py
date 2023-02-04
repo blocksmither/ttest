@@ -131,7 +131,7 @@ class MempoolReader():
                                 solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
                                 before_balances = solidityBot.getBalances()
                                 # Call solidityBot.multiswap({'from': accounts[0])
-                                swap_args = compare(alt_pairs, network=self.network, return_swap_args=True)
+                                swap_args = compare(alt_pairs, network=self.network)
                                 solidityBot.multiSwap(
                                     swap_args['inToken'],
                                     swap_args['arbToken'],
