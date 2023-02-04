@@ -21,7 +21,7 @@ def compare(pairs, connection_type='sdk', network='mainnet'):
     swap_args = {
         'inToken': pairs[0]['token0']['id'],
         'arbToken': pairs[0]['token1']['id'],
-        'dexs': [data['min']['id'], data['max']['id']],
+        'dexs': [data['min']['swap'], data['max']['swap']],
         'arb': data['max']['price'] / data['min']['price']
     }
 
