@@ -178,7 +178,7 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
             return RouterSwap(
                 # path0 will be WETH
                 token_in=params['path'][0],
-                token_in_amount=blocknative_data['event']['transaction']['value'],
+                token_in_amount=int(blocknative_data['event']['transaction']['value']),
                 token_out=params['path'][1],
                 token_out_amount=int(params['amountOutMin']),
                 router_name=router_name,
