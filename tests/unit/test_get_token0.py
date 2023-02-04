@@ -21,6 +21,6 @@ class TestGetToken0(unittest.TestCase):
 
         pair_address = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
 
-        result = swap.get_get_token0(pair_address)
+        result = swap.get_token0(pair_address)
 
         self.assertEqual(result, expected)

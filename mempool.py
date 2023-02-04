@@ -58,6 +58,7 @@ class MempoolReader():
 
     def on_message(self, wsapp, message):
         event = json.loads(message)
+        print(event)
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
@@ -148,12 +149,12 @@ class MempoolReader():
                                 print('Failed to test bot on ganache fork')
                                 print(e)
 
-        except (UnparsableTransactionException, UnparsableSwapMethodException):
-            pass
-        except KeyError:
-            pass
-        except Exception:
-            pass
+        except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
+            print(1, e)
+        except KeyError as e:
+            print(2, e)
+        except Exception as e:
+            print(3, e)
 
     def on_open(self, wsapp):
         data = {

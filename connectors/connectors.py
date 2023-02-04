@@ -133,7 +133,7 @@ class Sushiswap(BaseConnector):
 
         return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
-    def get_get_token0(self, pair_address):
+    def get_token0(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
             abi=self.pair_abi
@@ -237,7 +237,7 @@ class UniswapV2(BaseConnector):
 
         return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
 
-    def get_get_token0(self, pair_address):
+    def get_token0(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
             abi=self.pair_abi
