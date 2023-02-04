@@ -11,29 +11,6 @@ TESTS
 ========
     $ python -m unittest
 
-COMPARATOR
-========
-Help:
-
-    $ python comparator.py -h
-
-If you wish to run a the comparator connecting via API:
-
-    $ python comparator.py
-
-If you wish to run a the comparator connecting via SDK:
-
-    $ python comparator.py -c sdk
-
-If you wish see all the rates retrieved:
-
-    $ python comparator.py -r true
-
-To run a test on a fork mainnet chain, fork mainnet using brownie or ganache, and pass the network flag to comparator.py
-
-    $ ganache-cli --fork https://mainnet.infura.io/v3/9165d99361774eb39d895e8623049a66 2>&1 1>ganache.log &&
-    $ python comparator.py -c sdk -n mainnet-fork
-
 
 WATCHER
 ========

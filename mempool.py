@@ -118,9 +118,11 @@ class MempoolReader():
                             event['event']['transaction']['hash'],
                             " is greater than threshold ", self.check_threshold)
 
-                        print("getting alt pairs")
-                        alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
-                        print(alt_pairs)
+                        # print("getting alt pairs")
+                        # alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
+                        # print(alt_pairs)
+
+                        alt_pairs = hutil.find_pairs(pair_token0, pair_token1)
 
                         if self.test_mode:
                             try:
@@ -129,12 +131,12 @@ class MempoolReader():
                                 solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
                                 before_balances = solidityBot.getBalances()
                                 # Call solidityBot.multiswap({'from': accounts[0])
-                                swap_args = compare(network=self.network, return_swap_args=True)
+                                swap_args = compare(alt_pairs, network=self.network, return_swap_args=True)
                                 solidityBot.multiSwap(
-                                    swap_args['WETH-USDC']['inToken'],
-                                    swap_args['WETH-USDC']['arbToken'],
+                                    swap_args['inToken'],
+                                    swap_args['arbToken'],
                                     1e18,
-                                    swap_args['WETH-USDC']['dexs'],
+                                    swap_args['dexs'],
                                     False,
                                     {'from': brownie.accounts[0]}
                                 )

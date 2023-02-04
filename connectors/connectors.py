@@ -50,8 +50,7 @@ class Sushiswap(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'pair.abi'), 'r') as f:
         pair_abi = f.read().rstrip()
 
-    def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['Sushiswap'][pair]
+    def get_prices_api(self, address):
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -75,7 +74,7 @@ class Sushiswap(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['Sushiswap'][pair])
+        address = Web3.toChecksumAddress(pair)
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
         db.update(address, reserves0=_reserve0, reserves1=_reserve1)
@@ -83,7 +82,7 @@ class Sushiswap(BaseConnector):
         return price, 1 / price
 
     def predict_price(self, pair, deltas):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['Sushiswap'][pair])
+        address = Web3.toChecksumAddress(pair)
         current_price = db.get(address)
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
@@ -155,8 +154,7 @@ class UniswapV2(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
         pair_abi = f.read().rstrip()
 
-    def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['UniswapV2'][pair]
+    def get_prices_api(self, address):
         query = f"""query {{
           pair(id:"{address}") {{
             token0 {{
@@ -180,7 +178,7 @@ class UniswapV2(BaseConnector):
         return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV2'][pair])
+        address = Web3.toChecksumAddress(pair)
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
         db.update(address, reserves0=_reserve0, reserves1=_reserve1)
@@ -188,7 +186,7 @@ class UniswapV2(BaseConnector):
         return price, 1 / price, _reserve0, _reserve1
 
     def predict_price(self, pair, deltas):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV2'][pair])
+        address = Web3.toChecksumAddress(pair)
         current_price = db.get(address)
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
@@ -256,8 +254,7 @@ class UniswapV3(BaseConnector):
         info_json = json.load(f)
     abi = info_json["abi"]
 
-    def get_prices_api(self, pair):
-        address = config['networks'][self.network]['pairs']['UniswapV3'][pair]
+    def get_prices_api(self, address):
         query = f"""query {{
           pool(id:"{address}") {{
             tick
@@ -284,7 +281,7 @@ class UniswapV3(BaseConnector):
         return response_json['data']['pool']['token0Price'], response_json['data']['pool']['token1Price']
 
     def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
+        address = Web3.toChecksumAddress(pair)
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         slot0 = contract.functions.slot0().call()
         liquidity = contract.functions.liquidity().call()
@@ -294,7 +291,7 @@ class UniswapV3(BaseConnector):
         return price, 1 / price, slot0, liquidity
 
     def predict_price(self, pair, deltas):
-        address = Web3.toChecksumAddress(config['networks'][self.network]['pairs']['UniswapV3'][pair])
+        address = Web3.toChecksumAddress(pair)
         current_price = db.get(address)
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
