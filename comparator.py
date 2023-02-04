@@ -1,10 +1,4 @@
-import os
-
-import yaml
 from connectors import connectors
-
-with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
-    config = yaml.safe_load(file)
 
 
 def compare(pairs, connection_type='sdk', network='mainnet'):
