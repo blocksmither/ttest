@@ -61,93 +61,92 @@ class MempoolReader():
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
-                if swap.router_name in ['uniswapv2', 'uniswapv302', 'sushiswap']:
-                    try:
-                        pair_address = hutil.find_pairs(
-                            swap.token_in,
-                            swap.token_out,
-                            dex=hutil.ROUTER_2_DEX[swap.router_name]
-                        )[0]['id']
-                    except:
-                        # not in hashmap
-                        pair_address = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
-                            swap.token_in,
-                            swap.token_out
-                        )
-                    reserves = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_reserves(
-                        pair_address
+                try:
+                    pair_address = hutil.find_pairs(
+                        swap.token_in,
+                        swap.token_out,
+                        dex=hutil.ROUTER_2_DEX[swap.router_name]
+                    )[0]['id']
+                except:
+                    # not in hashmap
+                    pair_address = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
+                        swap.token_in,
+                        swap.token_out
                     )
-                    pair_token0 = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_token0(
-                        pair_address
-                    )
-                    if swap.dex_name == 'uniswapv2':
-                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV2']
-                        pair_fee = 0.003
-                    elif swap.dex_name == 'uniswapv3':
-                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
-                        pair_fee = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_fee(pair_address)
-                    elif swap.dex_name == 'sushiswap':
-                        pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
-                        pair_fee = 0.003
+                reserves = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_reserves(
+                    pair_address
+                )
+                pair_token0 = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_token0(
+                    pair_address
+                )
+                if swap.dex_name == 'uniswapv2':
+                    pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV2']
+                    pair_fee = 0.003
+                elif swap.dex_name == 'uniswapv3':
+                    pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
+                    pair_fee = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_fee(pair_address)
+                elif swap.dex_name == 'sushiswap':
+                    pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
+                    pair_fee = 0.003
 
-                    if swap.token_in == pair_token0:
-                        in_ratio = swap.token_in_amount / reserves['token0']
-                        out_ratio = swap.token_out_amount / reserves['token1']
-                        pair_token1 = swap.token_out
-                    else:
-                        in_ratio = swap.token_in_amount / reserves['token1']
-                        out_ratio = swap.token_out_amount / reserves['token0']
-                        pair_token1 = swap.token_in
+                if swap.token_in == pair_token0:
+                    in_ratio = swap.token_in_amount / reserves['token0']
+                    out_ratio = swap.token_out_amount / reserves['token1']
+                    pair_token1 = swap.token_out
+                else:
+                    in_ratio = swap.token_in_amount / reserves['token1']
+                    out_ratio = swap.token_out_amount / reserves['token0']
+                    pair_token1 = swap.token_in
 
-                    print("in ratio", in_ratio)
-                    print("out ratio", out_ratio)
+                print("in ratio", in_ratio)
+                print("out ratio", out_ratio)
 
-                    affected_pair = Pair(
-                        tokens=[pair_token0, pair_token1],
-                        reserves=[reserves['token0'], reserves['token1']],
-                        factory=pair_factory,
-                        address=pair_address,
-                        fee=pair_fee,
-                        dex_name=swap.dex_name
-                    )
-                    print("Affected Pair: ", affected_pair)
+                affected_pair = Pair(
+                    tokens=[pair_token0, pair_token1],
+                    reserves=[reserves['token0'], reserves['token1']],
+                    factory=pair_factory,
+                    address=pair_address,
+                    fee=pair_fee,
+                    dex_name=swap.dex_name
+                )
+                print("Affected Pair: ", affected_pair)
 
-                    if in_ratio > self.check_threshold or \
-                            out_ratio > self.check_threshold:
-                        print(
-                            "Possible Arbitrage opportunity! Swap amount for txid ",
-                            event['event']['transaction']['hash'],
-                            " is greater than threshold ", self.check_threshold)
+                if in_ratio > self.check_threshold or \
+                        out_ratio > self.check_threshold:
+                    print(
+                        "Possible Arbitrage opportunity! Swap amount for txid ",
+                        event['event']['transaction']['hash'],
+                        " is greater than threshold ", self.check_threshold)
 
-                        # print("getting alt pairs")
-                        # alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
-                        # print(alt_pairs)
+                    # print("getting alt pairs")
+                    # alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
+                    # print(alt_pairs)
 
-                        alt_pairs = hutil.find_pairs(pair_token0, pair_token1)
+                    alt_pairs = hutil.find_pairs(pair_token0, pair_token1)
 
-                        if self.test_mode:
-                            try:
-                                brownie.network.connect(network='mainnet-fork', launch_rpc=True)
-                                solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
-                                solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
-                                before_balances = solidityBot.getBalances()
-                                # Call solidityBot.multiswap({'from': accounts[0])
-                                swap_args = compare(alt_pairs, network=self.network)
-                                solidityBot.multiSwap(
-                                    swap_args['inToken'],
-                                    swap_args['arbToken'],
-                                    1e18,
-                                    swap_args['dexs'],
-                                    False,
-                                    {'from': brownie.accounts[0]}
-                                )
-                                balances = solidityBot.getBalances()
-                                print("balances before ", before_balances)
-                                print("balances after ", balances)
-                                brownie.network.disconnect()
-                            except Exception as e:
-                                print('Failed to test bot on ganache fork')
-                                print(e)
+                    if self.test_mode:
+                        try:
+                            brownie.network.connect(network='mainnet-fork', launch_rpc=True)
+                            solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
+                            solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
+                            before_balances = solidityBot.getBalances()
+                            # Call solidityBot.multiswap({'from': accounts[0])
+                            swap_args = compare(alt_pairs, network=self.network)
+                            solidityBot.multiSwap(
+                                swap_args['inToken'],
+                                swap_args['arbToken'],
+                                1e18,
+                                swap_args['dexs'],
+                                False,
+                                {'from': brownie.accounts[0]}
+                            )
+                            balances = solidityBot.getBalances()
+                            print("balances before ", before_balances)
+                            print("balances after ", balances)
+                            brownie.network.disconnect()
+                        except Exception as e:
+                            print('Failed to test bot on ganache fork')
+                            print(e)
 
         except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
             print(1, e)
