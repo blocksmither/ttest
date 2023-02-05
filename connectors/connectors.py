@@ -41,108 +41,6 @@ class BaseConnector():
         pass
 
 
-class Sushiswap(BaseConnector):
-    name = "Sushiswap"
-    endpoint = "https://api.thegraph.com/subgraphs/name/sushiswap/exchange"
-    with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
-        info_json = json.load(f)
-    abi = info_json["abi"]
-    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
-        factory_abi = f.read().rstrip()
-
-    def get_prices_api(self, address):
-        query = f"""query {{
-          pair(id:"{address}") {{
-            token0 {{
-              symbol
-              id
-              decimals
-            }}
-            token1 {{
-              symbol
-              id
-              decimals
-            }}
-            token0Price
-            token1Price
-          }}
-        }}"""
-
-        response = requests.post(self.endpoint, json={'query': query})
-        response_json = response.json()
-
-        return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
-
-    def get_prices_sdk(self, pair):
-        address = Web3.toChecksumAddress(pair)
-        contract = self.web3.eth.contract(address=address, abi=self.abi)
-        _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
-        db.update(address, reserves0=_reserve0, reserves1=_reserve1)
-        price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
-        return price, 1 / price
-
-    def predict_price(self, pair, deltas):
-        address = Web3.toChecksumAddress(pair)
-        current_price = db.get(address)
-        if current_price is None:
-            print("Not current price available. Run watcher separetly to be able to predict.")
-        else:
-            now = datetime.datetime.now()
-            tdelta = now - current_price[1]
-            if tdelta.total_seconds() > 1:
-                print("Last price saved is too old to make a prediction")
-            else:
-                memdeltas = {}
-                for nbc in deltas:
-                    if nbc['address'].lower() == address.lower():
-                        for bc in nbc['balanceChanges']:
-                            memdeltas[bc['asset']['symbol']] = bc['delta']
-
-                _reserve0 = current_price[2]
-                _reserve1 = current_price[3]
-                price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
-
-                d_reserve0 = int(current_price[2]) + int(memdeltas[pair.split("-")[0]])
-                d_reserve1 = int(current_price[3]) + int(memdeltas[pair.split("-")[1]])
-
-                dprice = Decimal(d_reserve0) / Decimal(d_reserve1) * 10 ** 12
-
-                print(f"Current price: {price}")
-                print(f"Predicted price: {dprice}")
-
-    def get_pair(self, token_in, token_out):
-        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories']['Sushiswap'])
-
-        factory_contract = self.web3.eth.contract(
-            address=factory_address,
-            abi=self.factory_abi
-        )
-        pair_address = factory_contract.functions.getPair(
-            token_in,
-            token_out
-        ).call()
-        return pair_address
-
-    def get_pair_reserves(self, pair_address):
-        pair_contract = self.web3.eth.contract(
-            address=Web3.toChecksumAddress(pair_address),
-            abi=self.abi
-        )
-
-        token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
-
-        return {"token0": int(token0_reserve), "token1": int(token1_reserve)}
-
-    def get_token0(self, pair_address):
-        pair_contract = self.web3.eth.contract(
-            address=Web3.toChecksumAddress(pair_address),
-            abi=self.abi
-        )
-        token0 = pair_contract.functions.token0().call()
-
-        return token0
-
-
 class UniswapV2(BaseConnector):
     name = "UniswapV2"
     endpoint = "https://api.thegraph.com/subgraphs/name/ianlapham/uniswapv2"
@@ -152,6 +50,26 @@ class UniswapV2(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
 
+    def get_pair_decimals(self, address):
+        query = f"""query {{
+          pair(id:"{address}") {{
+            token0 {{
+              decimals
+            }}
+            token1 {{
+              decimals
+            }}
+          }}
+        }}"""
+
+        response = requests.post(self.endpoint, json={'query': query})
+        response_json = response.json()
+
+        return (
+            response_json['data']['pair']['token0']['decimals'],
+            response_json['data']['pair']['token1']['decimals'],
+        )
+
     def get_prices_api(self, address):
         query = f"""query {{
           pair(id:"{address}") {{
@@ -167,24 +85,33 @@ class UniswapV2(BaseConnector):
             }}
             token0Price
             token1Price
+            reserve0
+            reserve1
           }}
         }}"""
 
         response = requests.post(self.endpoint, json={'query': query})
         response_json = response.json()
 
-        return response_json['data']['pair']['token0Price'], response_json['data']['pair']['token1Price']
+        return (
+            Decimal(response_json['data']['pair']['token0Price']),
+            Decimal(response_json['data']['pair']['token1Price']),
+            Decimal(response_json['data']['pair']['reserve0']),
+            Decimal(response_json['data']['pair']['reserve1'])
+        )
 
     def get_prices_sdk(self, pair):
         address = Web3.toChecksumAddress(pair)
+        decimals = self.get_pair_decimals(pair)
         contract = self.web3.eth.contract(address=address, abi=self.abi)
         _reserve0, _reserve1, _blockTimestampLast = contract.functions.getReserves().call()
         db.update(address, reserves0=_reserve0, reserves1=_reserve1)
-        price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
-        return price, 1 / price, _reserve0, _reserve1
+        price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
+        return price, 1 / price, Decimal(_reserve0) / (10 ** int(decimals[0])), Decimal(_reserve1) / (10 ** int(decimals[1]))
 
     def predict_price(self, pair, deltas):
         address = Web3.toChecksumAddress(pair)
+        decimals = self.get_pair_decimals(pair)
         current_price = db.get(address)
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
@@ -202,18 +129,18 @@ class UniswapV2(BaseConnector):
 
                 _reserve0 = current_price[2]
                 _reserve1 = current_price[3]
-                price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** 12
+                price = Decimal(_reserve0) / Decimal(_reserve1) * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
 
                 d_reserve0 = int(current_price[2]) + int(memdeltas[pair.split("-")[0]])
                 d_reserve1 = int(current_price[3]) + int(memdeltas[pair.split("-")[1]])
 
-                dprice = Decimal(d_reserve0) / Decimal(d_reserve1) * 10 ** 12
+                dprice = Decimal(d_reserve0) / Decimal(d_reserve1) * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
 
                 print(f"Current price: {price}")
                 print(f"Predicted price: {dprice}")
 
     def get_pair(self, token_in, token_out):
-        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories']['UniswapV2'])
+        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories'][self.name])
 
         factory_contract = self.web3.eth.contract(
             address=factory_address,
@@ -243,6 +170,16 @@ class UniswapV2(BaseConnector):
         token0 = pair_contract.functions.token0().call()
 
         return token0
+
+
+class Sushiswap(UniswapV2):
+    name = "Sushiswap"
+    endpoint = "https://api.thegraph.com/subgraphs/name/sushiswap/exchange"
+    with open(os.path.join(os.path.dirname(__file__), "abi", "UniswapV2Pair.json")) as f:
+        info_json = json.load(f)
+    abi = info_json["abi"]
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
+        factory_abi = f.read().rstrip()
 
 
 class UniswapV3(BaseConnector):
@@ -253,6 +190,26 @@ class UniswapV3(BaseConnector):
     abi = info_json["abi"]
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv3', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
+
+    def get_pair_decimals(self, address):
+        query = f"""query {{
+          pool(id:"{address}") {{
+            token0 {{
+              decimals
+            }}
+            token1 {{
+              decimals
+            }}
+          }}
+        }}"""
+
+        response = requests.post(self.endpoint, json={'query': query})
+        response_json = response.json()
+
+        return (
+            response_json['data']['pool']['token0']['decimals'],
+            response_json['data']['pool']['token1']['decimals'],
+        )
 
     def get_prices_api(self, address):
         query = f"""query {{
@@ -278,20 +235,29 @@ class UniswapV3(BaseConnector):
         response = requests.post(self.endpoint, json={'query': query})
         response_json = response.json()
 
-        return response_json['data']['pool']['token0Price'], response_json['data']['pool']['token1Price']
+        return (
+            Decimal(response_json['data']['pool']['token0Price']),
+            Decimal(response_json['data']['pool']['token1Price']),
+            int(response_json['data']['pool']['feeTier']),
+            int(response_json['data']['pool']['sqrtPrice']),
+            int(response_json['data']['pool']['liquidity']),
+        )
 
     def get_prices_sdk(self, pair):
         address = Web3.toChecksumAddress(pair)
+        decimals = self.get_pair_decimals(pair)
         contract = self.web3.eth.contract(address=address, abi=self.abi)
+        fee = contract.functions.fee().call()
         slot0 = contract.functions.slot0().call()
         liquidity = contract.functions.liquidity().call()
         sqrtPriceX96 = Decimal(slot0[0])
         db.update(address, sqrtprice=sqrtPriceX96, liquidity=liquidity)
-        price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** 12
-        return price, 1 / price, slot0, liquidity
+        price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
+        return price, 1 / price, fee, slot0[0], liquidity
 
     def predict_price(self, pair, deltas):
         address = Web3.toChecksumAddress(pair)
+        decimals = self.get_pair_decimals(pair)
         current_price = db.get(address)
         if current_price is None:
             print("Not current price available. Run watcher separetly to be able to predict.")
@@ -307,7 +273,7 @@ class UniswapV3(BaseConnector):
                         for bc in nbc['balanceChanges']:
                             memdeltas[bc['asset']['symbol']] = bc['delta']
 
-                price = 2 ** 192 / Decimal(current_price[4]) ** 2 * 10 ** 12
+                price = 2 ** 192 / Decimal(current_price[4]) ** 2 * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
 
                 dprice = SqrtPriceMath.getNextSqrtPriceFromAmount0RoundingUp(
                     int(current_price[4]),
@@ -315,7 +281,7 @@ class UniswapV3(BaseConnector):
                     abs(int(memdeltas[pair.split("-")[0]])),
                     int(memdeltas[pair.split("-")[0]]) > 0
                 )
-                dprice = 2 ** 192 / Decimal(dprice) ** 2 * 10 ** 12
+                dprice = 2 ** 192 / Decimal(dprice) ** 2 * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
 
                 print(f"Current price: {price}")
                 print(f"Predicted price: {dprice}")
