@@ -2,6 +2,8 @@ from connectors import connectors
 
 
 def compare(pairs, connection_type='sdk', network='mainnet'):
+    if len(pairs) < 2:
+        raise Exception("Can't compare 1 or less options")
     data = {}
     swaps = {
         'UniswapV2': connectors.UniswapV2(network),

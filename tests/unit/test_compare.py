@@ -68,3 +68,15 @@ class TestCompare(unittest.TestCase):
         self.assertIsNotNone(swap_args.get('arbToken'))
         self.assertIsNotNone(swap_args.get('dexs'))
         self.assertIsNotNone(swap_args.get('arb'))
+
+    def test_compare_one_option(self):
+        pairs = [
+            {
+                'id': '0xbab761277f52fff80e35a961b4c63e95c733ddbf',
+                'token0': {'id': '0x7d8d7c26179b7a6aebbf66a91c38ed92d5b4996b', 'symbol': 'FUND', 'decimals': '18'},
+                'token1': {'id': '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', 'symbol': 'WETH', 'decimals': '18'},
+                'dex': 'UniswapV2'
+            }
+        ]
+        with self.assertRaises(Exception):
+            compare(pairs)
