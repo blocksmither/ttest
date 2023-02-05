@@ -255,6 +255,12 @@ class UniswapV3(BaseConnector):
         price = 2 ** 192 / sqrtPriceX96 ** 2 * 10 ** (abs(int(decimals[0]) - int(decimals[1])))
         return price, 1 / price, fee, slot0[0], liquidity
 
+    def get_pair_fee(self, pair):
+        address = Web3.toChecksumAddress(pair)
+        contract = self.web3.eth.contract(address=address, abi=self.abi)
+        fee = contract.functions.fee().call()
+        return fee / (10 ** 6)
+
     def predict_price(self, pair, deltas):
         address = Web3.toChecksumAddress(pair)
         decimals = self.get_pair_decimals(pair)
@@ -312,3 +318,7 @@ class UniswapV3(BaseConnector):
         token0 = pair_contract.functions.token0().call()
 
         return token0
+
+    def get_pair_reserves(self, pair_address):
+        # Dummy data to be homogenic with V2
+        return {"token0": 1, "token1": 1}

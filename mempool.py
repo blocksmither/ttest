@@ -85,6 +85,7 @@ class MempoolReader():
                         pair_fee = 0.003
                     elif swap.dex_name == 'uniswapv3':
                         pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
+                        pair_fee = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_fee(pair_address)
                     elif swap.dex_name == 'sushiswap':
                         pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
                         pair_fee = 0.003

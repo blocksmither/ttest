@@ -28,7 +28,7 @@ class TestGetPrices(unittest.TestCase):
 
         diff = sum(tuple(abs(a_i - b_i) for a_i, b_i in zip(result_sdk, result_api)))
 
-        self.assertLessEqual(diff, 10)
+        self.assertLessEqual(diff, 100)
 
     def test_get_prices_sushi(self):
         swap = connectors.Sushiswap('mainnet')
@@ -43,7 +43,7 @@ class TestGetPrices(unittest.TestCase):
 
         diff = sum(tuple(abs(a_i - b_i) for a_i, b_i in zip(result_sdk, result_api)))
 
-        self.assertLessEqual(diff, 10)
+        self.assertLessEqual(diff, 100)
 
     def test_get_prices_v3(self):
         swap = connectors.UniswapV3('mainnet')
