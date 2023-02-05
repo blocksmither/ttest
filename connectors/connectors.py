@@ -15,6 +15,8 @@ with open(os.path.join(os.path.dirname(__file__), '..', 'config.yaml')) as file:
 
 db = Database()
 
+EMPTY_PAIR = '0x0000000000000000000000000000000000000000'
+
 
 class BaseConnector():
     web3 = 'unset'
@@ -47,8 +49,6 @@ class Sushiswap(BaseConnector):
     abi = info_json["abi"]
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
-    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'sushiswap', 'pair.abi'), 'r') as f:
-        pair_abi = f.read().rstrip()
 
     def get_prices_api(self, address):
         query = f"""query {{
@@ -126,7 +126,7 @@ class Sushiswap(BaseConnector):
     def get_pair_reserves(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
-            abi=self.pair_abi
+            abi=self.abi
         )
 
         token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
@@ -136,7 +136,7 @@ class Sushiswap(BaseConnector):
     def get_token0(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
-            abi=self.pair_abi
+            abi=self.abi
         )
         token0 = pair_contract.functions.token0().call()
 
@@ -151,8 +151,6 @@ class UniswapV2(BaseConnector):
     abi = info_json["abi"]
     with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'factory.abi'), 'r') as f:
         factory_abi = f.read().rstrip()
-    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv2', 'pair.abi'), 'r') as f:
-        pair_abi = f.read().rstrip()
 
     def get_prices_api(self, address):
         query = f"""query {{
@@ -230,7 +228,7 @@ class UniswapV2(BaseConnector):
     def get_pair_reserves(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
-            abi=self.pair_abi
+            abi=self.abi
         )
 
         token0_reserve, token1_reserve, last_block_timestamp = pair_contract.functions.getReserves().call()
@@ -240,7 +238,7 @@ class UniswapV2(BaseConnector):
     def get_token0(self, pair_address):
         pair_contract = self.web3.eth.contract(
             address=Web3.toChecksumAddress(pair_address),
-            abi=self.pair_abi
+            abi=self.abi
         )
         token0 = pair_contract.functions.token0().call()
 
@@ -253,6 +251,8 @@ class UniswapV3(BaseConnector):
     with open(os.path.join(os.path.dirname(__file__), "abi", "IUniswapV3Pool.json")) as f:
         info_json = json.load(f)
     abi = info_json["abi"]
+    with open(os.path.join(os.path.dirname(__file__), '..', 'interfaces', 'uniswapv3', 'factory.abi'), 'r') as f:
+        factory_abi = f.read().rstrip()
 
     def get_prices_api(self, address):
         query = f"""query {{
@@ -319,3 +319,30 @@ class UniswapV3(BaseConnector):
 
                 print(f"Current price: {price}")
                 print(f"Predicted price: {dprice}")
+
+    def get_pair(self, token_in, token_out):
+        factory_address = Web3.toChecksumAddress(config['networks'][self.network]['exchangeFactories']['UniswapV3'])
+
+        factory_contract = self.web3.eth.contract(
+            address=factory_address,
+            abi=self.factory_abi
+        )
+        pair_list = []
+        for pool_fee in [1, 500, 3000, 10000]:
+            pair_address = factory_contract.functions.getPool(
+                token_in,
+                token_out,
+                pool_fee
+            ).call()
+            if pair_address != EMPTY_PAIR:
+                pair_list.append(pair_address)
+        return pair_list[0]
+
+    def get_token0(self, pair_address):
+        pair_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(pair_address),
+            abi=self.abi
+        )
+        token0 = pair_contract.functions.token0().call()
+
+        return token0

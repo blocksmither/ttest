@@ -36,6 +36,24 @@ class TestGetV2Pair(unittest.TestCase):
 
         self.assertEqual(pair_address.lower(), expected.lower())
 
+    def test_connector_sushi_get_pair(self):
+        expected = '0x397ff1542f962076d0bfe58ea045ffa2d347aca0'
+
+        swap = connectors.Sushiswap('mainnet')
+
+        pair_address = swap.get_pair(self.token_in, self.token_out)
+
+        self.assertEqual(pair_address.lower(), expected.lower())
+
+    def test_connector_v3_get_pair(self):
+        expected = '0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640'
+
+        swap = connectors.UniswapV3('mainnet')
+
+        pair_address = swap.get_pair(self.token_in, self.token_out)
+
+        self.assertEqual(pair_address.lower(), expected.lower())
+
     def test_find_pairs(self):
         pair_address = hutil.find_pairs(self.token_in)
 
