@@ -23,7 +23,7 @@ def test_multiswap(botContract):
     assert usdcbal == usdcExpected
 
     # Fund 1 ETH for each dex permutation plus one
-    wethExpected = 1e18 * (len(permutations) + 1)
+    wethExpected = 1e18 * (len(permutations) + 10)
     fundWithWETH(botContract, wethExpected, account)
 
     (wethbal, usdcbal, _) = botContract.getBalances()
@@ -51,3 +51,6 @@ def test_multiswap(botContract):
     # Try swaping checking profit
     with brownie.reverts():
         botContract.multiSwap(tokens['WETH'], tokens['USDC'], wethTradeAmount, permutations[0], True)
+
+    # Try swaping a token not pre approved
+    botContract.multiSwap(tokens['WETH'], "0x6B175474E89094C44Da98b954EedeAC495271d0F", wethTradeAmount, permutations[0], False)

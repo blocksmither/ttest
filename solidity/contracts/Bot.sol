@@ -38,6 +38,19 @@ contract Bot {
     IWETH.deposit{value: msg.value}();
   }
 
+  function checkAllowance(address token) private returns (uint256) {
+    IERC20 Token = IERC20(token);
+    uint256 allowance = Token.allowance(address(this), address(v3Router));
+    return allowance;
+  }
+
+  function authorize(address token) private {
+    IERC20 Token = IERC20(token);
+    Token.approve(address(v3Router),type(uint).max);
+    Token.approve(address(v2Router),type(uint).max);
+    Token.approve(address(sushiRouter),type(uint).max);
+  }
+
   // Fund with ETH, leave half in WETH and half in USDC
   function depositETHAndUSDC() public payable {
     require(msg.sender == owner);
@@ -135,6 +148,7 @@ contract Bot {
     address currentOut = arbToken;
     address holder;
     uint currentAmount = arbAmount;
+    uint256 allowance;
 
     bytes32 k256Sushiswap  = keccak256(abi.encodePacked('Sushiswap'));
     bytes32 k256UniswapV2  = keccak256(abi.encodePacked('UniswapV2'));
@@ -143,6 +157,11 @@ contract Bot {
 
     for (uint i = 0; i < dexs.length; i++) {
       k256Dex = keccak256(abi.encodePacked(dexs[i])); 
+
+      allowance = checkAllowance(currentIn);
+      if (allowance == 0) {
+        authorize(currentIn);
+      }
       if (k256Dex == k256Sushiswap) {
         currentAmount = swapSushiSwap(currentIn, currentOut, currentAmount, 0, address(this));
       } else if (k256Dex == k256UniswapV2) {

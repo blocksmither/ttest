@@ -58,7 +58,6 @@ class MempoolReader():
 
     def on_message(self, wsapp, message):
         event = json.loads(message)
-        print(event)
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
