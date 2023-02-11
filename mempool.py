@@ -28,7 +28,7 @@ class MempoolReader():
     with open(os.path.join(os.path.dirname(__file__), 'config.yaml')) as file:
         config = yaml.safe_load(file)
 
-    def __init__(self, network, threshold, test):
+    def __init__(self, network, threshold=0.01, test=False, save=False, dapp_id='pro'):
         self.network = network
         self.connectors = {
             'UniswapV2': connectors.UniswapV2(network),
@@ -47,6 +47,8 @@ class MempoolReader():
             self.config['networks'][self.network]['web3Provider']))
         self.check_threshold = threshold
         self.test_mode = test
+        self.save_events = save
+        self.dapp_id = dapp_id
 
     @property
     def mempool_network(self):
@@ -56,8 +58,34 @@ class MempoolReader():
         }
         return networks[self.network]
 
+    @property
+    def dappid(self):
+        ids = {
+            'pro': "139d298b-b21a-487e-be04-b06aa127155b",
+            'free': "cf6aaedd-10c1-45bd-8970-be4ee9544d9e"
+        }
+        return ids[self.dapp_id]
+
+    def save_event(self, event):
+        try:
+            if self.save_events:
+                if not os.path.exists(os.path.join(os.path.dirname(__file__), 'downloads')):
+                    os.makedirs(os.path.join(os.path.dirname(__file__), 'downloads'))
+                with open(
+                        os.path.join(
+                            os.path.dirname(__file__),
+                            'downloads',
+                            f"{event['timeStamp'].replace(':', '.')}-{event['event']['transaction']['hash']}.json"
+                        ),
+                        'w'
+                ) as f:
+                    json.dump(event, f, indent=2)
+        except:
+            pass
+
     def on_message(self, wsapp, message):
         event = json.loads(message)
+        self.save_event(event)
         try:
             swaps = parse_swap_tx_blocknative(event)
             for swap in swaps:
@@ -160,7 +188,7 @@ class MempoolReader():
             "categoryCode": "initialize",
             "eventCode": "checkDappId",
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "dappId": self.dappid,
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -176,7 +204,7 @@ class MempoolReader():
                 "address": self.address1,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "dappId": self.dappid,
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -192,7 +220,7 @@ class MempoolReader():
                 "address": self.address2,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "dappId": self.dappid,
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -208,7 +236,7 @@ class MempoolReader():
                 "address": self.address3,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "dappId": self.dappid,
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -224,7 +252,7 @@ class MempoolReader():
                 "address": self.address4,
             },
             "timeStamp": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%Z"),
-            "dappId": "139d298b-b21a-487e-be04-b06aa127155b",
+            "dappId": self.dappid,
             "version": "1",
             "blockchain": {
                 "system": "ethereum",
@@ -253,11 +281,17 @@ if __name__ == "__main__":
                         help="Threshold amount for possible arbitrage, should typically be 0.01 or greater")
     parser.add_argument("-t", "--test", action="store_true", default=False,
                         help="Spin mainnet fork on ganache and test a swap on opportunities")
+    parser.add_argument("-s", "--save", action="store_true", default=False,
+                        help="Saves the received event on downloads to be used for testing/planning.")
+    parser.add_argument("-i", "--id", default='pro',
+                        choices=['pro', 'free'], help="Select the blocknative API key to use.")
 
     args = parser.parse_args()
     NETWORK = args.network.strip()
     THRESHOLD = float(args.threshold)
     TEST_MODE_FLAG = args.test
+    SAVE_EVENTS = args.save
+    DAPP_ID = args.id
 
-    reader = MempoolReader(NETWORK, THRESHOLD, TEST_MODE_FLAG)
+    reader = MempoolReader(NETWORK, threshold=THRESHOLD, test=TEST_MODE_FLAG, save=SAVE_EVENTS, dapp_id=DAPP_ID)
     reader.start()
