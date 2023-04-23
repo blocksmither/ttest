@@ -17,6 +17,7 @@ class RouterSwap:
     swap_method: str
     router_name: str
     dex_name: str
+    fee: str = "3000"
 
 
 @dataclass
@@ -94,7 +95,8 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
                 router_name=router_name,
                 swap_method='exactInputSingle',
                 router_address=router_address,
-                dex_name='uniswapv3'
+                dex_name='uniswapv3',
+                fee=params['fee']
             )
         case 'exactInput':
             # This has multiple pools
@@ -110,7 +112,8 @@ def get_swap_blocknative(subcall, router_address, blocknative_data):
                 router_name=router_name,
                 swap_method='exactOutputSingle',
                 router_address=router_address,
-                dex_name='uniswapv3'
+                dex_name='uniswapv3',
+                fee=params['fee']
             )
         case 'exactOutput':
             # This has multiple pools

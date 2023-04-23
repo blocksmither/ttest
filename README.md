@@ -12,24 +12,11 @@ TESTS
     $ python -m unittest
 
 
-WATCHER
-========
-This script keeps track of a price and prints everytime there is a change in price
-
-    $ python watcher.py
-
-
 MEMPOOL READER
 ========
 This script keeps track of the mempool and prints eveytime it reads a new transaction
 
     $ python mempool.py
-
-
-To predict price changes we have to run separetly the watcher and the mempool with the same variables
-
-    $ python watcher.py -s UniswapV2
-    $ python mempool.py 
 
 
 TODO:

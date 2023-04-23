@@ -13,7 +13,7 @@ ROUTER_2_DEX = {
 }
 
 
-def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None):
+def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None, fee=None):
     if token2_address:
         pair_addresses = "".join(sorted([token1_address.lower(), token2_address.lower()]))
     else:
@@ -25,8 +25,11 @@ def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None):
         raise Exception('Token pair not in the hashmap')
 
     if dex:
-        return [result for result in results if result['dex'] == dex]
+        results = [result for result in results if result['dex'] == dex]
     elif alt_dex:
-        return [result for result in results if result['dex'] != alt_dex]
-    else:
-        return results
+        results = [result for result in results if result['dex'] != alt_dex]
+
+    if fee:
+        results = [result for result in results if result['feeTier'] == fee]
+
+    return results

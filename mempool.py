@@ -93,18 +93,20 @@ class MempoolReader():
                     pair_address = hutil.find_pairs(
                         swap.token_in,
                         swap.token_out,
-                        dex=hutil.ROUTER_2_DEX[swap.router_name]
+                        dex=hutil.ROUTER_2_DEX[swap.router_name],
+                        fee=swap.fee
                     )[0]['id']
                 except:
                     # not in hashmap
                     pair_address = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair(
                         swap.token_in,
-                        swap.token_out
+                        swap.token_out,
+                        fee=swap.fee
                     )
                 reserves = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_reserves(
                     pair_address
                 )
-                pair_token0 = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_token0(
+                pair_token0, pair_token1 = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_tokens(
                     pair_address
                 )
                 if swap.dex_name == 'uniswapv2':
@@ -112,22 +114,17 @@ class MempoolReader():
                     pair_fee = 0.003
                 elif swap.dex_name == 'uniswapv3':
                     pair_factory = self.config['networks']['mainnet']['exchangeFactories']['UniswapV3']
-                    pair_fee = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_pair_fee(pair_address)
+                    pair_fee = int(swap.fee) / (10 ** 6)
                 elif swap.dex_name == 'sushiswap':
                     pair_factory = self.config['networks']['mainnet']['exchangeFactories']['Sushiswap']
                     pair_fee = 0.003
 
-                if swap.token_in == pair_token0:
-                    in_ratio = swap.token_in_amount / reserves['token0']
-                    out_ratio = swap.token_out_amount / reserves['token1']
-                    pair_token1 = swap.token_out
-                else:
-                    in_ratio = swap.token_in_amount / reserves['token1']
-                    out_ratio = swap.token_out_amount / reserves['token0']
-                    pair_token1 = swap.token_in
+                current_price = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].get_prices_sdk(pair_address)
+                predicted_price = self.connectors[hutil.ROUTER_2_DEX[swap.router_name]].predict_price(pair_address, swap)
 
-                print("in ratio", in_ratio)
-                print("out ratio", out_ratio)
+                percent_change = abs((predicted_price[0] - current_price[0]) / current_price[0])
+
+                print("Percent price change", percent_change)
 
                 affected_pair = Pair(
                     tokens=[pair_token0, pair_token1],
@@ -139,8 +136,7 @@ class MempoolReader():
                 )
                 print("Affected Pair: ", affected_pair)
 
-                if in_ratio > self.check_threshold or \
-                        out_ratio > self.check_threshold:
+                if percent_change > self.check_threshold:
                     print(
                         "Possible Arbitrage opportunity! Swap amount for txid ",
                         event['event']['transaction']['hash'],

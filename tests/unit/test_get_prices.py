@@ -21,11 +21,11 @@ class TestGetPrices(unittest.TestCase):
         pair_address = '0xe6c78983b07a07e0523b57e18aa23d3ae2519e05'
 
         result_sdk = swap.get_prices(pair_address)
-
+        print(result_sdk)
         self.assertEqual(len(result_sdk), 4)
 
         result_api = swap.get_prices(pair_address, connection='api')
-
+        print(result_api)
         diff = sum(tuple(abs(a_i - b_i) for a_i, b_i in zip(result_sdk, result_api)))
 
         self.assertLessEqual(diff, 100)

@@ -59,6 +59,12 @@ class TestGetV2Pair(unittest.TestCase):
 
         self.assertTrue(len(pair_address) > 0)
 
+    def test_find_pair_fee(self):
+        expected = '0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8'
+        pair_address = hutil.find_pairs(self.token_in, self.token_out, dex='UniswapV3', fee="3000")
+
+        self.assertEqual(pair_address[0]['id'].lower(), expected.lower())
+
     def test_find_pairs_failed(self):
         with self.assertRaises(Exception):
             hutil.find_pairs("dasdas")
