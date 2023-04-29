@@ -33,5 +33,3 @@ class TestGetDecimals(unittest.TestCase):
         token_address = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
         result = swap.get_token_decimals(token_address)
         self.assertEqual(result, 6)
-        
-        

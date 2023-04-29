@@ -32,6 +32,7 @@ class Pair:
     address: str
     fee: float
     dex_name: str
+    predicted_price: float
 
 
 @dataclass

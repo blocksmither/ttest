@@ -1,7 +1,8 @@
 from connectors import connectors
+from swap import Pair
 
 
-def compare(pairs, connection_type='sdk', network='mainnet'):
+def compare(pairs, connection_type='sdk', network='mainnet', predicted: Pair = None):
     if len(pairs) < 2:
         raise Exception("Can't compare 1 or less options")
     data = {}
@@ -12,8 +13,12 @@ def compare(pairs, connection_type='sdk', network='mainnet'):
     }
 
     rates = []
+    future_price = isinstance(predicted, Pair)
     for pair in pairs:
-        prices = swaps[pair['dex']].get_prices(pair['id'], connection=connection_type)
+        if future_price and predicted.address == pair['id']:
+            prices = [predicted.predicted_price]
+        else:
+            prices = swaps[pair['dex']].get_prices(pair['id'], connection=connection_type)
 
         if pair['dex'] == 'UniswapV3':
             dex_fee = f"UniswapV3-{pair['feeTier']}"

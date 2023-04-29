@@ -3,6 +3,7 @@ import unittest
 
 import yaml
 from connectors import connectors
+from swap import Pair
 
 from comparator import compare
 
@@ -70,6 +71,33 @@ class TestCompare(unittest.TestCase):
         self.assertIsNotNone(swap_args.get('arb'))
         self.assertIsNotNone(swap_args.get('max'))
         self.assertIsNotNone(swap_args.get('min'))
+
+    def test_compare_w_prediction(self):
+        affected_pair = Pair(
+            tokens=[self.pairs[0]['token0']['id'], self.pairs[0]['token1']['id']],
+            reserves=[0, 0],
+            factory='0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
+            address=self.pairs[0]['id'],
+            fee=0.003,
+            dex_name=self.pairs[0]['dex'],
+            predicted_price=1
+        )
+        swap_args = compare(self.pairs, predicted=affected_pair)
+
+        self.assertEqual(swap_args['min']['swap'], self.pairs[0]['dex'])
+
+        affected_pair = Pair(
+            tokens=[self.pairs[0]['token0']['id'], self.pairs[0]['token1']['id']],
+            reserves=[0, 0],
+            factory='0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
+            address=self.pairs[0]['id'],
+            fee=0.003,
+            dex_name=self.pairs[0]['dex'],
+            predicted_price=1000000
+        )
+        swap_args = compare(self.pairs, predicted=affected_pair)
+
+        self.assertEqual(swap_args['max']['swap'], self.pairs[0]['dex'])
 
     def test_compare_one_option(self):
         pairs = [

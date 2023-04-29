@@ -132,7 +132,8 @@ class MempoolReader():
                     factory=pair_factory,
                     address=pair_address,
                     fee=pair_fee,
-                    dex_name=swap.dex_name
+                    dex_name=swap.dex_name,
+                    predicted_price=predicted_price[0]
                 )
                 print("Affected Pair: ", affected_pair)
 
@@ -155,7 +156,7 @@ class MempoolReader():
                             solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
                             before_balances = solidityBot.getBalances()
                             # Call solidityBot.multiswap({'from': accounts[0])
-                            swap_args = compare(alt_pairs, network=self.network)
+                            swap_args = compare(alt_pairs, network=self.network, predicted=affected_pair)
                             solidityBot.multiSwap(
                                 swap_args['inToken'],
                                 swap_args['arbToken'],
