@@ -15,7 +15,19 @@ def compare(pairs, connection_type='sdk', network='mainnet'):
     for pair in pairs:
         prices = swaps[pair['dex']].get_prices(pair['id'], connection=connection_type)
 
-        rates.append({'swap': pair['dex'], 'price': prices[0], 'id': pair['id'], 'fee': pair.get('feeTier', '3000')})
+        if pair['dex'] == 'UniswapV3':
+            dex_fee = f"UniswapV3-{pair['feeTier']}"
+        else:
+            dex_fee = pair['dex']
+        rates.append(
+            {
+                'swap': pair['dex'],
+                'price': prices[0],
+                'id': pair['id'],
+                'fee': pair.get('feeTier', '3000'),
+                'dex_fee': dex_fee
+            }
+        )
 
     data['max'] = max(rates, key=lambda x: x['price'])
     data['min'] = min(rates, key=lambda x: x['price'])
@@ -23,7 +35,9 @@ def compare(pairs, connection_type='sdk', network='mainnet'):
     swap_args = {
         'inToken': pairs[0]['token0']['id'],
         'arbToken': pairs[0]['token1']['id'],
-        'dexs': [data['min']['swap'], data['max']['swap']],
+        'dexs': [data['min']['dex_fee'], data['max']['dex_fee']],
+        'min': data['min'],
+        'max': data['max'],
         'arb': data['max']['price'] / data['min']['price']
     }
 

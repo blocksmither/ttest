@@ -68,6 +68,8 @@ class TestCompare(unittest.TestCase):
         self.assertIsNotNone(swap_args.get('arbToken'))
         self.assertIsNotNone(swap_args.get('dexs'))
         self.assertIsNotNone(swap_args.get('arb'))
+        self.assertIsNotNone(swap_args.get('max'))
+        self.assertIsNotNone(swap_args.get('min'))
 
     def test_compare_one_option(self):
         pairs = [

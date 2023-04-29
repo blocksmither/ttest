@@ -10,7 +10,7 @@ def botContract():
 
 
 def test_multiswap(botContract):
-    dexs = ['Sushiswap', 'UniswapV2', 'UniswapV3']
+    dexs = ['Sushiswap', 'UniswapV2', 'UniswapV3-100', 'UniswapV3-500', 'UniswapV3-3000', 'UniswapV3-10000']
     permutations = list(map(list, (itertools.permutations(dexs, 2))))
 
     account = brownie.accounts[0]
