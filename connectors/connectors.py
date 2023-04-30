@@ -74,6 +74,20 @@ class BaseConnector():
         token0, token1 = self.get_tokens(address)
         return self.get_token_decimals(token0), self.get_token_decimals(token1)
 
+    def get_token_symbol(self, address):
+        address = Web3.toChecksumAddress(address)
+        token_contract = self.web3.eth.contract(
+            address=Web3.toChecksumAddress(address),
+            abi=self.erc20_abi
+        )
+        symbol = token_contract.functions.symbol().call()
+
+        return symbol
+
+    def get_tokens_symbols(self, address):
+        token0, token1 = self.get_tokens(address)
+        return self.get_token_symbol(token0), self.get_token_symbol(token1)
+
 
 class UniswapV2(BaseConnector):
     name = "UniswapV2"
@@ -312,7 +326,7 @@ class UniswapV3(BaseConnector):
         if fee:
             fees = [int(fee)]
         else:
-            fees = [1, 500, 3000, 10000]
+            fees = [100, 500, 3000, 10000]
         for pool_fee in fees:
             pair_address = factory_contract.functions.getPool(
                 token_in,
@@ -321,7 +335,7 @@ class UniswapV3(BaseConnector):
             ).call()
             if pair_address != EMPTY_PAIR:
                 pair_list.append(pair_address)
-        print(pair_list)
+
         return pair_list[0]
 
     def get_pair_reserves(self, pair_address):

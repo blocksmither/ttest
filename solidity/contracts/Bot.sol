@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
+pragma abicoder v2;
 
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 //import "@uniswapv2-periphery/contracts/interfaces/IUniswapV2Pair.sol";
 //import "@uniswapv2-periphery/contracts/interfaces/IUniswapV2Factory.sol";
+import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
-import "@openzeppelin/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import "../interfaces/IWETH9.sol";
 
 contract Bot {
@@ -75,6 +76,7 @@ contract Bot {
       address _toAddress, 
       uint160 _sqrtPriceLimitX96
     ) private returns (uint){
+      TransferHelper.safeApprove(_tokenIn, address(v3Router), type(uint).max);
 
       ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
         tokenIn: _tokenIn,
@@ -97,7 +99,6 @@ contract Bot {
     uint _minTokenOutAmount, 
     address _toAddress
     ) private returns (uint) {
-
       address[] memory path = new address[](2);
       path[0] = _tokenIn;
       path[1] = _tokenOut;

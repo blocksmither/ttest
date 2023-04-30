@@ -1,6 +1,7 @@
 import argparse
 import datetime
 import json
+import logging
 import os
 
 import brownie
@@ -9,11 +10,13 @@ import websocket
 import yaml
 from connectors import connectors
 from swap import (Pair, UnparsableSwapMethodException,
-                  UnparsableTransactionException, get_alt_pairs,
-                  parse_swap_tx_blocknative)
+                  UnparsableTransactionException, parse_swap_tx_blocknative)
 from web3 import Web3
 
 from comparator import compare
+
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s — %(name)s — %(levelname)s — %(funcName)s:%(lineno)d — %(message)s")
 
 
 def symbol_dec(symbol):
@@ -124,8 +127,6 @@ class MempoolReader():
 
                 percent_change = abs((predicted_price[0] - current_price[0]) / current_price[0])
 
-                print("Percent price change", percent_change)
-
                 affected_pair = Pair(
                     tokens=[pair_token0, pair_token1],
                     reserves=[reserves['token0'], reserves['token1']],
@@ -135,50 +136,48 @@ class MempoolReader():
                     dex_name=swap.dex_name,
                     predicted_price=predicted_price[0]
                 )
-                print("Affected Pair: ", affected_pair)
 
                 if percent_change > self.check_threshold:
-                    print(
-                        "Possible Arbitrage opportunity! Swap amount for txid ",
-                        event['event']['transaction']['hash'],
-                        " is greater than threshold ", self.check_threshold)
-
-                    # print("getting alt pairs")
-                    # alt_pairs = get_alt_pairs(self.w3, swap.token_in, swap.token_out, swap.dex_name)
-                    # print(alt_pairs)
-
+                    logging.info(
+                        f"Possible Arbitrage opportunity! Swap amount for txid {event['event']['transaction']['hash']} is greater than threshold {self.check_threshold}"
+                    )
+                    logging.info(f"Percent price change: {round(percent_change, 2)}%")
+                    logging.info(f"Affected Pair: {affected_pair}")
                     alt_pairs = hutil.find_pairs(pair_token0, pair_token1)
-
                     if self.test_mode:
                         try:
+                            swap_args = compare(alt_pairs, network=self.network, predicted=affected_pair)
+                            logging.info(f"Swap args: {swap_args}")
                             brownie.network.connect(network='mainnet-fork', launch_rpc=True)
                             solidityBot = self.solBotProject.Bot.deploy({'from': brownie.accounts[0]})
                             solidityBot.depositETH({'from': brownie.accounts[0], 'value': 10e18})
                             before_balances = solidityBot.getBalances()
-                            # Call solidityBot.multiswap({'from': accounts[0])
-                            swap_args = compare(alt_pairs, network=self.network, predicted=affected_pair)
+
                             solidityBot.multiSwap(
                                 swap_args['inToken'],
                                 swap_args['arbToken'],
-                                1e18,
+                                1e5,
                                 swap_args['dexs'],
                                 False,
                                 {'from': brownie.accounts[0]}
                             )
                             balances = solidityBot.getBalances()
-                            print("balances before ", before_balances)
-                            print("balances after ", balances)
+                            logging.info(f"Balances before: {before_balances[0]}")
+                            logging.info(f"Balances after: {balances[0]}")
+                            logging.info(f"Balances delta: {balances[0] - before_balances[0]}")
                             brownie.network.disconnect()
                         except Exception as e:
-                            print('Failed to test bot on ganache fork')
-                            print(e)
+                            logging.info('Failed to test bot on ganache fork')
+                            logging.info(e)
+                            if brownie.network.is_connected():
+                                brownie.network.disconnect()
 
         except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
-            print(1, e)
+            logging.debug(1, e)
         except KeyError as e:
-            print(2, e)
+            logging.debug(2, e)
         except Exception as e:
-            print(3, e)
+            logging.debug(3, e)
 
     def on_open(self, wsapp):
         data = {
@@ -259,12 +258,12 @@ class MempoolReader():
         wsapp.send(json.dumps(data))
 
     def start(self):
-        print("Reading mempool of:")
-        print(f"Network: {self.network}")
-        print(f"Address: {self.address1}")
-        print(f"Address: {self.address2}")
-        print(f"Address: {self.address3}")
-        print(f"Address: {self.address4}")
+        logging.info("Reading mempool of:")
+        logging.info(f"Network: {self.network}")
+        logging.info(f"Address: {self.address1}")
+        logging.info(f"Address: {self.address2}")
+        logging.info(f"Address: {self.address3}")
+        logging.info(f"Address: {self.address4}")
         self.wsapp.run_forever()
 
 

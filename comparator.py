@@ -45,5 +45,15 @@ def compare(pairs, connection_type='sdk', network='mainnet', predicted: Pair = N
         'max': data['max'],
         'arb': data['max']['price'] / data['min']['price']
     }
+    r_swap_args = {
+        'inToken': pairs[0]['token1']['id'],
+        'arbToken': pairs[0]['token0']['id'],
+        'dexs': [data['max']['dex_fee'], data['min']['dex_fee']],
+        'min': data['max'],
+        'max': data['min'],
+        'arb': data['max']['price'] / data['min']['price']
+    }
+    if swap_args['arbToken'].lower() == '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'.lower():
+        return r_swap_args
 
     return swap_args

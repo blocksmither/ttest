@@ -74,3 +74,22 @@ class TestGetV2Pair(unittest.TestCase):
 
         for pair in pairs:
             self.assertTrue(pair['dex'] != 'UniswapV2')
+
+    def test_find_pairs_not_in_hash(self):
+        expected = [
+            {
+                'id': '0x457862DbB4E43281720e84D62Eb0Ca5914Bf857A',
+                'token0': {'id': '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 'symbol': 'WETH', 'decimals': 18},
+                'token1': {'id': '0xC30d724E3E370dfCEC3b5705CE4AF2B23D6e2E49', 'symbol': 'YEET', 'decimals': 18},
+                'dex': 'UniswapV2'
+            },
+            {
+                'id': '0x0000000000000000000000000000000000000000',
+                'token0': {'id': '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 'symbol': 'WETH', 'decimals': 18},
+                'token1': {'id': '0xC30d724E3E370dfCEC3b5705CE4AF2B23D6e2E49', 'symbol': 'YEET', 'decimals': 18},
+                'dex': 'Sushiswap'
+            }
+        ]
+
+        pairs = hutil.get_alt_pairs(self.token_in, '0xC30d724E3E370dfCEC3b5705CE4AF2B23D6e2E49')
+        self.assertEqual(pairs, expected)
