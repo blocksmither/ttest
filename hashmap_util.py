@@ -2,6 +2,7 @@ import json
 import os
 
 from connectors import connectors
+from db.db import Database
 
 with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'hashmap.json')) as f:
     hashmap = json.load(f)
@@ -14,20 +15,51 @@ ROUTER_2_DEX = {
     'uniswapv302': 'UniswapV3',
 }
 
+DB = Database()
 
-def update_hashmap(results):
-    hashmap
+
+def store(results):
     for result in results:
+        DB.update(
+            result["id"],
+            result["dex"],
+            result["token0"]["id"],
+            result["token0"]["symbol"],
+            result["token0"]["decimals"],
+            result["token1"]["id"],
+            result["token1"]["symbol"],
+            result["token1"]["decimals"],
+            pair_fee=result.get('feeTier')
+        )
+
+
+def update_hash():
+    stored_pairs = DB.get_all()
+    for pair in stored_pairs:
+        result = {
+            "id": pair[0].lower(),
+            "token0": {
+                "id": pair[3].lower(),
+                "symbol": pair[4],
+                "decimals": pair[5]
+            },
+            "token1": {
+                "id": pair[6].lower(),
+                "symbol": pair[7],
+                "decimals": pair[8]
+            },
+            "dex": pair[2]
+        }
+        if pair[1] != 'None':
+            result["feeTier"] = pair[1]
         try:
             hashmap[result["token0"]["id"]] = list(set(hashmap[result["token0"]["id"]]).add(result))
         except:
             hashmap[result["token0"]["id"]] = [result]
-
         try:
             hashmap[result["token1"]["id"]] = list(set(hashmap[result["token1"]["id"]]).add(result))
         except:
             hashmap[result["token1"]["id"]] = [result]
-
         pair_addresses = "".join(sorted([result["token0"]["id"], result["token1"]["id"]]))
         try:
             hashmap[pair_addresses] = list(set(hashmap[pair_addresses]).add(result))
@@ -36,6 +68,9 @@ def update_hashmap(results):
 
     with open(os.path.join(os.path.dirname(__file__), 'pairpages', 'hashmap.json'), 'w') as f:
         json.dump(hashmap, f, indent=2)
+
+    DB.drop_database()
+    DB.create_database()
 
 
 def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None, fee=None):
@@ -48,11 +83,11 @@ def find_pairs(token1_address, token2_address=None, dex=None, alt_dex=None, fee=
         results = hashmap[pair_addresses]
         if len(results) <= 1:
             results = get_alt_pairs(token1_address, token2_address)
-            update_hashmap(results)
+            store(results)
     except:
         # Token pair not in the hashmap
         results = get_alt_pairs(token1_address, token2_address)
-        update_hashmap(results)
+        store(results)
 
     if dex:
         results = [result for result in results if result['dex'] == dex]
@@ -91,8 +126,7 @@ def get_alt_pairs(token1_address, token2_address):
                         decimals = connectors.UniswapV3('mainnet').get_tokens_decimals(pair_address)
                     if not symbols:
                         symbols = connectors.UniswapV3('mainnet').get_tokens_symbols(pair_address)
-                    if not fee:
-                        fee = str(int(connectors.UniswapV3('mainnet').get_pair_fee(pair_address) * (10 ** 6)))
+                    fee = str(int(connectors.UniswapV3('mainnet').get_pair_fee(pair_address) * (10 ** 6)))
                     if pair_address != EMPTY_PAIR:
                         tokens = connectors.UniswapV3('mainnet').get_tokens(pair_address)
                         pairs.append({

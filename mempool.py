@@ -173,11 +173,11 @@ class MempoolReader():
                                 brownie.network.disconnect()
 
         except (UnparsableTransactionException, UnparsableSwapMethodException) as e:
-            logging.debug(1, e)
+            logging.debug(f"UnparsableTransactionException {e}")
         except KeyError as e:
-            logging.debug(2, e)
+            logging.debug(f"KeyError {e}")
         except Exception as e:
-            logging.debug(3, e)
+            logging.debug(f"Exception {e}")
 
     def on_open(self, wsapp):
         data = {
@@ -258,6 +258,7 @@ class MempoolReader():
         wsapp.send(json.dumps(data))
 
     def start(self):
+        hutil.update_hash()
         logging.info("Reading mempool of:")
         logging.info(f"Network: {self.network}")
         logging.info(f"Address: {self.address1}")
